@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 338089247}
   - component: {fileID: 338089246}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: ShadowCaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 1406609933}
   - component: {fileID: 1406609932}
   - component: {fileID: 1406609931}
+  - component: {fileID: 1406609935}
   m_Layer: 0
   m_Name: Orb(Player)
   m_TagString: Untagged
@@ -710,6 +711,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1406609935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406609930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d94ac3a77858c843990acf2739f106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _projectilePrefab: {fileID: -8760447939717194727, guid: 4a83e6eb9fcad85409ddc255dddeac70, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
