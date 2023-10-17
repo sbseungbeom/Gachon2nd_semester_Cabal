@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
         _positions[0] = transform.position;
         _positions[1] = transform.position + (point - transform.position) * 200;
-        _aimLine.SetPositions(_positions);
+        _aimLine.SetPositions( _positions);
 
         if (Input.GetMouseButtonDown(0))
         {
