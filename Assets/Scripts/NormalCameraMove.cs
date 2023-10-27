@@ -8,10 +8,15 @@ public class NormalCameraMove : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private float _smoothTime = 0.5f;
 
-    private Vector3 _vel;
+    private Vector3 _vel, _playerOffset;
 
     private void Awake()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, _player.transform.position, ref _vel, _smoothTime);
+        _playerOffset = transform.position - _player.transform.position;
+    }
+
+    private void Update()
+    {
+        transform.position = Vector3.SmoothDamp(transform.position, _player.transform.position + _playerOffset, ref _vel, _smoothTime);
     }
 }

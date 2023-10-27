@@ -512,10 +512,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04afa04388105bd438b5ce48cc6c1e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _end: {fileID: 563998370}
+  End: {fileID: 563998370}
   _line: {fileID: 1215108154}
   _segmentCount: 44
-  _ropeLength: 10
+  RopeLength: 10
+  GravityPower: 1
 --- !u!54 &1253803432
 Rigidbody:
   m_ObjectHideFlags: 0
