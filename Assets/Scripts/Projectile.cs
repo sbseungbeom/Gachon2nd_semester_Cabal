@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed;
+    public bool IsEnemyProjectile;
+    public int Damage = 1;
 
     void Update ()
     {
@@ -14,7 +16,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         print(other.gameObject);
-        if(other.CompareTag("Enemy")) Destroy(gameObject);
+        if (other.TryGetComponent(out Entity ent) && !IsEnemyProjectile == (ent is Enemy))
+        {
+            ent.Damage(Damage);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
