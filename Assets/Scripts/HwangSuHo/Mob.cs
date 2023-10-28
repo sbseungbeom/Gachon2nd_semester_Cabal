@@ -12,7 +12,7 @@ public class Mob : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     private int _dir;
     [SerializeField] EnemyProjectile _bulletPrefab;
-    GameObject _player;
+    [SerializeField]  GameObject _player;
 
     // Start is called before the first frame update
     protected void Start()
@@ -20,7 +20,7 @@ public class Mob : MonoBehaviour
         StartCoroutine(CoolDown());
         StartCoroutine(DirectionSet());
         _dir = 1;
-        _player = GameObject.FindGameObjectWithTag("Player");
+        //_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
