@@ -19,12 +19,13 @@ public class Enemy : Entity
     {
         _renderer = GetComponent<SpriteRenderer>();
         _dir = Random.value < 0.5f ? 1 : -1;
+        _timer = Random.Range(0f, Data.ShootCooldown);
     }
 
     public override void Damage(int damage)
     {
         base.Damage(damage);
-        Instantiate(Data.DamageParticle, transform.position, Quaternion.identity);
+        ParticleManager.SpawnParticle(Data.DamageParticle, transform.position);
     }
 
     private void OnDestroy()
@@ -58,9 +59,13 @@ public class Enemy : Entity
         {
             _timer = 0f;
 
-            var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
-            projectile.transform.LookAt(GameManager.Instance.Player.transform);
-            projectile.IsEnemyProjectile = true;
+            var vp = Camera.main.WorldToViewportPoint(transform.position);
+            if (vp.x < 1 && vp.x > 0 && vp.y < 1 && vp.y > 0)
+            {
+                var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
+                projectile.transform.LookAt(GameManager.Instance.Player.transform.position);
+                projectile.IsEnemyProjectile = true;
+            }
         }
     }
 }

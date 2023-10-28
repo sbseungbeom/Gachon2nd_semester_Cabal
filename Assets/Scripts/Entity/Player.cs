@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(MeshRenderer))]
 public class Player : Entity
 {
+    [SerializeField] private PlayerElementData _redElementData, _greenElementData, _blueElementData, _darkElementData;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _aimDistance;
     [SerializeField] private Projectile _projectilePrefab;
@@ -13,20 +17,62 @@ public class Player : Entity
 
     [SerializeField] private Transform _boss;
     [SerializeField] private bool _isBossMoving;
+    [SerializeField] private Light _orbLight;
+
     public ParticleSystem DamageParticle;
 
     private Vector3[] _positions = new Vector3[2];
+    private MeshRenderer _renderer;
+
+    public PlayerElementData CurrentElement;
+
+    private void Awake()
+    {
+        _renderer = GetComponent<MeshRenderer>();
+        ChangeElement(CurrentElement, true);
+    }
 
     private void Update()
     {
         MoveUpdate();
         ShootUpdate();
+        ElementChangeUpdate();
+    }
+
+    private void ElementChangeUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            ChangeElement(_darkElementData);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            ChangeElement(_blueElementData);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            ChangeElement(_greenElementData);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            ChangeElement(_redElementData);
+        }
+    }
+
+    public void ChangeElement(PlayerElementData data, bool slient = false)
+    {
+        _renderer.material = data.Material;
+        _orbLight.color = data.LightColor;
+        if(data.SpawnParticle != null && !slient) 
+            ParticleManager.SpawnParticle(data.SpawnParticle, transform.position, transform);
+        CurrentElement = data;
     }
 
     public override void Damage(int damage)
     {
         base.Damage(damage);
-        Instantiate(DamageParticle, transform.position, Quaternion.identity);
+        GameManager.Instance.DamageScreen.ShowDamage();
+        ParticleManager.SpawnParticle(DamageParticle, transform.position);
     }
 
     private void ShootUpdate()
@@ -53,7 +99,9 @@ public class Player : Entity
 
         if (Input.GetMouseButtonDown(0))
         {
-            var projectile = Instantiate(_projectilePrefab, transform.position + transform.forward * _shootDistance, Quaternion.identity);
+            if (CurrentElement.ProjectParticle != null)
+                ParticleManager.SpawnParticle(CurrentElement.ProjectParticle, transform.position, transform);
+            var projectile = Instantiate(CurrentElement.Projectile, transform.position + transform.forward * _shootDistance, Quaternion.identity);
             projectile.transform.LookAt(point);
             projectile.IsEnemyProjectile = false;
         }

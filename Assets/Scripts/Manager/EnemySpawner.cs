@@ -21,12 +21,13 @@ public class EnemySpawner : MonoBehaviour
         if (SpawnCount <= 0) return;
         SpawnCount--;
 
-        var enemy = Instantiate(Prefabs[Random.Range(0, Prefabs.Length)]);
+        var enemyPrefab = Prefabs[Random.Range(0, Prefabs.Length)];
         var rope = Instantiate(_ropePrefab, new Vector3(
-            Random.Range(enemy.Data.MinX, enemy.Data.MaxX),
+            Random.Range(enemyPrefab.Data.MinX, enemyPrefab.Data.MaxX),
             SpawnYPos,
             SpawnZPos[Random.Range(0, SpawnZPos.Length)]
             ), Quaternion.identity);
+        var enemy = Instantiate(enemyPrefab, rope.transform.position, Quaternion.identity);
         enemy.Rope = rope.transform;
 
         enemy.transform.position = rope.transform.position;

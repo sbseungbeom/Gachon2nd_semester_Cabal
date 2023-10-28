@@ -25,6 +25,7 @@ public class RopeRenderer : MonoBehaviour
         {
             _segments[i] = new Segment() { pos = transform.position, velocity = Vector3.zero };
         }
+        _line.positionCount = 0;
     }
 
     private void FixedUpdate()

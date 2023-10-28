@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d0edb442b3cc34ab101453af3386c8, type: 3}
+  m_Name: Dark
+  m_EditorClassIdentifier: 
+  ElementType: 3
+  Material: {fileID: 2100000, guid: 69c45ef134cdba94f961ab6ccf81da0f, type: 2}
+  LightColor: {r: 0.46328974, g: 0, b: 1, a: 0}
+  SpawnParticle: {fileID: 1590039965784815200, guid: 66c76c91a614f894c98ce3c8780a82fc, type: 3}
+  ProjectParticle: {fileID: 0}
+  Projectile: {fileID: -8760447939717194727, guid: 8c7f21654c104c34e8d5ec14365b566b, type: 3}
+  CircleRotation: 0
