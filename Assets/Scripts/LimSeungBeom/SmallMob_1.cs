@@ -1,54 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Mob : MonoBehaviour
+public class SmallMob_1 : MonoBehaviour
 {
-    //public int HP { get => _hp; set => _hp; }
-    [SerializeField] private int _hp;
+
+    [SerializeField] public float SmallMob_1_Hp = 10;
+
 
     [SerializeField] private float _shootCoolDownMin, _shootCoolDownMax;
     [SerializeField] private float _dirChangeMinTime, _dirChangeMaxTime;
     [SerializeField] private float _moveSpeed;
-    private int _dir;
-    [SerializeField] EnemyProjectile _bulletPrefab;
-    [SerializeField]  GameObject _player;
 
+    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] public GameObject _player;
+
+    private int _dir = 1;
     // Start is called before the first frame update
-    protected void Start()
+    void Start()
     {
         StartCoroutine(CoolDown());
-        StartCoroutine(DirectionSet());
-        _dir = 1;
+        StartCoroutine(DirectionChange());
         //_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-
-    protected void FixedUpdate()
+    private void FixedUpdate()
     {
-        MoveSet();
+        Move();
     }
 
-    public void MoveSet()
+    public void Move()
     {
         transform.Translate(new Vector2(_moveSpeed * _dir * Time.deltaTime, 0));
     }
-    IEnumerator DirectionSet()
+    IEnumerator DirectionChange()
     {
-        yield return new WaitForSeconds(Random.Range(_dirChangeMinTime, _dirChangeMaxTime + .1f));
+        yield return new WaitForSeconds(Random.Range(_dirChangeMinTime,_dirChangeMaxTime + .1f));
         int imsi = _dir * -1;
         _dir = 0;
         yield return new WaitForSeconds(Random.Range(_dirChangeMinTime, _dirChangeMaxTime + .1f));
         _dir = imsi;
-        StartCoroutine(DirectionSet());
+        StartCoroutine(DirectionChange());
     }
-
-
 
     public void CheckCamIn()
     {
@@ -61,20 +62,13 @@ public class Mob : MonoBehaviour
     }
     protected void FireBullet()
     {
-        EnemyProjectile copy = Instantiate(_bulletPrefab, transform.position, transform.rotation);
-        copy.SetTarget(_player.transform.position);
+        GameObject copy = Instantiate(_bulletPrefab, transform.position, transform.rotation);
+        copy.transform.LookAt(_player.transform.position);
         StartCoroutine(CoolDown());
     }
     IEnumerator CoolDown()
     {
         yield return new WaitForSeconds(Random.Range(_shootCoolDownMin, _shootCoolDownMax));
         CheckCamIn();
-    }
-
-    public void GetDamage(int damage)
-    {
-        _hp -= damage;
-        if (_hp <= 0)
-            Destroy(this.gameObject);
     }
 }
