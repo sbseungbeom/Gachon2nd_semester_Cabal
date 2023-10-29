@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ElementType: 3
   Material: {fileID: 2100000, guid: 69c45ef134cdba94f961ab6ccf81da0f, type: 2}
-  LightColor: {r: 0.46328974, g: 0, b: 1, a: 0}
+  LightColor: {r: 0.2949543, g: 0, b: 1, a: 0}
   SpawnParticle: {fileID: 1590039965784815200, guid: 66c76c91a614f894c98ce3c8780a82fc, type: 3}
   ProjectParticle: {fileID: 0}
   Projectile: {fileID: -8760447939717194727, guid: 8c7f21654c104c34e8d5ec14365b566b, type: 3}

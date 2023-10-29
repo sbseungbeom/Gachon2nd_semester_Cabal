@@ -66,6 +66,7 @@ public class Player : Entity
         if(data.SpawnParticle != null && !slient) 
             ParticleManager.SpawnParticle(data.SpawnParticle, transform.position, transform);
         CurrentElement = data;
+        GameManager.Instance.SoundManager.PlaySFX(GameManager.Instance.SoundManager.ElementChangeSound, transform);
     }
 
     public override void Damage(int damage)
@@ -104,6 +105,7 @@ public class Player : Entity
             var projectile = Instantiate(CurrentElement.Projectile, transform.position + transform.forward * _shootDistance, Quaternion.identity);
             projectile.transform.LookAt(point);
             projectile.IsEnemyProjectile = false;
+            GameManager.Instance.SoundManager.PlaySFX(GameManager.Instance.SoundManager.BaseAttackSound, transform);
         }
     }
 
