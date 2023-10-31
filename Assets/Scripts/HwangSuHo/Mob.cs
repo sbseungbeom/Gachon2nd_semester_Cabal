@@ -20,7 +20,7 @@ public class Mob : MonoBehaviour
         StartCoroutine(CoolDown());
         StartCoroutine(DirectionSet());
         Vector3 viewPos = Camera.main.WorldToViewportPoint(this.transform.position);
-        if (viewPos.x <= 1)
+        if (viewPos.x <= .5f)
             _dir = 1;
         else
             _dir = -1;
