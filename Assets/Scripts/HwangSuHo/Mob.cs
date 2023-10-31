@@ -19,7 +19,11 @@ public class Mob : MonoBehaviour
     {
         StartCoroutine(CoolDown());
         StartCoroutine(DirectionSet());
-        _dir = 1;
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(this.transform.position);
+        if (viewPos.x <= .5f)
+            _dir = 1;
+        else
+            _dir = -1;
         //_player = GameObject.FindGameObjectWithTag("Player");
     }
 
