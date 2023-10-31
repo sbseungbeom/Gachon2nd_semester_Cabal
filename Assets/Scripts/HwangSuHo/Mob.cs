@@ -5,17 +5,17 @@ using UnityEngine;
 public class Mob : MonoBehaviour
 {
     //public int HP { get => _hp; set => _hp; }
-    [SerializeField] private int _hp;
+    [SerializeField] protected int _hp;
 
-    [SerializeField] private float _shootCoolDownMin, _shootCoolDownMax;
-    [SerializeField] private float _dirChangeMinTime, _dirChangeMaxTime;
-    [SerializeField] private float _moveSpeed;
-    private int _dir;
-    [SerializeField] EnemyProjectile _bulletPrefab;
-    [SerializeField]  GameObject _player;
+    [SerializeField] protected float _shootCoolDownMin, _shootCoolDownMax;
+    [SerializeField] protected float _dirChangeMinTime, _dirChangeMaxTime;
+    [SerializeField] protected float _moveSpeed;
+    protected int _dir;
+    [SerializeField] protected EnemyProjectile _bulletPrefab;
+    [SerializeField] protected GameObject _player;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         StartCoroutine(CoolDown());
         StartCoroutine(DirectionSet());
@@ -29,7 +29,7 @@ public class Mob : MonoBehaviour
 
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         MoveSet();
     }
@@ -59,13 +59,13 @@ public class Mob : MonoBehaviour
         else
             StartCoroutine(CoolDown());
     }
-    protected void FireBullet()
+    protected virtual void FireBullet()
     {
         EnemyProjectile copy = Instantiate(_bulletPrefab, transform.position, transform.rotation);
         copy.SetTarget(_player.transform.position);
         StartCoroutine(CoolDown());
     }
-    IEnumerator CoolDown()
+    protected virtual IEnumerator CoolDown()
     {
         yield return new WaitForSeconds(Random.Range(_shootCoolDownMin, _shootCoolDownMax));
         CheckCamIn();
