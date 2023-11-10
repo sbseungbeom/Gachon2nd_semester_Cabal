@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SmallMob_1 : Mob
 {
