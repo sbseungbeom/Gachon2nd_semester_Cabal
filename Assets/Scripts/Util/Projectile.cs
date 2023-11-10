@@ -16,16 +16,6 @@ public class Projectile : MonoBehaviour
     void Update ()
     {
         transform.position += Time.deltaTime * speed * transform.forward;
-
-        if((_distanceCheckTimer += Time.deltaTime) > DistanceCheckTime)
-        {
-            _distanceCheckTimer = 0f;
-            if((GameManager.Instance.Player.transform.position - transform.position)
-                .sqrMagnitude > DestroyDistance * DestroyDistance)
-            {
-                Destroy(gameObject);
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
