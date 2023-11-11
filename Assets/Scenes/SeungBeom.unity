@@ -828,10 +828,46 @@ PrefabInstance:
     - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1935233721}
+      objectReference: {fileID: 2798195828171689768, guid: cefb486ced1c714469ffaa51a0fec344, type: 3}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: Projectile
+      value: 
+      objectReference: {fileID: 2798195828171689768, guid: cefb486ced1c714469ffaa51a0fec344, type: 3}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MoveDistance
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MaxMoveDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MaxMoveWaitTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MinMoveDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MinMoveWaitTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MaxAttackWaitTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963604483060978321, guid: 7d1df3d9c93b82049a49f1e61bf1dd4b, type: 3}
+      propertyPath: MiNAttackWaitTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
