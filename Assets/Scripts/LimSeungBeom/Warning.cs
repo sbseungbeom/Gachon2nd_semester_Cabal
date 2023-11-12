@@ -8,11 +8,19 @@ public class Warning : MonoBehaviour
     SpriteRenderer SR;
     [SerializeField] float ChangeSpeed;
     bool OnChange;
-    void Start()
+    void Awake()
     {
         SR = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
         OnChange = false;
         StartCoroutine(Change());
+    }
+    private void OnDisable()
+    {
+        SR.color = new Color(255, 0, 0, 0);
     }
 
     // Update is called once per frame

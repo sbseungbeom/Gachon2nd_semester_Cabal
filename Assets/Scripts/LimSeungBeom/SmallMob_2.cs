@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using System;
+using Random = UnityEngine.Random;
 
 public class SmallMob_2 : MonoBehaviour
 {
@@ -19,7 +22,7 @@ public class SmallMob_2 : MonoBehaviour
     [SerializeField] float WarningWaitTime;    //경고 지속시간
     [SerializeField] float AttackWaitTime;
 
-
+    [SerializeField] float RotatingSpeed;
     GameObject Player;
     [SerializeField] GameObject Projectile;
     GameObject WarningRotator;
@@ -31,10 +34,10 @@ public class SmallMob_2 : MonoBehaviour
     {
         
         WarningRotator = transform.GetChild(0).gameObject;
+        WarningRotator.SetActive(false);
 
         Player = GameObject.FindWithTag("Player");
         StartCoroutine(MobMove());
-        StartCoroutine(Attack());
     }
 
     // Update is called once per frame
@@ -69,14 +72,17 @@ public class SmallMob_2 : MonoBehaviour
         Direction = Random.Range(-1, 1);
         if (Direction == 0) Direction = 1;
 
-        
         yield return new WaitForSeconds(MoveWaitTime);                          //전부 기다렸으면 다음 이동 시작
-        StartCoroutine(MobMove());
+
+        StartCoroutine(Attack()); // 첫 스폰 시 이동만 하고 이동 후 공격 함수 실행.
     }
+
+
+
     IEnumerator Attack()
     {
         IsAiming = true;
-
+        WarningRotator.SetActive(true);
 
         yield return new WaitForSeconds(3); //3초동안 준비 후 회전 중지.-------------------------------------------------
 
@@ -85,14 +91,13 @@ public class SmallMob_2 : MonoBehaviour
 
 
         yield return new WaitForSeconds(2); // 2초후 전에 플레이어가 있던 위치로 발사.
-
         GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity);
         bullet.transform.LookAt(SettedPlayerPosition);
         WarningRotator.transform.LookAt(new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y - 1, SettedPlayerPosition.z));
 
-        yield return new WaitForSeconds(5);
-        Debug.Log("공격 코루틴 실행");
-        StartCoroutine (Attack());
+        yield return new WaitForSeconds(1);
+        WarningRotator.SetActive(false);
+        StartCoroutine(MobMove());
 
     }
 }
