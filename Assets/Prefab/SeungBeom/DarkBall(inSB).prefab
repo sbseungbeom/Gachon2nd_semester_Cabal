@@ -211,8 +211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 286099313435210826}
   - component: {fileID: 7035216690707891990}
-  - component: {fileID: -8760447939717194727}
   - component: {fileID: -2672315207601843633}
+  - component: {fileID: 522230383235896184}
   m_Layer: 0
   m_Name: DarkBall(inSB)
   m_TagString: Untagged
@@ -259,23 +259,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.09
   m_Center: {x: 0, y: 0, z: 0.0082791}
---- !u!114 &-8760447939717194727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798195828171689768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15dcbf784461704c8ff1c6bcc300ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 18
-  IsEnemyProjectile: 0
-  Damage: 1
-  DestroyDistance: 50
-  DistanceCheckTime: 1
 --- !u!54 &-2672315207601843633
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +286,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &522230383235896184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798195828171689768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16a6c726eace4a4bb92400adf0426df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 18
+  IsEnemyProjectile: 0
+  Damage: 1
+  DestroyDistance: 50
+  DistanceCheckTime: 1
 --- !u!1 &5127671794247400125
 GameObject:
   m_ObjectHideFlags: 0
