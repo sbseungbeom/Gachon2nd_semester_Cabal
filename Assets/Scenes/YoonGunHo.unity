@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 237348080}
   - component: {fileID: 237348082}
   - component: {fileID: 237348081}
+  - component: {fileID: 237348083}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -258,6 +259,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237348079}
   m_CullTransparentMesh: 1
+--- !u!114 &237348083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237348079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4f44649756ced44ac35da944d59325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  format: "<color=yellow>\uC810\uC218</color> {0}"
+  Score: {fileID: 237348081}
 --- !u!1 &282371648
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 3469287838475775665}
   DamageScreen: {fileID: 2008418712}
-  Score: 0
+  score_Manager: {fileID: 0}
   SoundManager: {fileID: 1825607387}
 --- !u!1 &789367716
 GameObject:

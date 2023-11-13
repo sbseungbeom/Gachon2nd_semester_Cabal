@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Score_Update : MonoBehaviour
 {
-    public TextMesh Score;
+    public string format;
+    public TMP_Text Score;
 
     private void Awake()
     {
-        Score = GetComponent<TextMesh>();
+        Score = GetComponent<TMP_Text>();
     }
 
     private void Update()
     {
-        Score.text = Score_Manager.score.ToString();
+        Score.text = string.Format(format, Score_Manager.score.ToString());
     }
 }

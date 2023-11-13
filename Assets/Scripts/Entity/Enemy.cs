@@ -36,7 +36,7 @@ public class Enemy : Entity
     protected override void OnDeath()
     {
         Destroy(gameObject);
-        Score_Manager.score += 50;//점수
+        Score_Manager.score += Data.Score;//점수
     }
 
     private void Update()
