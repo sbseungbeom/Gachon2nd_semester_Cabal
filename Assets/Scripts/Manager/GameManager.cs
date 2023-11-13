@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     public Player Player;
     public DamageScreen DamageScreen;
-    public int Score = 0;
+    public Score_Manager score_Manager;
     public SoundManager SoundManager;
 
     private void Awake()

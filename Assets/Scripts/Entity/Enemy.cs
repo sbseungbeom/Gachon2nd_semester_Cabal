@@ -14,7 +14,7 @@ public class Enemy : Entity
     private SpriteRenderer _renderer;
 
     private float _timer = 0f;
-
+    
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -36,6 +36,7 @@ public class Enemy : Entity
     protected override void OnDeath()
     {
         Destroy(gameObject);
+        Score_Manager.score += 50;//Á¡¼ö
     }
 
     private void Update()
