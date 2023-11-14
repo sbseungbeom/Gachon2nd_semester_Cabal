@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class SB_Bullet : MonoBehaviour
 {
-    public float speed;
-    public bool IsEnemyProjectile;
-    public int Damage = 1;
-    public float DestroyDistance = 50f;
-    public float DistanceCheckTime = 1f;
-
-    private float _distanceCheckTimer = 0f;
+    [SerializeField] float speed;
 
     private void Start()
     {
@@ -23,16 +17,9 @@ public class SB_Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject);
-        if (other.TryGetComponent(out Entity ent) && !IsEnemyProjectile == (ent is Enemy))
+        if(other.CompareTag("Enemy"))
         {
-            ent.Damage(Damage);
-            Destroy(gameObject);
+            Debug.Log("Àû ¸íÁß");
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print(collision.gameObject);
     }
 }
