@@ -271,7 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4f44649756ced44ac35da944d59325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: {fileID: 0}
+  format: "<color=yellow>\uC810\uC218</color>{0)"
+  Score: {fileID: 237348081}
 --- !u!1 &282371648
 GameObject:
   m_ObjectHideFlags: 0

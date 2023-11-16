@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score_Update : MonoBehaviour
+public class ScoreUpdate : MonoBehaviour
 {
     public string format;
     public TMP_Text Score;
@@ -16,6 +16,6 @@ public class Score_Update : MonoBehaviour
 
     private void Update()
     {
-        Score.text = string.Format(format, Score_Manager.score.ToString());
+        Score.text = string.Format(format, ScoreManager.score.ToString());
     }
 }
