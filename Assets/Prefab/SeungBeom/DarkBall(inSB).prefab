@@ -299,10 +299,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 18
-  IsEnemyProjectile: 0
-  Damage: 1
-  DestroyDistance: 50
-  DistanceCheckTime: 1
 --- !u!1 &5127671794247400125
 GameObject:
   m_ObjectHideFlags: 0
