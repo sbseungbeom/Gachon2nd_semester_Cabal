@@ -20,15 +20,20 @@ public class FireGolem : MonoBehaviour
     [SerializeField] float AttackWaitTime;
 
     [SerializeField] float WarningDuration;
+    [SerializeField] float TopAttackWaitSpeed;
+    [SerializeField] float UnjiSpeed;
+    [SerializeField] float ReturnSpeed;
 
-
-    bool TopAttack;
+    bool TargetSet;
+    bool TopAttack; 
     bool TopAttackStart;
+    bool Return;
     GameObject Player;
     GameObject WarningRotator;
     GameObject Warning;
 
     Vector3 SettedPlayerPosition;
+    Vector3 SavedEnemyPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +49,23 @@ public class FireGolem : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(1 * Direction * MoveDistance, transform.position.y, transform.position.z), Time.deltaTime * MoveSpeed);
+
+        if(TopAttack)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y + 10, SettedPlayerPosition.z), Time.deltaTime * TopAttackWaitSpeed);
+        }
+        if(TopAttackStart)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y - 10, SettedPlayerPosition.z), Time.deltaTime * UnjiSpeed);
+        }
+        if(Return)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(SavedEnemyPosition.x,SavedEnemyPosition.y,SavedEnemyPosition.z), Time.deltaTime * ReturnSpeed);
+        }
+        if(TargetSet)
+        {
+            WarningRotator.transform.position = new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y + 20, SettedPlayerPosition.z); ;
+        }
     }
 
     IEnumerator MobMove()
@@ -67,24 +89,31 @@ public class FireGolem : MonoBehaviour
         SettedPlayerPosition = Player.transform.position;
         StartCoroutine(Attack()); // 첫 스폰 시 이동만 하고 이동 후 공격 함수 실행.
     }
-
-
-
     IEnumerator Attack()
     {
-        WarningRotator.SetActive(true);
-        TopAttack = true;
-        WarningRotator.transform.position = new Vector3(SettedPlayerPosition.x,SettedPlayerPosition.y+ 20,SettedPlayerPosition.z);
-        WarningRotator.transform.LookAt(SettedPlayerPosition);
 
-        
+        SavedEnemyPosition = this.gameObject.transform.position;
+
+        WarningRotator.SetActive(true);
+        TargetSet = true;
+        TopAttack = true;
+        WarningRotator.transform.LookAt(SettedPlayerPosition);
 
         yield return new WaitForSeconds(WarningDuration); //경고 시간.
         TopAttack= false;
+        Debug.Log("이동 완료, 공격 시작");
+        TopAttackStart = true;
         
-        yield return new WaitForSeconds(3);
+        
+        yield return new WaitForSeconds(1);
+        TopAttackStart = false;
+        Return = true;
+        yield return new WaitForSeconds(2);
+        TargetSet = false;
+        Return = false;
         WarningRotator.SetActive(false);
         StartCoroutine(MobMove());
+
 
     }
 }

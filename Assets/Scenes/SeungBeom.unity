@@ -301,7 +301,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.9820914, y: 5.192156, z: 2.91}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1257649840}
@@ -330,6 +330,9 @@ MonoBehaviour:
   WarningWaitTime: 1
   AttackWaitTime: 0
   WarningDuration: 3
+  TopAttackWaitSpeed: 30
+  UnjiSpeed: 50
+  ReturnSpeed: 20
 --- !u!1 &1257649839
 GameObject:
   m_ObjectHideFlags: 0
