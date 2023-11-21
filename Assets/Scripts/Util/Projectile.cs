@@ -21,8 +21,6 @@ public class Projectile : MonoBehaviour
 
         transform.position += -CameraOffset * movement;
         CameraOffset *= (1 - movement);
-
-        if(!IsEnemyProjectile) print(CameraOffset);
     }
 
     private void OnTriggerEnter(Collider other)

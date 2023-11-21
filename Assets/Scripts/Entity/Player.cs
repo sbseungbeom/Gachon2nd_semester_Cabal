@@ -78,11 +78,6 @@ public class Player : Entity
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         var dir = ray.direction;
-        if (dir.y < 0f)
-        {
-            dir.y = 0f;
-            dir.Normalize();
-        }
         transform.forward = dir;
 
         if (Input.GetMouseButtonDown(0))

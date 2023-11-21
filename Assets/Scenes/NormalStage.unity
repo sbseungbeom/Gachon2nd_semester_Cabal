@@ -446,9 +446,9 @@ MonoBehaviour:
   MaxSpawn: 6
   SpawnSpan: 5
   SpawnZPos:
-  - 8
-  - 10
-  - 13
+  - 20
+  - 35
+  - 50
   SpawnYPos: 22
 --- !u!1 &746087492
 GameObject:
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 3469287838475775665}
   DamageScreen: {fileID: 2008418712}
-  score_Manager: {fileID: 2101616476}
+  scoreManager: {fileID: 0}
   SoundManager: {fileID: 1825607387}
 --- !u!1 &789367716
 GameObject:
@@ -1862,6 +1862,10 @@ PrefabInstance:
       propertyPath: _orbLight
       value: 
       objectReference: {fileID: 431791165}
+    - target: {fileID: 6169510198897314576, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
+      propertyPath: _isBossMoving
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6169510198897314576, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: CurrentElement
       value: 

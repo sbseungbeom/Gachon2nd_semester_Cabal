@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15dcbf784461704c8ff1c6bcc300ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 50
   IsEnemyProjectile: 0
   Damage: 1
   DestroyDistance: 50
