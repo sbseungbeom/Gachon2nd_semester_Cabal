@@ -4,16 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.IO;
-using System.Text;
+
+
 public class TextUiEx : MonoBehaviour
 {
-    public Image emptyImage0;
     public Image emptyImage1;
     public Image emptyImage2;
     public Image emptyBack;
     public Image textPanel;
-    public TextAsset Excel_test;
+    public TextAsset Excel_1;
+    public TextAsset Excel_2;
+    public TextAsset Excel_3;
+    public TextAsset Excel_4;
+    public TextAsset Excel_5;
+    public TextAsset Excel_6;
+    public TextAsset Excel_7;
+    public TextAsset Excel_8;
     //오브 이미지
     public Sprite opponent0;
     public Sprite opponent1_0;
@@ -45,19 +51,52 @@ public class TextUiEx : MonoBehaviour
 
     private Vector3 originalPosition;
     private float shakeTimer = 0f;
+    private TextAsset dataTableCO;
 
     public string writerText = "";
 
     void Start()
     {
+        print(SceneStatic.previousScene);
         texting = false;
         _textSkip = false;
         uiShake = false;
         audioSource = GetComponent<AudioSource>();
         audioSource = gameObject.AddComponent<AudioSource>();
         originalPosition = transform.position;
-
-        string currenText = Excel_test.text.Substring(0, Excel_test.text.Length - 1);
+        if (SceneStatic.previousScene == "TutorialScene")
+        {
+            dataTableCO = Excel_1;
+        }
+        else if (SceneStatic.previousScene == "Stage1_Test")
+        {
+            dataTableCO = Excel_2;
+        }
+        else if (SceneStatic.previousScene == "Stage2_Test")
+        {
+            dataTableCO = Excel_3;
+        }
+        else if (SceneStatic.previousScene == "Stage3_Test")
+        {
+            dataTableCO = Excel_4;
+        }
+        else if (SceneStatic.previousScene == "Stage4_Test")
+        {
+            dataTableCO = Excel_5;
+        }
+        else if (SceneStatic.previousScene == "Stage5_Test")
+        {
+            dataTableCO = Excel_6;
+        }
+        else if (SceneStatic.previousScene == "Stage6_Test")
+        {
+            dataTableCO = Excel_7;
+        }
+        else if (SceneStatic.previousScene == "Stage7_Test")
+        {
+            dataTableCO = Excel_8;
+        }
+        string currenText = dataTableCO.text.Substring(0, dataTableCO.text.Length - 1);
         string[] line = currenText.Split('\n');
         lineSize = line.Length;
         rowSize = line[0].Split('\t').Length;
@@ -70,11 +109,6 @@ public class TextUiEx : MonoBehaviour
                 dataTable[i, j] = row[j];
             }
         }
-        print(dataTable[16, 10]);
-        print(dataTable[16, 11]);
-        print(dataTable[16, 12]);
-        print(dataTable[16, 13]);
-        print(dataTable[16, 14]);
         StartCoroutine(TextPractice());
     }
     private void Update()
@@ -197,6 +231,38 @@ public class TextUiEx : MonoBehaviour
         for (int i = 0; i < maxLine; i++)
         {
             yield return StartCoroutine(NormalChat(dataTable[i, 2], dataTable[i, 3], dataTable[i, 4], dataTable[i, 6], dataTable[i, 10], dataTable[i, 11], dataTable[i, 12], dataTable[i, 14]));
+        }
+        if (SceneStatic.previousScene == "TutorialScene")
+        {
+            SceneManager.LoadScene("Stage1_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage1_Test")
+        {
+            SceneManager.LoadScene("Stage2_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage2_Test")
+        {
+            SceneManager.LoadScene("Stage3_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage3_Test")
+        {
+            SceneManager.LoadScene("Stage4_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage4_Test")
+        {
+            SceneManager.LoadScene("Stage5_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage5_Test")
+        {
+            SceneManager.LoadScene("Stage6_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage6_Test")
+        {
+            SceneManager.LoadScene("Stage7_Test");
+        }
+        else if (SceneStatic.previousScene == "Stage7_Test")
+        {
+            SceneManager.LoadScene("Stage8_Test");
         }
     }
 }
