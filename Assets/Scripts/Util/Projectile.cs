@@ -11,9 +11,9 @@ public class Projectile : MonoBehaviour
     public float DistanceCheckTime = 1f;
 
     [HideInInspector] public Vector3 CameraOffset;
-    
 
-    void Update ()
+
+    protected virtual void Update()
     {
         transform.position += Time.deltaTime * speed * transform.forward;
 
@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
         CameraOffset *= (1 - movement);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         print(other.gameObject);
         if (other.TryGetComponent(out Entity ent) && !IsEnemyProjectile == (ent is Enemy))
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         print(collision.gameObject);
     }
