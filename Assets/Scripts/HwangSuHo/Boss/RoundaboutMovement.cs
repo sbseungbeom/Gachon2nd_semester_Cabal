@@ -12,6 +12,6 @@ public class RoundaboutMovement : MonoBehaviour
     void Update()
     {
         float dir = Input.GetAxis("Horizontal");
-        transform.RotateAround(offset.position, Vector3.up, speed * dir * Time.deltaTime);
+        transform.RotateAround(offset.position, Vector3.up, -speed * dir * Time.deltaTime);
     }
 }
