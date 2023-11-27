@@ -42,6 +42,7 @@ public class SmallMob_1 : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(1 * Direction * MoveDistance, transform.position.y, transform.position.z), Time.deltaTime * MoveSpeed);
     }
+
     IEnumerator MobMove()
     {
         //------------------ 방향 제어--------------

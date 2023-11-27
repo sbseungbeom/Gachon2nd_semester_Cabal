@@ -18,4 +18,4 @@ MonoBehaviour:
   SpawnParticle: {fileID: 1590039965784815200, guid: 1c7423530b5b51545b71c0a9f118227e, type: 3}
   ProjectParticle: {fileID: 0}
   Projectile: {fileID: -8760447939717194727, guid: 4a83e6eb9fcad85409ddc255dddeac70, type: 3}
-  CircleRotation: 342.9
+  CircleRotation: 0
