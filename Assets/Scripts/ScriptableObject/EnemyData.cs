@@ -9,4 +9,5 @@ public class EnemyData : ScriptableObject
     public float ShootCooldown;
     public Projectile projectile;
     public ParticleSystem DamageParticle;
+    public float YOffset;
 }

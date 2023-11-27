@@ -18,4 +18,4 @@ MonoBehaviour:
   SpawnParticle: {fileID: 0}
   ProjectParticle: {fileID: 0}
   Projectile: {fileID: 0}
-  CircleRotation: 108.2
+  CircleRotation: 180

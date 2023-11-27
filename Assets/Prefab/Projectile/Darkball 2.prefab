@@ -276,6 +276,7 @@ MonoBehaviour:
   Damage: 1
   DestroyDistance: 50
   DistanceCheckTime: 1
+  CameraOffset: {x: 0, y: 0, z: 0}
 --- !u!54 &-2672315207601843633
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -409,7 +410,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

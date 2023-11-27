@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         var enemyPrefab = Prefabs[Random.Range(0, Prefabs.Length)];
         var rope = Instantiate(_ropePrefab, new Vector3(
             Random.Range(enemyPrefab.Data.MinX, enemyPrefab.Data.MaxX),
-            SpawnYPos,
+            SpawnYPos + enemyPrefab.Data.YOffset,
             SpawnZPos[Random.Range(0, SpawnZPos.Length)]
             ), Quaternion.identity);
         var enemy = Instantiate(enemyPrefab, rope.transform.position, Quaternion.identity);

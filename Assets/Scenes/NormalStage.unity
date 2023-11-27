@@ -446,9 +446,9 @@ MonoBehaviour:
   MaxSpawn: 6
   SpawnSpan: 5
   SpawnZPos:
-  - 8
-  - 10
-  - 13
+  - 20
+  - 35
+  - 50
   SpawnYPos: 22
 --- !u!1 &746087492
 GameObject:
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 3469287838475775665}
   DamageScreen: {fileID: 2008418712}
-  score_Manager: {fileID: 2101616476}
+  scoreManager: {fileID: 0}
   SoundManager: {fileID: 1825607387}
 --- !u!1 &789367716
 GameObject:
@@ -1854,6 +1854,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4346290724441859650, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69c45ef134cdba94f961ab6ccf81da0f, type: 2}
     - target: {fileID: 5574529116624219305, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1862,6 +1866,10 @@ PrefabInstance:
       propertyPath: _orbLight
       value: 
       objectReference: {fileID: 431791165}
+    - target: {fileID: 6169510198897314576, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
+      propertyPath: _isBossMoving
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6169510198897314576, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: CurrentElement
       value: 
@@ -1964,7 +1972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6644433351572396366, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: m_Color.b
-      value: 0.2830189
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6644433351572396366, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: m_Color.g
@@ -1972,13 +1980,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6644433351572396366, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: m_Color.r
-      value: 0.008102903
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 6644433351572396366, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
       propertyPath: m_Intensity
       value: 1.69
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2444668105109103410, guid: 53f51d7a5ce609048aec0f83773ada11, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

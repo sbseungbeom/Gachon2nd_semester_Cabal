@@ -6,31 +6,43 @@ using UnityEngine.UI;
 public class ElementCircleUI : MonoBehaviour
 {
     public Image ElementImage;
-    public Image DarkImage;
-    public float SmoothTime;
-    public float DarkCycle;
+    public float SwingTime, RotSpeed;
 
-    private float _rotVel = 0f, _colVel = 0f;
+    private float _targetRot = 0f;
+    private float _swingTimer = 0f;
+    private float _curZ = 0f;
+
+    private void Start()
+    {
+        _curZ = ElementImage.transform.eulerAngles.z;
+    }
 
     private void Update()
     {
-        var angle = ElementImage.transform.eulerAngles;
-        if(GameManager.Instance.Player.CurrentElement.ElementType == ElementType.Dark)
-        {
-            angle.z += Time.deltaTime * 360f * DarkCycle;
-        }
-        else
-        {
-            angle.z = Mathf.SmoothDampAngle(angle.z,
-                GameManager.Instance.Player.CurrentElement.CircleRotation, ref _rotVel, SmoothTime);
-        }
-        DarkImage.transform.eulerAngles = angle;
-        ElementImage.transform.eulerAngles = angle;
+        var curCircleRot = GameManager.Instance.Player.CurrentElement.CircleRotation;
 
-        var darkCol = DarkImage.color;
-        darkCol.a = Mathf.SmoothDamp(darkCol.a, 
-            GameManager.Instance.Player.CurrentElement.ElementType == ElementType.Dark ? 1f : 0f, 
-            ref _colVel, SmoothTime);
-        DarkImage.color = darkCol;
+        if(!Mathf.Approximately(curCircleRot, _targetRot))
+        {
+            _targetRot = curCircleRot;
+            _swingTimer = SwingTime;
+        }
+        else if(_swingTimer > 0f)
+        {
+            _swingTimer -= Time.deltaTime;
+
+            _curZ += Time.deltaTime * RotSpeed;
+
+            if(_swingTimer <= 0f)
+            {
+                _curZ = (_curZ % 360f + 360f) % 360f - 360f;
+                print($"Start {_curZ} END {_targetRot}");
+            }
+        }
+        else if(_curZ < _targetRot)
+        {
+            _curZ += (_targetRot - _curZ) * Mathf.Clamp01(Time.deltaTime * 30f);
+        }
+
+        ElementImage.transform.eulerAngles = new Vector3(0, 0, _curZ);
     }
 }
