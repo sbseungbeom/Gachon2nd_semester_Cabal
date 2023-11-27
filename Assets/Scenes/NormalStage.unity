@@ -441,7 +441,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ropePrefab: {fileID: 7508860239197997289, guid: d384d07b9b53d354199a8b28fb681ae0, type: 3}
   Prefabs:
-  - {fileID: 3051611651419845954, guid: 7192a2a6adf733342b8380d08fb6846b, type: 3}
+  - {fileID: 1154845851642834641, guid: 6520cac900ac7534ba261ab28c6cea99, type: 3}
+  - {fileID: 2736584614556256618, guid: a63a6edbf7516244f8ce63b5a3bf4f99, type: 3}
   SpawnCount: 45
   MaxSpawn: 6
   SpawnSpan: 5
@@ -1249,9 +1250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementImage: {fileID: 2088534467}
-  DarkImage: {fileID: 2117774263}
-  SmoothTime: 0.2
-  DarkCycle: 3
+  SwingTime: 0
+  RotSpeed: 0
 --- !u!1 &1964397543
 GameObject:
   m_ObjectHideFlags: 0

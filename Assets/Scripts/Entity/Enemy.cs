@@ -15,7 +15,7 @@ public class Enemy : Entity
 
     private float _timer = 0f;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _dir = Random.value < 0.5f ? 1 : -1;
@@ -28,7 +28,7 @@ public class Enemy : Entity
         ParticleManager.SpawnParticle(Data.DamageParticle, transform.position);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     { 
         if(Rope != null) Destroy(Rope.gameObject);
     }
@@ -39,7 +39,7 @@ public class Enemy : Entity
         ScoreManager.score += Data.Score;//Á¡¼ö
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         _renderer.color = HP switch
         {
@@ -56,17 +56,31 @@ public class Enemy : Entity
             _dir = -1;
         }
 
-        if((_timer += Time.deltaTime) > Data.ShootCooldown)
+        if((_timer -= Time.deltaTime) <= 0)
         {
-            _timer = 0f;
+            _timer = Data.ShootCooldown + Random.Range(0,Data.RandomShootCooldown);
 
             var vp = Camera.main.WorldToViewportPoint(transform.position);
             if (vp.x < 1 && vp.x > 0 && vp.y < 1 && vp.y > 0)
             {
-                var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
-                projectile.transform.LookAt(GameManager.Instance.Player.transform.position);
-                projectile.IsEnemyProjectile = true;
+                Attack();
             }
         }
     }
+
+    protected virtual void Attack() {
+
+        var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
+        projectile.transform.LookAt(GameManager.Instance.Player.transform.position);
+        projectile.IsEnemyProjectile = true;
+    }
+
+    protected IEnumerator Stop(float StopTime)
+    {
+        int SettedDir = _dir;
+        _dir = 0;
+        yield return new WaitForSeconds(StopTime);
+        _dir = SettedDir;
+    }
+
 }
