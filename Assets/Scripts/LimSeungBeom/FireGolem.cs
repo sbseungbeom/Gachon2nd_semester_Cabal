@@ -2,118 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGolem : MonoBehaviour
+public class FireGolem : Enemy
 {
-    [SerializeField] int Direction = -1;
+    [SerializeField] float WarningDuration;    //경고 지속시간
 
-    [SerializeField] float MoveDistance;
-    [SerializeField] float MinMoveDistance;
-    [SerializeField] float MaxMoveDistance;
-
-    [SerializeField] float MoveSpeed;
-    [SerializeField] float MoveWaitTime;
-    [SerializeField] float MinMoveWaitTime;
-    [SerializeField] float MaxMoveWaitTime;
-
-
-    [SerializeField] float WarningWaitTime;    //경고 지속시간
-    [SerializeField] float AttackWaitTime;
-
-    [SerializeField] float WarningDuration;
-    [SerializeField] float TopAttackWaitSpeed;
-    [SerializeField] float UnjiSpeed;
-    [SerializeField] float ReturnSpeed;
-
-    bool TargetSet;
-    bool TopAttack; 
-    bool TopAttackStart;
-    bool Return;
+    bool bAttackReady;
+    bool bAttackSet;
+    bool bAttackStart;
+    bool bReturn;
     GameObject Player;
-    GameObject WarningRotator;
-    GameObject Warning;
+    [SerializeField] GameObject Warning;
 
-    Vector3 SettedPlayerPosition;
     Vector3 SavedEnemyPosition;
+    Vector3 SavedPlayerPosition;
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameManager.Instance.Player.gameObject;
+        Warning = transform.GetChild(0).gameObject;
+        Warning.SetActive(false);
 
-        WarningRotator = transform.GetChild(0).gameObject;
-        WarningRotator.SetActive(false);
-
-        Player = GameObject.FindWithTag("Player");
-        StartCoroutine(MobMove());
+        bAttackReady = false;
+        bAttackSet = false;
+        bAttackStart = false;
+        
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(1 * Direction * MoveDistance, transform.position.y, transform.position.z), Time.deltaTime * MoveSpeed);
+        base.Update();
+        if(bAttackReady)
+        {
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(Rope.position.x, Rope.position.y + 15, Rope.position.z), 25 * Time.deltaTime);
 
-        if(TopAttack)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y + 10, SettedPlayerPosition.z), Time.deltaTime * TopAttackWaitSpeed);
+            Warning.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 10, Player.transform.position.z);
+
+            Warning.transform.eulerAngles = new Vector3(0, 0, 0);
+
         }
-        if(TopAttackStart)
+        if(bAttackSet)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y - 10, SettedPlayerPosition.z), Time.deltaTime * UnjiSpeed);
+            Rope.position = new Vector3(SavedPlayerPosition.x,SavedPlayerPosition.y + 40 ,SavedPlayerPosition.z);
+
+            Warning.transform.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 10, SavedPlayerPosition.z);
         }
-        if(Return)
+        if(bAttackStart)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(SavedEnemyPosition.x,SavedEnemyPosition.y,SavedEnemyPosition.z), Time.deltaTime * ReturnSpeed);
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(Rope.position.x, Rope.position.y - 3, Rope.position.z), 35 * Time.deltaTime);
         }
-        if(TargetSet)
+        if(bReturn)
         {
-            WarningRotator.transform.position = new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y + 20, SettedPlayerPosition.z); ;
+            Rope.position = Vector3.MoveTowards(Rope.position, SavedEnemyPosition,50 * Time.deltaTime);
         }
+
     }
-
-    IEnumerator MobMove()
+    protected override void Attack()
     {
-        //------------------ 방향 제어--------------
-        Vector3 viewpos = Camera.main.WorldToViewportPoint(this.gameObject.transform.position); // 카메라 왼쪽 밖으로 나와있는지 확인
-        if (viewpos.x <= 0) { Direction = 1; }
-        if (viewpos.x >= 1) { Direction = -1; }
-        if (0 < viewpos.x && viewpos.x < 1)
-        {
-            Direction = Random.Range(-1, 1);
-            if (Direction == 0) Direction = 1;
-        }
-
-        MoveDistance = Random.Range(MinMoveDistance, MaxMoveDistance + 1); // 이동 거리
-        MoveWaitTime = Random.Range(MinMoveWaitTime, MaxMoveWaitTime + 1); // 이동 후 다음이동까지 대기시간
-        Direction = Random.Range(-1, 1);
-        if (Direction == 0) Direction = 1;
-
-        yield return new WaitForSeconds(MoveWaitTime);                          //전부 기다렸으면 다음 이동 시작
-        SettedPlayerPosition = Player.transform.position;
-        StartCoroutine(Attack()); // 첫 스폰 시 이동만 하고 이동 후 공격 함수 실행.
+        StartCoroutine(FireGolemAttack());
     }
-    IEnumerator Attack()
+    IEnumerator FireGolemAttack()
     {
-
-        SavedEnemyPosition = this.gameObject.transform.position;
-
-        WarningRotator.SetActive(true);
-        TargetSet = true;
-        TopAttack = true;
-        WarningRotator.transform.LookAt(SettedPlayerPosition);
-
-        yield return new WaitForSeconds(WarningDuration); //경고 시간.
-        TopAttack= false;
-        Debug.Log("이동 완료, 공격 시작");
-        TopAttackStart = true;
+        Debug.Log("공격");
+        StartCoroutine(Stop(WarningDuration + 10));
+        //위로 쓕! 하고 올라갔다가 몇 초 후에 플레이어 위로 떨어짐. 공격이 플레이어에게 유도됨.
+        SavedEnemyPosition = new Vector3(Rope.position.x,Rope.position.y,Rope.position.z);
+        bAttackReady = true;
+        Warning.SetActive(true);
+        yield return new WaitForSeconds(WarningDuration / 2);
+        bAttackReady = false;
+        yield return new WaitForSeconds(WarningDuration / 2); //경고 시간 끝 , 공격 위치 고정
+        SavedPlayerPosition = Player.transform.position;
+        bAttackSet = true;
         
-        
-        yield return new WaitForSeconds(1);
-        TopAttackStart = false;
-        Return = true;
+        yield return new WaitForSeconds(3); //공격 위치 고정 후 3초후에 낙하.
+        Warning.SetActive(false);
+        bAttackSet = false;
+        bAttackStart = true;
         yield return new WaitForSeconds(2);
-        TargetSet = false;
-        Return = false;
-        WarningRotator.SetActive(false);
-        StartCoroutine(MobMove());
-
-
+        bAttackStart = false;
+        bReturn = true;
+        yield return new WaitForSeconds(2);
+        bReturn = false;
     }
 }
