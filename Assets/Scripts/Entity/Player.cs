@@ -97,6 +97,22 @@ public class Player : Entity
         SceneManager.LoadScene("GameOverScene");
     }
 
+    public void OnClear()
+    {
+        PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
+        var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
+        PlayerPrefs.SetInt("RecentStage", NextStage);
+        var nextStageData = StageManager.CurrentStageData;
+        if(nextStageData != null)
+        {
+            SceneManager.LoadScene("StoryScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
+    }
+
     private void MoveUpdate()
     {
         float xAxis = Input.GetAxisRaw("Horizontal");

@@ -20,4 +20,4 @@ MonoBehaviour:
   RandomShootCooldown: 5
   projectile: {fileID: -8760447939717194727, guid: 7c8838ee1d309864c94668d388447f1d, type: 3}
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
-  YOffset: 0
+  YOffset: 3
