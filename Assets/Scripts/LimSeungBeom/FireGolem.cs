@@ -34,22 +34,16 @@ public class FireGolem : Enemy
         base.Update();
         if(bAttackReady)
         {
-            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(Rope.position.x, Rope.position.y + 15, Rope.position.z), 25 * Time.deltaTime);
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(SavedEnemyPosition.x, SavedEnemyPosition.y + 20, SavedEnemyPosition.z), 25 * Time.deltaTime);
 
             Warning.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 10, Player.transform.position.z);
 
             Warning.transform.eulerAngles = new Vector3(0, 0, 0);
-
         }
-        if(bAttackSet)
-        {
-            Rope.position = new Vector3(SavedPlayerPosition.x,SavedPlayerPosition.y + 40 ,SavedPlayerPosition.z);
-
-            Warning.transform.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 10, SavedPlayerPosition.z);
-        }
+        
         if(bAttackStart)
         {
-            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(Rope.position.x, Rope.position.y - 3, Rope.position.z), 35 * Time.deltaTime);
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(Rope.position.x, Rope.position.y - 3, Rope.position.z + 0.5f), 40 * Time.deltaTime);
         }
         if(bReturn)
         {
@@ -63,21 +57,26 @@ public class FireGolem : Enemy
     }
     IEnumerator FireGolemAttack()
     {
-        Debug.Log("공격");
         StartCoroutine(Stop(WarningDuration + 10));
+
         //위로 쓕! 하고 올라갔다가 몇 초 후에 플레이어 위로 떨어짐. 공격이 플레이어에게 유도됨.
         SavedEnemyPosition = new Vector3(Rope.position.x,Rope.position.y,Rope.position.z);
         bAttackReady = true;
         Warning.SetActive(true);
-        yield return new WaitForSeconds(WarningDuration / 2);
-        bAttackReady = false;
-        yield return new WaitForSeconds(WarningDuration / 2); //경고 시간 끝 , 공격 위치 고정
+
+
+        yield return new WaitForSeconds(WarningDuration); //경고 시간 끝 , 공격 위치 고정
         SavedPlayerPosition = Player.transform.position;
-        bAttackSet = true;
-        
-        yield return new WaitForSeconds(3); //공격 위치 고정 후 3초후에 낙하.
+        bAttackReady = false;
+
+        yield return new WaitForSeconds(0.1f);
+        Rope.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 50, SavedPlayerPosition.z + 0.5f);
+        Warning.transform.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 10, SavedPlayerPosition.z + 0.5f);
+
+        yield return new WaitForSeconds(2.9f); //공격 위치 고정 후 3초후에 낙하.
+
+
         Warning.SetActive(false);
-        bAttackSet = false;
         bAttackStart = true;
         yield return new WaitForSeconds(2);
         bAttackStart = false;

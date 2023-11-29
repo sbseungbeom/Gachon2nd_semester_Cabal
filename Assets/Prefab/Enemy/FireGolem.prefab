@@ -103,7 +103,7 @@ MonoBehaviour:
   HP: 5
   Data: {fileID: 11400000, guid: 5b29a6e51d785564f8fdb81026a01fc6, type: 2}
   Rope: {fileID: 0}
-  WarningDuration: 3
+  WarningDuration: 5
   Warning: {fileID: 1729563372401310539, guid: fabb1ec731e8e884b92a969211b98bf9, type: 3}
 --- !u!65 &3908492219228813885
 BoxCollider:
