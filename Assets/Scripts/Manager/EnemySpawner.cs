@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private RopeRenderer _ropePrefab;
-    public Enemy[] Prefabs;
-    public int SpawnCount = 45;
-    public int MaxSpawn = 6;
-    public float SpawnSpan = 5f;
-    public float[] SpawnZPos;
-    public float SpawnYPos;
+    public EnemySpawnData SpawnData;
 
     private float _spawnTimer = 0f;
     private List<Enemy> _list = new();
 
+    private bool _isCleared = false;
+
+    private void Awake()
+    {
+        print(StageManager.CurrentStageData);
+        if(StageManager.CurrentStageData is NormalStageData data)
+            SpawnData = data.EnemySpawnData;
+    }
 
     private void Spawn()
     {
-        if (SpawnCount <= 0) return;
-        SpawnCount--;
+        if (SpawnData.SpawnCount <= 0)
+        {
+            return;
+        }
+        SpawnData.SpawnCount--;
 
-        var enemyPrefab = Prefabs[Random.Range(0, Prefabs.Length)];
-        var rope = Instantiate(_ropePrefab, new Vector3(
+        var enemyPrefab = SpawnData.EnemyPrefabs[Random.Range(0, SpawnData.EnemyPrefabs.Length)];
+        var rope = Instantiate(SpawnData.RopePrefab, new Vector3(
             Random.Range(enemyPrefab.Data.MinX, enemyPrefab.Data.MaxX),
-            SpawnYPos + enemyPrefab.Data.YOffset,
-            SpawnZPos[Random.Range(0, SpawnZPos.Length)]
+            SpawnData.SpawnYPos + enemyPrefab.Data.YOffset + SpawnData.RopePrefab.RopeLength,
+            SpawnData.SpawnZPos[Random.Range(0, SpawnData.SpawnZPos.Length)]
             ), Quaternion.identity);
         var enemy = Instantiate(enemyPrefab, rope.transform.position, Quaternion.identity);
         enemy.Rope = rope.transform;
@@ -37,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        var spawnCount = Random.Range(1, MaxSpawn + 1);
+        var spawnCount = Random.Range(1, SpawnData.MaxSpawn + 1);
         for(int i = 0; i < spawnCount; i++)
         {
             Spawn();
@@ -48,12 +53,12 @@ public class EnemySpawner : MonoBehaviour
     {
         _list = _list.FindAll(e => e != null);
 
-        if ((_spawnTimer += Time.deltaTime) > SpawnSpan)
+        if ((_spawnTimer += Time.deltaTime) > SpawnData.SpawnSpan)
         {
             _spawnTimer = 0f;
-            if (_list.Count < MaxSpawn)
+            if (_list.Count < SpawnData.MaxSpawn)
             {
-                var spawnCount = Random.Range(1, MaxSpawn - _list.Count + 1);
+                var spawnCount = Random.Range(1, SpawnData.MaxSpawn - _list.Count + 1);
                 for (int i = 0; i < spawnCount; i++)
                 {
                     Spawn();
@@ -61,5 +66,10 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        if(_list.Count <= 0 && SpawnData.SpawnCount <= 0 && !_isCleared)
+        {
+            _isCleared = true;
+            GameManager.Instance.Player.OnClear();
+        }
     }
 }

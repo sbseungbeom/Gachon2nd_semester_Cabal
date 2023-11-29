@@ -18,7 +18,7 @@ public class BossCameraMove : MonoBehaviour
         _distance = bossDir.magnitude;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         var cameraBossDir = (_boss.position - transform.position);
         cameraBossDir.y = 0f;

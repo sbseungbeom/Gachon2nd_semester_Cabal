@@ -25,17 +25,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516426779827320006}
-  m_LocalRotation: {x: 0, y: 0, z: 0.5774302, w: 0.8164401}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4682570234326283399}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 70.54}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 300}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6842311561186576346
 CanvasRenderer:
@@ -750,9 +750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementImage: {fileID: 3408843879427906909}
-  DarkImage: {fileID: 0}
-  SmoothTime: 0.2
-  DarkCycle: 3
+  SwingTime: 0.2
+  RotSpeed: 1800
 --- !u!1 &8188710691140330072
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,6 @@ public class ElementCircleUI : MonoBehaviour
             if(_swingTimer <= 0f)
             {
                 _curZ = (_curZ % 360f + 360f) % 360f - 360f;
-                print($"Start {_curZ} END {_targetRot}");
             }
         }
         else if(_curZ < _targetRot)

@@ -8,261 +8,145 @@ using TMPro;
 
 public class TextUiEx : MonoBehaviour
 {
-    public Image emptyImage1;
-    public Image emptyImage2;
-    public Image emptyBack;
-    public Image textPanel;
-    public TextAsset Excel_1;
-    public TextAsset Excel_2;
-    public TextAsset Excel_3;
-    public TextAsset Excel_4;
-    public TextAsset Excel_5;
-    public TextAsset Excel_6;
-    public TextAsset Excel_7;
-    public TextAsset Excel_8;
-    //오브 이미지
-    public Sprite opponent0;
-    public Sprite opponent1_0;
-    public Sprite opponent1_1;
-    public Sprite opponent1_2;
-    public Sprite opponent1_3;
-    public Sprite opponent1_4;
-    //빛법사 이미지
-    public Sprite opponent2_0;
-    public Sprite opponent2_1;
-    public Sprite opponent2_2;
+    public Image FirstCharacterImage;
+    public Image SecondCharacterImage;
+    public Image BackgroundImage;
+    public Image TalkBox;
 
-    public Sprite backGround1;
-    public Sprite backGround2;
-    public AudioClip Talk1;
+    public AudioClip TalkSound;
 
     public TMP_Text ChatText;
-    public TMP_Text CharacterName;
-    string[,] dataTable;
+    public TMP_Text DisplayNameText;
 
-    private bool texting;
-    private bool uiShake = false;
-    private AudioSource audioSource;
-    private bool _textSkip;
-    private int lineSize, rowSize;
+    private List<Dictionary<string, string>> _chatScriptData;
+    private readonly List<Chat> _chatList = new();
 
-    public float shakeDuration = 0.5f;
-    public float shakeAmount = 0.1f;    // 흔들림 정도
+    private bool _isTexting = false;
+    private bool _waitForSkip = false;
 
-    private Vector3 originalPosition;
-    private float shakeTimer = 0f;
-    private TextAsset dataTableCO;
-
-    public string writerText = "";
+    private StageData _recentStageData = null;
+    private AudioSource _audioSource = null;
 
     void Start()
     {
-        print(SceneStatic.previousScene);
-        texting = false;
-        _textSkip = false;
-        uiShake = false;
-        audioSource = GetComponent<AudioSource>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        originalPosition = transform.position;
-        if (SceneStatic.previousScene == "TutorialScene")
+        _isTexting = false;
+        _waitForSkip = false;
+
+        _audioSource = GetComponent<AudioSource>();
+        if(_audioSource == null) _audioSource = gameObject.AddComponent<AudioSource>();
+
+        var recentStageNum = StageManager.CurrentStageNumber;
+        _recentStageData = StageManager.CurrentStageData;
+
+        if(_recentStageData != null)
         {
-            dataTableCO = Excel_1;
-        }
-        else if (SceneStatic.previousScene == "Stage1_Test")
-        {
-            dataTableCO = Excel_2;
-        }
-        else if (SceneStatic.previousScene == "Stage2_Test")
-        {
-            dataTableCO = Excel_3;
-        }
-        else if (SceneStatic.previousScene == "Stage3_Test")
-        {
-            dataTableCO = Excel_4;
-        }
-        else if (SceneStatic.previousScene == "Stage4_Test")
-        {
-            dataTableCO = Excel_5;
-        }
-        else if (SceneStatic.previousScene == "Stage5_Test")
-        {
-            dataTableCO = Excel_6;
-        }
-        else if (SceneStatic.previousScene == "Stage6_Test")
-        {
-            dataTableCO = Excel_7;
-        }
-        else if (SceneStatic.previousScene == "Stage7_Test")
-        {
-            dataTableCO = Excel_8;
-        }
-        string currenText = dataTableCO.text.Substring(0, dataTableCO.text.Length - 1);
-        string[] line = currenText.Split('\n');
-        lineSize = line.Length;
-        rowSize = line[0].Split('\t').Length;
-        dataTable = new string[lineSize, rowSize];
-        for (int i = 0; i < lineSize; i++)
-        {
-            string[] row = line[i].Split('\t');
-            for (int j = 0; j < rowSize; j++)
+            _chatScriptData = CSVReader.Read("RawData/Scripts");
+            foreach(var line in _chatScriptData)
             {
-                dataTable[i, j] = row[j];
+                line.TryGetValue("Stage", out var stageStr);
+
+                if (!int.TryParse(stageStr, out int stage) || stage != recentStageNum) continue;
+
+                line.TryGetValue("DisplayName", out var displayName);
+                line.TryGetValue("BGImage", out var bgImageStr);
+                line.TryGetValue("FirstCharacterImage", out var firstCharImageStr);
+                line.TryGetValue("SecondCharacterImage", out var secondCharImageStr);
+                line.TryGetValue("Talkbox", out var talkboxImageStr);
+                line.TryGetValue("Shake", out var shakeStr);
+                line.TryGetValue("Script", out var script);
+
+                bool shake = shakeStr.ToUpper() == "Y";
+                var bgImage = Resources.Load<Sprite>("Story/Background/" + bgImageStr);
+                var firstCharImage = Resources.Load<Sprite>("Story/Character/" + firstCharImageStr);
+                var secondCharImage = Resources.Load<Sprite>("Story/Character/" + secondCharImageStr);
+                var talkboxImage = Resources.Load<Sprite>("Story/Talkbox/" + talkboxImageStr);
+
+                print(secondCharImageStr);
+
+                _chatList.Add(new()
+                {
+                    Script = script,
+                    DisplayName = displayName,
+                    BGImage = bgImage,
+                    FirstCharacterImage = firstCharImage,
+                    SecondCharacterImage = secondCharImage,
+                    TalkboxImage = talkboxImage,
+                    Shake = shake,
+                });
             }
         }
+        else
+        {
+            SceneManager.LoadScene("StartScene");
+        }
+
         StartCoroutine(TextPractice());
     }
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && texting == true)
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && _isTexting)
         {
-            _textSkip = true;
+            _waitForSkip = true;
         }
-    }
-    IEnumerator NormalChat(string background_ID, string char_ID, string secondChar_ID, string talk_Text, string char_Emotion_Type, string secondChar_Emotion_Type, string talkBox_Image, string talkBox_Shake)
-    {
-        writerText = "";
-        if (secondChar_ID == "@")
-        {
-
-        }
-        if (background_ID == "523300")
-        {
-            emptyBack.sprite = backGround1;
-        }
-        else if (background_ID == "523301")
-        {
-            emptyBack.sprite = backGround2;
-        }
-        if (char_ID == "10001")
-        {
-            CharacterName.text = "오브";
-        }
-        else if (char_ID == "10002")
-        {
-            CharacterName.text = "빛법사";
-        }
-
-        if (char_Emotion_Type == "1_0")
-        {
-            emptyImage1.sprite = opponent1_0;
-        }
-        else if (char_Emotion_Type == "1_1")
-        {
-            emptyImage1.sprite = opponent1_1;
-        }
-        else if (char_Emotion_Type == "1_2")
-        {
-            emptyImage1.sprite = opponent1_2;
-        }
-        else if (char_Emotion_Type == "1_3")
-        {
-            emptyImage1.sprite = opponent1_3;
-        }
-        else if (char_Emotion_Type == "1_4")
-        {
-            emptyImage1.sprite = opponent1_4;
-        }
-        if (secondChar_Emotion_Type == "@")
-        {
-            emptyImage2.sprite = opponent0;
-        }
-        else if (secondChar_Emotion_Type == "2_0")
-        {
-            emptyImage2.sprite = opponent2_0;
-        }
-        else if (secondChar_Emotion_Type == "2_1")
-        {
-            emptyImage2.sprite = opponent2_1;
-        }
-        else if (secondChar_Emotion_Type == "2_2")
-        {
-            emptyImage2.sprite = opponent2_2;
-        }
-        if (talkBox_Shake != "@")
-        {
-            textPanel.GetComponent<UIPanelShake>().StartShake();
-        }
-
-        texting = true;
-        int i = 0;
-        for (i = 0; i < talk_Text.Length; i++)
-        {
-            yield return new WaitForSeconds(.05f);
-            if (_textSkip)
-            {
-                int index = 0;
-                //모든 텍스트를 한번에 wirtetext에 추가
-                foreach (char a in talk_Text)
-                {
-                    if (index > i)
-                    {
-                        writerText += talk_Text[index];
-                    }
-                    index++;
-                }
-                i = talk_Text.Length;
-                _textSkip = false;
-            }
-            else
-                writerText += talk_Text[i];
-            ChatText.text = writerText;
-        }
-        textPanel.GetComponent<UIPanelShake>().EndShake();
-        texting = false;
-        while (true)
-        {
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
-            {
-                break;
-            }
-            yield return null;
-        }
-    }
-
-    void PlayAudio(AudioClip clip)
-    {
-        audioSource.clip = clip;
-        audioSource.Play();
     }
 
     IEnumerator TextPractice()
     {
-        int maxLine = lineSize;
-        for (int i = 0; i < maxLine; i++)
+        foreach (var chat in _chatList)
         {
-            yield return StartCoroutine(NormalChat(dataTable[i, 2], dataTable[i, 3], dataTable[i, 4], dataTable[i, 6], dataTable[i, 10], dataTable[i, 11], dataTable[i, 12], dataTable[i, 14]));
+            yield return StartCoroutine(NormalChat(chat));
         }
-        if (SceneStatic.previousScene == "TutorialScene")
+        if(StageManager.CurrentStageData is NormalStageData)
         {
-            SceneManager.LoadScene("Stage1_Test");
+            SceneManager.LoadScene("NormalStage");
         }
-        else if (SceneStatic.previousScene == "Stage1_Test")
+        else if(StageManager.CurrentStageData is BossStageData)
         {
-            SceneManager.LoadScene("Stage2_Test");
-        }
-        else if (SceneStatic.previousScene == "Stage2_Test")
-        {
-            SceneManager.LoadScene("Stage3_Test");
-        }
-        else if (SceneStatic.previousScene == "Stage3_Test")
-        {
-            SceneManager.LoadScene("Stage4_Test");
-        }
-        else if (SceneStatic.previousScene == "Stage4_Test")
-        {
-            SceneManager.LoadScene("Stage5_Test");
-        }
-        else if (SceneStatic.previousScene == "Stage5_Test")
-        {
-            SceneManager.LoadScene("Stage6_Test");
-        }
-        else if (SceneStatic.previousScene == "Stage6_Test")
-        {
-            SceneManager.LoadScene("Stage7_Test");
-        }
-        else if (SceneStatic.previousScene == "Stage7_Test")
-        {
-            SceneManager.LoadScene("Stage8_Test");
+            SceneManager.LoadScene("BossStage");
         }
     }
+
+    IEnumerator NormalChat(Chat chat)
+    {
+        DisplayNameText.SetText(chat.DisplayName);
+        BackgroundImage.sprite = chat.BGImage;
+        FirstCharacterImage.sprite = chat.FirstCharacterImage;
+        SecondCharacterImage.sprite = chat.SecondCharacterImage;
+        TalkBox.sprite = chat.TalkboxImage;
+
+        FirstCharacterImage.gameObject.SetActive(FirstCharacterImage.sprite != null);
+        SecondCharacterImage.gameObject.SetActive(SecondCharacterImage.sprite != null);
+
+        if (chat.Shake)
+            TalkBox.GetComponent<UIPanelShake>().StartShake();
+
+        var writerText = "";
+        _isTexting = true;
+        foreach (var c in chat.Script)
+        {
+            writerText += c;
+            ChatText.text = writerText;
+            if (_waitForSkip) continue;
+            yield return new WaitForSeconds(.05f);
+        }
+        _waitForSkip = false;
+        _isTexting = false;
+
+        TalkBox.GetComponent<UIPanelShake>().EndShake();
+
+        yield return null;
+        while (!(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))) yield return null;
+    }
+
+    void PlayAudio(AudioClip clip)
+    {
+        _audioSource.PlayOneShot(clip);
+    }
+}
+
+public struct Chat
+{
+    public string Script, DisplayName;
+    public Sprite FirstCharacterImage, SecondCharacterImage, BGImage, TalkboxImage;
+    public bool Shake;
 }
