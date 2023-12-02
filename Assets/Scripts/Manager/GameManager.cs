@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -13,5 +14,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        Instantiate(StageManager.CurrentStageData.MapObject, Vector3.zero, Quaternion.identity);
+    }
+
+    private void Update()
+    {
     }
 }

@@ -6,11 +6,11 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static int score;
+    [HideInInspector] public int score;
 
     private void Awake()
     {
-        score = 0;
+        score = PlayerPrefs.GetInt("Score", 0);
     }
 
     public void UpdateRanking(int score)

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   DamageScreen: {fileID: 0}
-  score_Manager: {fileID: 8591412421770130196}
+  scoreManager: {fileID: 1016759445957804410}
   SoundManager: {fileID: 1407052824897420741}
 --- !u!1 &7703055525573093165
 GameObject:
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9070579626116111643}
-  - component: {fileID: 8591412421770130196}
+  - component: {fileID: 1016759445957804410}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6707482749169112189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8591412421770130196
+--- !u!114 &1016759445957804410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8063794333794935748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc9c2d624808c5488e718735de9dcbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 710dcbf0531949b468e40d3c9431b2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0

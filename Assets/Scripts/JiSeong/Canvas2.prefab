@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3715195249287465252}
   - component: {fileID: 7146337900762814918}
   m_Layer: 5
-  m_Name: back
+  m_Name: BGImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 8807080880703895499}
   - component: {fileID: 2368582197846912708}
   m_Layer: 5
-  m_Name: person2
+  m_Name: Character2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,29 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1488af2233f55418e64263803e59e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyImage0: {fileID: 0}
-  emptyImage1: {fileID: 6259393890194620856}
-  emptyImage2: {fileID: 2368582197846912708}
-  emptyBack: {fileID: 7146337900762814918}
-  textPanel: {fileID: 446854164898767807}
-  Excel_test: {fileID: 4900000, guid: 621c2e5b11efc044c8ecdc4dab0aa8d8, type: 3}
-  opponent0: {fileID: 21300000, guid: 3dd765056899d8c4483dafcd7f5ff5f9, type: 3}
-  opponent1_0: {fileID: 21300000, guid: 340147e5fbb71c84b9df042ea374933d, type: 3}
-  opponent1_1: {fileID: 21300000, guid: a6d7f397b17231942b745464da4eb07a, type: 3}
-  opponent1_2: {fileID: 21300000, guid: b41504540620fbe4fa36f2f6a8eb5284, type: 3}
-  opponent1_3: {fileID: 21300000, guid: 2e5276465cd719a4eb65399a5c56f046, type: 3}
-  opponent1_4: {fileID: 21300000, guid: 323d81dd47f0b1949bc914fef188db78, type: 3}
-  opponent2_0: {fileID: 21300000, guid: caa3de73880a6a34fa764521769a7948, type: 3}
-  opponent2_1: {fileID: 21300000, guid: 2fad885294b2bf8469fa277b0de951cd, type: 3}
-  opponent2_2: {fileID: 21300000, guid: 52e2ebe97d8b53547b740595b056793c, type: 3}
-  backGround1: {fileID: 21300000, guid: d74fc1943b5f4ef43b36d8f6bb5aebaa, type: 3}
-  backGround2: {fileID: 21300000, guid: 78f0bcc1c98f58944929c81308ff6857, type: 3}
-  Talk1: {fileID: 0}
+  FirstCharacterImage: {fileID: 6259393890194620856}
+  SecondCharacterImage: {fileID: 2368582197846912708}
+  BackgroundImage: {fileID: 7146337900762814918}
+  TalkBox: {fileID: 446854164898767807}
+  TalkSound: {fileID: 0}
   ChatText: {fileID: 4145591384489747168}
-  CharacterName: {fileID: 1558130824509065524}
-  shakeDuration: 0.5
-  shakeAmount: 0.1
-  writerText: 
+  DisplayNameText: {fileID: 1558130824509065524}
 --- !u!1 &5752524669637786657
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +347,7 @@ GameObject:
   - component: {fileID: 2996129171398863407}
   - component: {fileID: 8959278074244320322}
   m_Layer: 5
-  m_Name: NameBack
+  m_Name: NameBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,7 +423,7 @@ GameObject:
   - component: {fileID: 8176222927005546889}
   - component: {fileID: 4145591384489747168}
   m_Layer: 5
-  m_Name: ChatText(TMP)
+  m_Name: ScriptText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +558,7 @@ GameObject:
   - component: {fileID: 446854164898767807}
   - component: {fileID: 112176381222297264}
   m_Layer: 5
-  m_Name: ChatBack
+  m_Name: Talkbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,7 +649,7 @@ GameObject:
   - component: {fileID: 4854775192459360436}
   - component: {fileID: 6259393890194620856}
   m_Layer: 5
-  m_Name: person1
+  m_Name: Character1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
