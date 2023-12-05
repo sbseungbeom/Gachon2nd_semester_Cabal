@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     public AudioMixerGroup MasterMixerGroup, SFXMixerGroup, BGMMixerGroup;
+    public AudioSource BGMSource;
 
     public AudioClip BaseAttackSound, ElementChangeSound;
 
@@ -43,6 +44,13 @@ public class SoundManager : MonoBehaviour
             var source = new GameObject("Audio Source").AddComponent<AudioSource>();
             return source;
         }
+    }
+
+    public void PlayBGM(AudioClip clip)
+    {
+        BGMSource.clip = clip;
+        BGMSource.loop = true;
+        BGMSource.Play();
     }
 
     public void PlaySFX(AudioClip clip, Vector3 pos, float volume = 1f, float pitch = 1f, Transform parent = null)
