@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     public GameObject menuSet;
     public List<GameObject> menu = new List<GameObject>();
     public List<GameObject> setting = new List<GameObject>();
+    public Slider sliderMaster;
+    public Slider sliderBGM;
+    public Slider sliderSFX;
 
     void Start()
     {
+        sliderMaster.value = sliderMaster.maxValue;
+        sliderBGM.value = sliderBGM.maxValue;
+        sliderSFX.value = sliderSFX.maxValue;
         for (int i = 0; i < menu.Count; i++)
         {
             menu[i].SetActive(true);
