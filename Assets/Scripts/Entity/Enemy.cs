@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Enemy : Entity
 {
-    public static readonly Color DamagedColor = new(0.4f, 0.4f, 0.6f, 0.7f);
+    public const float DamageShowTime = 0.2f;
+    public static readonly Color DamagedColor = new(1f, 0.7f, 0.7f, 1f);
 
     private int _dir;
 
@@ -13,9 +14,11 @@ public class Enemy : Entity
     public Transform Rope;
     private SpriteRenderer _renderer;
 
+    private float _damageShowTimer = 0f;
+
     private float _timer = 0f;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _dir = Random.value < 0.5f ? 1 : -1;
@@ -25,10 +28,11 @@ public class Enemy : Entity
     public override void Damage(int damage)
     {
         base.Damage(damage);
+        _damageShowTimer = DamageShowTime;
         ParticleManager.SpawnParticle(Data.DamageParticle, transform.position);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     { 
         if(Rope != null) Destroy(Rope.gameObject);
     }
@@ -36,16 +40,11 @@ public class Enemy : Entity
     protected override void OnDeath()
     {
         Destroy(gameObject);
-        ScoreManager.score += Data.Score;//점수
+        GameManager.Instance.scoreManager.score += Data.Score;//점수
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        _renderer.color = HP switch
-        {
-            1 => DamagedColor,
-            _ => Color.white,
-        };
         Rope.position += _dir * Data.MoveSpeed * Time.deltaTime * Vector3.right;
         if(transform.position.x < Data.MinX)
         {
@@ -56,17 +55,38 @@ public class Enemy : Entity
             _dir = -1;
         }
 
-        if((_timer += Time.deltaTime) > Data.ShootCooldown)
+        if((_timer -= Time.deltaTime) <= 0)
         {
-            _timer = 0f;
+            _timer = Data.ShootCooldown + Random.Range(0,Data.RandomShootCooldown);
 
             var vp = Camera.main.WorldToViewportPoint(transform.position);
             if (vp.x < 1 && vp.x > 0 && vp.y < 1 && vp.y > 0)
             {
-                var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
-                projectile.transform.LookAt(GameManager.Instance.Player.transform.position);
-                projectile.IsEnemyProjectile = true;
+                Attack();
             }
         }
+
+        if(_damageShowTimer > 0f)
+        {
+            _damageShowTimer -= Time.deltaTime;
+
+            _renderer.material.SetColor("_TintColor", DamagedColor * new Color(1f, 1f, 1f, _damageShowTimer / DamageShowTime));
+        }
     }
+
+    protected virtual void Attack() {
+
+        var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
+        projectile.transform.LookAt(GameManager.Instance.Player.transform.position);
+        projectile.IsEnemyProjectile = true;
+    }
+
+    protected IEnumerator Stop(float StopTime)
+    {
+        int SettedDir = _dir;
+        _dir = 0;
+        yield return new WaitForSeconds(StopTime);
+        _dir = SettedDir;
+    }
+
 }

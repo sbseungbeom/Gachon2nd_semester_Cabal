@@ -147,14 +147,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50feee62401863e4b9a2d9f2495771fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallMob_1_Hp: 10
-  _shootCoolDownMin: 3
-  _shootCoolDownMax: 5
-  _dirChangeMinTime: 3
-  _dirChangeMaxTime: 5
-  _moveSpeed: 2
-  _bulletPrefab: {fileID: 2798195828171689768, guid: 8c7f21654c104c34e8d5ec14365b566b, type: 3}
-  _player: {fileID: 0}
+  Direction: -1
+  MoveDistance: 0
+  MinMoveDistance: 0
+  MaxMoveDistance: 0
+  MoveSpeed: 0
+  MoveWaitTime: 0
+  MinMoveWaitTime: 0
+  MaxMoveWaitTime: 0
+  MaxAttackWaitTime: 0
+  MiNAttackWaitTime: 0
   Spread: 5
   _AmountOfBullet: 20
   _SpreadCooltime: 0.05
+  Projectile: {fileID: 2798195828171689768, guid: cefb486ced1c714469ffaa51a0fec344, type: 3}

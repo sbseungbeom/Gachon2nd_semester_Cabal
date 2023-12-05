@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(MeshRenderer))]
 public class Player : Entity
 {
     [SerializeField] private PlayerElementData _redElementData, _greenElementData, _blueElementData, _darkElementData;
@@ -22,13 +21,12 @@ public class Player : Entity
     public ParticleSystem DamageParticle;
 
     private Vector3[] _positions = new Vector3[2];
-    private MeshRenderer _renderer;
+    [SerializeField] private MeshRenderer _renderer;
 
     public PlayerElementData CurrentElement;
 
     private void Awake()
     {
-        _renderer = GetComponent<MeshRenderer>();
         ChangeElement(CurrentElement, true);
     }
 
@@ -79,31 +77,16 @@ public class Player : Entity
     private void ShootUpdate()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        var rayDir = ray.direction;
-        if (rayDir.y >= 0f) rayDir.y = -0.005f;
-        ray.direction = rayDir;
-
-        var point = ray.GetPoint(_aimDistance);
-        point.y = transform.position.y;
-
-        if(ray.origin.y > transform.position.y)
-        {
-            var distance = (ray.origin.y - transform.position.y) / -ray.direction.y;
-            point = ray.GetPoint(distance);
-        }
-
-        _positions[0] = transform.position;
-        _positions[1] = transform.position + (point - transform.position) * 200;
-
-        transform.LookAt(point);
+        var dir = ray.direction;
+        transform.forward = dir;
 
         if (Input.GetMouseButtonDown(0))
         {
             if (CurrentElement.ProjectParticle != null)
                 ParticleManager.SpawnParticle(CurrentElement.ProjectParticle, transform.position, transform);
             var projectile = Instantiate(CurrentElement.Projectile, transform.position + transform.forward * _shootDistance, Quaternion.identity);
-            projectile.transform.LookAt(point);
+            projectile.transform.forward = dir;
+            projectile.CameraOffset = projectile.transform.position - Camera.main.transform.position;
             projectile.IsEnemyProjectile = false;
             GameManager.Instance.SoundManager.PlaySFX(GameManager.Instance.SoundManager.BaseAttackSound, transform);
         }
@@ -112,6 +95,22 @@ public class Player : Entity
     protected override void OnDeath()
     {
         SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void OnClear()
+    {
+        PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
+        var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
+        PlayerPrefs.SetInt("RecentStage", NextStage);
+        var nextStageData = StageManager.CurrentStageData;
+        if(nextStageData != null)
+        {
+            SceneManager.LoadScene("StoryScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
     }
 
     private void MoveUpdate()

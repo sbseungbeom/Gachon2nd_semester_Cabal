@@ -7,6 +7,8 @@ public class EnemyData : ScriptableObject
     public float MinX = -15, MaxX = 15;
     public float MoveSpeed = 5;
     public float ShootCooldown;
+    public float RandomShootCooldown;
     public Projectile projectile;
     public ParticleSystem DamageParticle;
+    public float YOffset;
 }

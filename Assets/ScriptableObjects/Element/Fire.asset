@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d0edb442b3cc34ab101453af3386c8, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  ElementType: 0
+  Material: {fileID: 2100000, guid: 3be543700ebec77488d96035e2e282c9, type: 2}
+  LightColor: {r: 1, g: 0.55620337, b: 0, a: 0}
+  SpawnParticle: {fileID: 1590039965784815200, guid: 1c7423530b5b51545b71c0a9f118227e, type: 3}
+  ProjectParticle: {fileID: 0}
+  Projectile: {fileID: -8760447939717194727, guid: 4a83e6eb9fcad85409ddc255dddeac70, type: 3}
+  CircleRotation: 0

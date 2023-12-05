@@ -1338,8 +1338,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1783317549}
-        m_TargetAssemblyTypeName: SceneChangeButton, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_TargetAssemblyTypeName: RestartButton, Assembly-CSharp
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1396,10 +1396,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1783317544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1e8bd085be42646a66db2a49a0c3f6, type: 3}
+  m_Script: {fileID: 11500000, guid: a0e0b0a14d5350b4da6b0933667117c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: NormalStage
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

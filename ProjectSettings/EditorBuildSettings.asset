@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/ScenarioScene.unity
     guid: daa03ef5e0ba0ba45b1b630caf9753b8
   - enabled: 1
+    path: Assets/Scenes/StoryScene.unity
+    guid: 613629132f9f1b848a716df946943b32
+  - enabled: 1
     path: Assets/Scenes/NormalStage.unity
     guid: b2e6b23bd7455e840a09c5bfc1dbb715
+  - enabled: 1
+    path: Assets/Scenes/BossStage.unity
+    guid: 2f6b6c73cd07c9c45a27077dad057329
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 638e2fc193ba06849bc3cc5a54c4f219
