@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
         Instantiate(StageManager.CurrentStageData.MapObject, Vector3.zero, Quaternion.identity);
     }
 
+    private void Start()
+    {
+        SoundManager.PlayBGM(StageManager.CurrentStageData.BackgroundMusic);
+    }
+
     private void Update()
     {
     }
