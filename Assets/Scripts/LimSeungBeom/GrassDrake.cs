@@ -20,7 +20,7 @@ public class GrassDrake : Enemy
 
     float eX;
     bool LaserOn;
-    [SerializeField] GameObject Aimpoint;
+    Vector3 Aimpoint;
 
     private Queue <GameObject> AWQueue = new Queue <GameObject>();
     private Queue<GameObject> AQueue = new Queue<GameObject>();
@@ -49,11 +49,11 @@ public class GrassDrake : Enemy
     protected override void Update()
     {
         base.Update();
-        Laser.transform.LookAt(Aimpoint.transform.position);
+        Laser.transform.LookAt(Aimpoint);
         if(LaserOn)
         {
             Laser.SetActive(true);
-            Aimpoint.transform.position = Vector3.Lerp(new Vector3(SavedPlayerPosition.x - 5, 0, SavedPlayerPosition.z), new Vector3(SavedPlayerPosition.x + 5, 0, SavedPlayerPosition.z), eX);
+            Aimpoint = Vector3.Lerp(new Vector3(SavedPlayerPosition.x - 5, 0, SavedPlayerPosition.z), new Vector3(SavedPlayerPosition.x + 5, 0, SavedPlayerPosition.z), eX);
             eX += Time.deltaTime * 0.35f;
             Debug.Log("드레이크 공격");
         }
@@ -70,19 +70,19 @@ public class GrassDrake : Enemy
     }
     IEnumerator AttackCoroutine()
     {
-        StartCoroutine(Stop(10));
+        StartCoroutine(Stop(12));
         SavedPlayerPosition = Player.transform.position;
         LaserOn = true;
         yield return new WaitForSeconds(0.6f);
-        StartCoroutine(ActiveAW(-5));
+        StartCoroutine(ActiveAW(-3f));
         yield return new WaitForSeconds(0.6f);
-        StartCoroutine(ActiveAW(-2.5f));
+        StartCoroutine(ActiveAW(-1.5f));
         yield return new WaitForSeconds(0.6f);
         StartCoroutine(ActiveAW(0));
         yield return new WaitForSeconds(0.6f);
-        StartCoroutine(ActiveAW(2.5f));
+        StartCoroutine(ActiveAW(1.5f));
         yield return new WaitForSeconds(0.6f);
-        StartCoroutine(ActiveAW(5));
+        StartCoroutine(ActiveAW(3f));
         /*
         for (int i = 0; i < 5; i++)
         {
@@ -96,15 +96,15 @@ public class GrassDrake : Enemy
         yield return new WaitForSeconds(1);
         LaserOn = false;
         yield return new WaitForSeconds(1);
-        StartCoroutine(ActiveAttack(-5));
+        StartCoroutine(ActiveAttack(-3f));
         yield return new WaitForSeconds(0.4f);
-        StartCoroutine(ActiveAttack(-2.5f));
+        StartCoroutine(ActiveAttack(-1.5f));
         yield return new WaitForSeconds(0.4f);
         StartCoroutine(ActiveAttack(0));
         yield return new WaitForSeconds(0.4f);
-        StartCoroutine(ActiveAttack(2.5f));
+        StartCoroutine(ActiveAttack(1.5f));
         yield return new WaitForSeconds(0.4f);
-        StartCoroutine(ActiveAttack(5));
+        StartCoroutine(ActiveAttack(3f));
         /*
         for(int i = 0; i < 5; i++)
         {
