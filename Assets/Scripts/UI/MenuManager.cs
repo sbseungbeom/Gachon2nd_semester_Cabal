@@ -12,12 +12,11 @@ public class MenuManager : MonoBehaviour
     public Slider sliderMaster;
     public Slider sliderBGM;
     public Slider sliderSFX;
-
     void Start()
     {
-        sliderMaster.value = sliderMaster.maxValue;
-        sliderBGM.value = sliderBGM.maxValue;
-        sliderSFX.value = sliderSFX.maxValue;
+        sliderMaster.value = GameManager.Instance.SoundManager.GetMasterVolume();
+        sliderBGM.value = GameManager.Instance.SoundManager.GetBGMVolume();
+        sliderSFX.value = GameManager.Instance.SoundManager.GetSFXVolume();
         for (int i = 0; i < menu.Count; i++)
         {
             menu[i].SetActive(true);
@@ -54,6 +53,10 @@ public class MenuManager : MonoBehaviour
     public void Resume()
     {
         menuSet.SetActive(false);
+        for(int i = 0; i < menu.Count; i++)
+        {
+            menu[i].GetComponent<MenuBtn>().ScaleReset();
+        }
     }
     public void ReStart()
     {
@@ -83,6 +86,10 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < setting.Count; i++)
         {
             setting[i].SetActive(false);
+        }
+        for (int i = 0; i < menu.Count; i++)
+        {
+            menu[i].GetComponent<MenuBtn>().ScaleReset();
         }
     }
 }

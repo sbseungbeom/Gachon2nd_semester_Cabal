@@ -23,7 +23,4 @@ public class GameManager : MonoBehaviour
         SoundManager.PlayBGM(StageManager.CurrentStageData.BackgroundMusic);
     }
 
-    private void Update()
-    {
-    }
 }
