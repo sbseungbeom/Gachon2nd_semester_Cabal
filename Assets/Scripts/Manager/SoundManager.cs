@@ -29,9 +29,9 @@ public class SoundManager : MonoBehaviour
     public void SetMasterVolume(float volume) => SetVolume("Master", volume);
     public void SetSFXVolume(float volume) => SetVolume("SFX", volume);
     public void SetBGMVolume(float volume) => SetVolume("BGM", volume);
-    public void GetMasterVolume() => GetVolume("Master");
-    public void GetSFXVolume() => GetVolume("SFX");
-    public void GetBGMVolume() => GetVolume("BGM");
+    public float GetMasterVolume() => GetVolume("Master");
+    public float GetSFXVolume() => GetVolume("SFX");
+    public float GetBGMVolume() => GetVolume("BGM");
 
     private AudioSource GetSource()
     {
