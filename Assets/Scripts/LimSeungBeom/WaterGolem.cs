@@ -27,11 +27,11 @@ public class WaterGolem : Enemy
         base.Update();
         if (IsAiming)
         {
-            WarningRotator.transform.LookAt(new Vector3(Player.transform.position.x, Player.transform.position.y - 1, Player.transform.position.z));
+            WarningRotator.transform.LookAt(new Vector3(Player.transform.position.x, Player.transform.position.y - 0.3f, Player.transform.position.z));
         }
         if(IsAiming == false)
         {
-            WarningRotator.transform.LookAt(new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y - 1, SettedPlayerPosition.z));
+            WarningRotator.transform.LookAt(new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y - 0.3f, SettedPlayerPosition.z));
         }
     }
     protected override void Attack()
@@ -41,7 +41,7 @@ public class WaterGolem : Enemy
 
     IEnumerator WaterGolemAttack()
     {
-        StartCoroutine(Stop(5));
+        StartCoroutine(Stop(8));
         IsAiming = true;
         WarningRotator.SetActive(true);
 
