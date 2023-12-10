@@ -12,10 +12,13 @@ public class GrassGolem : Enemy
     [Header("산탄 공격 총알 생성 주기. 0.05 권장")]
     [SerializeField] public float _SpreadCooltime;
 
+    Animator anim;
+
     GameObject Player;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         Player = GameManager.Instance.Player.gameObject;
 
         
@@ -27,6 +30,13 @@ public class GrassGolem : Enemy
     }
     IEnumerator AttackCoroutine()
     {
+        anim.SetBool("AttackReady", true);
+        yield return new WaitForSeconds(2);
+        anim.SetBool("AttackReady", false);
+        anim.SetBool("Attack", true);
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("Attack", false);
+
         Vector3 SettedPlayerPosition = Player.transform.position;
 
         for(int i = 0; i < _AmountOfBullet;  i++)
@@ -34,7 +44,7 @@ public class GrassGolem : Enemy
             Projectile bullet = Instantiate(Data.projectile, transform.position, Quaternion.identity);
             bullet.IsEnemyProjectile = true;
             bullet.transform.LookAt(new Vector3((SettedPlayerPosition.x - Spread) + (i * (Spread * 2 / _AmountOfBullet)), SettedPlayerPosition.y, SettedPlayerPosition.z));
-            yield return new WaitForSeconds(_SpreadCooltime);
+            
         }
     }
 

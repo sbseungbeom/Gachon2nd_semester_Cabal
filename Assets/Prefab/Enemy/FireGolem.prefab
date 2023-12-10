@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2918352339638155225}
   - component: {fileID: 3908492219228813885}
   - component: {fileID: 2372247178944396512}
+  - component: {fileID: 5321533011113118366}
   m_Layer: 0
   m_Name: FireGolem
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eeffdbe7403b68b4aa1883d9a6b0cca9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c404a2edcc702134e9833961ef07b085, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,8 +104,14 @@ MonoBehaviour:
   HP: 5
   Data: {fileID: 11400000, guid: 5b29a6e51d785564f8fdb81026a01fc6, type: 2}
   Rope: {fileID: 0}
-  WarningDuration: 5
   Warning: {fileID: 1729563372401310539, guid: fabb1ec731e8e884b92a969211b98bf9, type: 3}
+  Jump: {fileID: 21300000, guid: 79031da9c4ae3df45a3302fea2cd837b, type: 3}
+  Fall: {fileID: 21300000, guid: 018efcb79f6b56044bbcd8c7ad7da82e, type: 3}
+  Idle: {fileID: 21300000, guid: c404a2edcc702134e9833961ef07b085, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 79031da9c4ae3df45a3302fea2cd837b, type: 3}
+  - {fileID: 21300000, guid: 018efcb79f6b56044bbcd8c7ad7da82e, type: 3}
+  - {fileID: 21300000, guid: c404a2edcc702134e9833961ef07b085, type: 3}
 --- !u!65 &3908492219228813885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -153,6 +160,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &5321533011113118366
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837245276450528001}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7726acc95f4c4ee47a3692742013b957, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1586713650624246412
 PrefabInstance:
   m_ObjectHideFlags: 0

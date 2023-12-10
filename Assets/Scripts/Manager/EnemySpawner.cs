@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public EnemySpawnData SpawnData;
 
+    private int _spawnCount;
     private float _spawnTimer = 0f;
     private List<Enemy> _list = new();
 
@@ -14,17 +15,20 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         print(StageManager.CurrentStageData);
-        if(StageManager.CurrentStageData is NormalStageData data)
+        if (StageManager.CurrentStageData is NormalStageData data)
+        {
             SpawnData = data.EnemySpawnData;
+            _spawnCount = SpawnData.SpawnCount;
+        }
     }
 
     private void Spawn()
     {
-        if (SpawnData.SpawnCount <= 0)
+        if (_spawnCount <= 0)
         {
             return;
         }
-        SpawnData.SpawnCount--;
+        _spawnCount--;
 
         var enemyPrefab = SpawnData.EnemyPrefabs[Random.Range(0, SpawnData.EnemyPrefabs.Length)];
         var rope = Instantiate(SpawnData.RopePrefab, new Vector3(
@@ -66,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        if(_list.Count <= 0 && SpawnData.SpawnCount <= 0 && !_isCleared)
+        if(_list.Count <= 0 && _spawnCount <= 0 && !_isCleared)
         {
             _isCleared = true;
             GameManager.Instance.Player.OnClear();

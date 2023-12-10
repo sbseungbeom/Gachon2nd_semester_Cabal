@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class FireGolem : Enemy
 {
-    [SerializeField] float WarningDuration;    //경고 지속시간
 
-    bool bAttackReady;
-    bool bAttackSet;
-    bool bAttackStart;
-    bool bReturn;
     GameObject Player;
     [SerializeField] GameObject Warning;
 
+    [SerializeField] Sprite Jump;
+    [SerializeField] Sprite Fall;
+    [SerializeField] Sprite Idle;
+
+    [SerializeField] Sprite[] sprites = new Sprite[3];
+
+    SpriteRenderer spriter;
+    Animator anim;
+
+    bool bAttackReady;
+    bool bAttackStart;
+    bool bReturn;
     Vector3 SavedEnemyPosition;
     Vector3 SavedPlayerPosition;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameManager.Instance.Player.gameObject;
+        spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
         Warning = transform.GetChild(0).gameObject;
         Warning.SetActive(false);
-
-        bAttackReady = false;
-        bAttackSet = false;
-        bAttackStart = false;
+        
         
     }
 
@@ -32,23 +39,24 @@ public class FireGolem : Enemy
     protected override void Update()
     {
         base.Update();
-        if(bAttackReady)
+        if (bAttackReady )
         {
-            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(SavedEnemyPosition.x, SavedEnemyPosition.y + 20, SavedEnemyPosition.z), 25 * Time.deltaTime);
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(SavedEnemyPosition.x,SavedEnemyPosition.y + 20,SavedEnemyPosition.z), Time.deltaTime * 70);
 
-            Warning.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 10, Player.transform.position.z);
-
-            Warning.transform.eulerAngles = new Vector3(0, 0, 0);
+            spriter.sprite = sprites[0];
         }
-        
-        if(bAttackStart)
+        if(bAttackStart )
         {
-            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(Rope.position.x, Rope.position.y - 3, Rope.position.z + 0.5f), 40 * Time.deltaTime);
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(SavedPlayerPosition.x,SavedPlayerPosition.y - 20,SavedPlayerPosition.z), Time.deltaTime * 50);
+            spriter.sprite = sprites[1];
         }
         if(bReturn)
         {
-            Rope.position = Vector3.MoveTowards(Rope.position, SavedEnemyPosition,50 * Time.deltaTime);
+            Rope.position = Vector3.MoveTowards(Rope.position, new Vector3(SavedEnemyPosition.x, SavedEnemyPosition.y, SavedEnemyPosition.z), Time.deltaTime * 30);
+            spriter.sprite = sprites[2];
         }
+
+        Warning.transform.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 10, SavedPlayerPosition.z);
 
     }
     protected override void Attack()
@@ -57,31 +65,42 @@ public class FireGolem : Enemy
     }
     IEnumerator FireGolemAttack()
     {
-        StartCoroutine(Stop(WarningDuration + 10));
+        StartCoroutine(Stop(10));
 
-        //위로 쓕! 하고 올라갔다가 몇 초 후에 플레이어 위로 떨어짐. 공격이 플레이어에게 유도됨.
         SavedEnemyPosition = new Vector3(Rope.position.x,Rope.position.y,Rope.position.z);
-        bAttackReady = true;
-        Warning.SetActive(true);
-
-
-        yield return new WaitForSeconds(WarningDuration); //경고 시간 끝 , 공격 위치 고정
         SavedPlayerPosition = Player.transform.position;
+
+        anim.SetBool("AttackReady", true);
+
+        yield return new WaitForSeconds(2);
+        anim.SetBool("AttackReady", false);
+
+        //spriter.sprite = sprites[0];
+        bAttackReady = true;
+
+
+        yield return new WaitForSeconds(1);
+        //spriter.sprite = sprites[1];
+
+        Warning.SetActive(true);
+        Rope.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 50, SavedPlayerPosition.z + 0.5f);
         bAttackReady = false;
 
-        yield return new WaitForSeconds(0.1f);
-        Rope.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 50, SavedPlayerPosition.z + 0.5f);
-        Warning.transform.position = new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y + 10, SavedPlayerPosition.z + 0.5f);
 
-        yield return new WaitForSeconds(2.9f); //공격 위치 고정 후 3초후에 낙하.
-
-
+        yield return new WaitForSeconds(2);
         Warning.SetActive(false);
         bAttackStart = true;
-        yield return new WaitForSeconds(2);
+
+
+        yield return new WaitForSeconds(1);
+        //spriter.sprite = sprites[2];
+
         bAttackStart = false;
         bReturn = true;
-        yield return new WaitForSeconds(2);
+
+
+        yield return new WaitForSeconds(3);
         bReturn = false;
+
     }
 }
