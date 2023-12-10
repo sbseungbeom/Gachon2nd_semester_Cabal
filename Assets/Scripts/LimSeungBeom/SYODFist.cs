@@ -5,6 +5,21 @@ using UnityEngine;
 public class SYODFist : MonoBehaviour
 {
     [SerializeField] float speed;
+    GameObject Player;
+    Player PlayerScript;
+
+    private void Awake()
+    {
+        Player = GameObject.FindWithTag("Player");
+        /*
+        Player = GameManager.Instance.Player.gameObject;
+        PlayerScript = Player.GetComponent<Player>();
+        */
+    }
+    private void OnEnable()
+    {
+        transform.LookAt(Player.transform.position);
+    }
 
     void Update()
     {
@@ -15,9 +30,9 @@ public class SYODFist : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //플레이어 데미지 주는 코드.
+
+            //PlayerScript.HP -= 1;
             this.gameObject.SetActive(false);
-            Debug.Log("플레이어 피격!");
         }
     }
 }
