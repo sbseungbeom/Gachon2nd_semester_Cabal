@@ -19,7 +19,6 @@ public class BossLaser2 : MonoBehaviour
 
     private void Awake()
     {
-        
         Laser2Warn = Instantiate(Laser2Warn);
         Laser2Laser = Instantiate(Laser2Laser);
     }
