@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7300942522989728489}
   - component: {fileID: 4991069099788985872}
   - component: {fileID: 4491146011954820092}
+  - component: {fileID: 233935642380777074}
   m_Layer: 0
   m_Name: WaterDrake
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_GameObject: {fileID: 5354945927025703746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.69, y: 5.03, z: 10.67}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 517375940658769164}
   - {fileID: 2103239086701969200}
@@ -125,6 +126,27 @@ MonoBehaviour:
   ElementType: 1
   Data: {fileID: 11400000, guid: 6d150aef86e98094291da136ee7f74c2, type: 2}
   Rope: {fileID: 0}
+--- !u!65 &233935642380777074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354945927025703746}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 46.89, y: 31.412638, z: 7.11}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5811715567598408443
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +262,50 @@ PrefabInstance:
     - target: {fileID: 120411782446683384, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
       propertyPath: m_Parameters.widthMultiplier
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 199018674725269182, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199202434630658816, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199240546436976002, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199354596829870046, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199447162810118618, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199551101079982238, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199569291738201538, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199725780551460276, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199766268199022348, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199916320680598078, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199959231841938824, guid: 9d5dbdf2d3c3c6b4eadc51123699d237, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

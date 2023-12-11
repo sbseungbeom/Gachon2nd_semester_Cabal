@@ -4,12 +4,22 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    public int HP;
+    [SerializeField] private int initHP = 3;
+
+    protected int hp, maxHp;
+    public int HP { get => hp; }
+    public int MaxHP { get => maxHp; }
+
+    protected virtual void Awake()
+    {
+        hp = initHP;
+        maxHp = hp;
+    }
 
     public virtual void Damage(int damage)
     {
-        HP -= damage;
-        if(HP <= 0)
+        hp -= damage;
+        if(hp <= 0)
         {
             OnDeath();
         }

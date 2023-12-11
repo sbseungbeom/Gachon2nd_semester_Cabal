@@ -95,7 +95,7 @@ public class Hovl_Laser : MonoBehaviour
                     {
                         if (col.TryGetComponent(out Player p) && !AttackCoolTime)
                         {
-                            p.HP -= 1;
+                            p.Damage(1);
                             print("Hp down");
                             AttackCoolTime = true;
                             StartCoroutine(AtkCoolTime());

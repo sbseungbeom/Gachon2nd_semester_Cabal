@@ -25,8 +25,17 @@ public class Player : Entity
 
     public PlayerElementData CurrentElement;
 
-    private void Awake()
+    [HideInInspector] public bool IsInvulnerable = false;
+
+    public float AttackCooldown = 0.5f;
+    public float SkillCooldown = 10f;
+
+    private float _attackTimer = 0f;
+    private float _fireSkillTimer = 0f, _waterSkillTimer = 0f, _earthSkillTimer = 0f;
+
+    protected override void Awake()
     {
+        base.Awake();
         ChangeElement(CurrentElement, true);
     }
 
@@ -35,6 +44,7 @@ public class Player : Entity
         MoveUpdate();
         ShootUpdate();
         ElementChangeUpdate();
+        SkillUpdate();
     }
 
     public static bool IsDominentTo(ElementType elementType, ElementType target)
@@ -66,6 +76,13 @@ public class Player : Entity
         }
     }
 
+    private void SkillUpdate()
+    {
+        if (_fireSkillTimer > 0f) _fireSkillTimer -= Time.deltaTime;
+        if (_earthSkillTimer > 0f) _earthSkillTimer -= Time.deltaTime;
+        if (_waterSkillTimer > 0f) _waterSkillTimer -= Time.deltaTime;
+    }
+
     public void ChangeElement(PlayerElementData data, bool slient = false)
     {
         _renderer.material = data.Material;
@@ -74,12 +91,60 @@ public class Player : Entity
             ParticleManager.SpawnParticle(data.SpawnParticle, transform.position, transform);
         CurrentElement = data;
         GameManager.Instance.SoundManager.PlaySFX(_elementChangeSound, transform);
+
+        switch(data.ElementType)
+        {
+            case ElementType.Fire:
+                {
+                    if(_fireSkillTimer <= 0f)
+                        StartCoroutine(FireSkill());
+                }
+                break;
+            case ElementType.Water:
+                {
+                    if (_waterSkillTimer <= 0f)
+                        StartCoroutine(WaterSkill());
+
+                }
+                break;
+            case ElementType.Earth:
+                {
+                    if (_earthSkillTimer <= 0f)
+                        StartCoroutine(EarthSkill());
+
+                }
+                break;
+        }
+    }
+
+    private IEnumerator FireSkill()
+    {
+        AttackCooldown /= 2f;
+        yield return new WaitForSeconds(2f);
+        AttackCooldown *= 2f;
+    }
+
+    private IEnumerator WaterSkill()
+    {
+        IsInvulnerable = true;
+        yield return new WaitForSeconds(2f);
+        IsInvulnerable = false;
+    }
+
+    private IEnumerator EarthSkill()
+    {
+        if (hp < MaxHP) hp++;
+
+        yield return null;
     }
 
     public override void Damage(int damage)
     {
-        base.Damage(damage);
-        GameManager.Instance.DamageScreen.ShowDamage();
+        if (!IsInvulnerable)
+        {
+            base.Damage(damage);
+            GameManager.Instance.DamageScreen.ShowDamage();
+        }
         ParticleManager.SpawnParticle(DamageParticle, transform.position);
     }
 
@@ -89,8 +154,11 @@ public class Player : Entity
         var dir = ray.direction;
         transform.forward = dir;
 
-        if (Input.GetMouseButtonDown(0))
+        if (_attackTimer > 0) _attackTimer -= Time.deltaTime;
+
+        if (Input.GetMouseButton(0) && _attackTimer <= 0f)
         {
+            _attackTimer = AttackCooldown;
             if (CurrentElement.ProjectParticle != null)
                 ParticleManager.SpawnParticle(CurrentElement.ProjectParticle, transform.position, transform);
             var projectile = Instantiate(CurrentElement.Projectile, transform.position + transform.forward * _shootDistance, Quaternion.identity);

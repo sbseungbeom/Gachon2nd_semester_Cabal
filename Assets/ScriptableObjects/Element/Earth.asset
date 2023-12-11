@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ElementType: 2
   Material: {fileID: 2100000, guid: 8ec7637774018fe40ba2c69c04ddf865, type: 2}
-  LightColor: {r: 0.54169345, g: 1, b: 0, a: 0}
+  LightColor: {r: 0, g: 1, b: 0.23749089, a: 0}
   SpawnParticle: {fileID: 1590039965784815200, guid: 45c5740c901b59a45b051bde0f9e8a97, type: 3}
   ProjectParticle: {fileID: 0}
   Projectile: {fileID: -8760447939717194727, guid: 723ca0b84e276984c8b114e6bcd5a68f, type: 3}
-  ShootSound: {fileID: 8300000, guid: b9514f931bf644441858fff5b0418f68, type: 3}
+  ShootSound: {fileID: 8300000, guid: e3664ffdedf200041b797fc934626a65, type: 3}
   CircleRotation: 90

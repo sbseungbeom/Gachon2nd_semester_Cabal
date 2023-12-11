@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d94ac3a77858c843990acf2739f106a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
-  _elementChangeSound: {fileID: 8300000, guid: 6f0b1d82e147f594f998552383b436ca, type: 3}
+  initHP: 3
+  _elementChangeSound: {fileID: 8300000, guid: f36dfeb5a7fb91d4f80361c3cc37002a, type: 3}
   _redElementData: {fileID: 11400000, guid: 9c5a34e74a33d334e9cb860aa3181a9d, type: 2}
   _greenElementData: {fileID: 11400000, guid: ec065157e03652e4f986d3315901cc5f, type: 2}
   _blueElementData: {fileID: 11400000, guid: 2719d4649cb34934183a115af0e95c49, type: 2}
@@ -168,6 +168,9 @@ MonoBehaviour:
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
   _renderer: {fileID: 4346290724441859650}
   CurrentElement: {fileID: 11400000, guid: 44b6d3ca9fbb49f41bc5cd85ad8c92bb, type: 2}
+  IsInvulnerable: 0
+  AttackCooldown: 0.5
+  SkillCooldown: 10
 --- !u!135 &1465668885435668893
 SphereCollider:
   m_ObjectHideFlags: 0

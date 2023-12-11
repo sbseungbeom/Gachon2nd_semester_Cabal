@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2190cb919ba109408dc4705641182ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
+  initHP: 3
   _origin: {fileID: 3929071807136420017}
   _isBack: 1
 --- !u!65 &2724254562665915054
@@ -95,7 +95,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -21873,7 +21873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1bc9203bc90dd4cb65d6d892a3b729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 200
+  initHP: 500
   _rotationPow: 200
   _turnDegree: 120
   _stareDegree: 16
@@ -21893,6 +21893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlackMagician: {fileID: 3929071807136420017}
+  WhiteMagician: {fileID: 0}
 --- !u!1 &2772964477497705531
 GameObject:
   m_ObjectHideFlags: 0
@@ -43294,7 +43295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2190cb919ba109408dc4705641182ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
+  initHP: 3
   _origin: {fileID: 3929071807136420017}
   _isBack: 0
 --- !u!65 &8557119560529306842
@@ -43312,7 +43313,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

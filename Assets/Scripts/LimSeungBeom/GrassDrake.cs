@@ -138,7 +138,7 @@ public class GrassDrake : Enemy
         {
             if (collider.gameObject == Player)
             {
-                ps.HP -= 1;
+                ps.Damage(1);
             }
         }
 

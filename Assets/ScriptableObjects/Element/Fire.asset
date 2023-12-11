@@ -18,5 +18,5 @@ MonoBehaviour:
   SpawnParticle: {fileID: 1590039965784815200, guid: 1c7423530b5b51545b71c0a9f118227e, type: 3}
   ProjectParticle: {fileID: 0}
   Projectile: {fileID: -8760447939717194727, guid: 4a83e6eb9fcad85409ddc255dddeac70, type: 3}
-  ShootSound: {fileID: 8300000, guid: b9514f931bf644441858fff5b0418f68, type: 3}
+  ShootSound: {fileID: 8300000, guid: cf89e754f2bbc4f4e87a30d8364fd291, type: 3}
   CircleRotation: 0

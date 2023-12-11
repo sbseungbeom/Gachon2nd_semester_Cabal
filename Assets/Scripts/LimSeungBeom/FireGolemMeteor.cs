@@ -35,7 +35,7 @@ public class FireGolemMeteor : MonoBehaviour
         {
             if(collider.gameObject == Player)
             {
-                PlayerScript.HP -= 1;
+                PlayerScript.Damage(1);
             }
         }
         yield return new WaitForSeconds(1);             //배열에 담긴것들 전부 없앰.

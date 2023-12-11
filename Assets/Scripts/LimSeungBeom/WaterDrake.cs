@@ -52,11 +52,13 @@ public class WaterDrake : Enemy
 
         Aiming = false;
 
-        Laser.SetActive(true);
 
         SavedPlayerPosition = Player.transform.position;
         Warn.transform.LookAt(new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z));
         Laser.transform.LookAt(new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y, SavedPlayerPosition.z));
+
+        yield return new WaitForSeconds(0.5f);
+        Laser.SetActive(true);
 
         yield return new WaitForSeconds(2);
         Laser.SetActive(false);

@@ -25,9 +25,9 @@ public class GrassDrakeAtk : MonoBehaviour
         {
             if (collider.gameObject == Player)
             {
-                ps.HP -= 1;
+                ps.Damage(1); 
             }
-        }
+        }   
         yield return new WaitForSeconds(1);
 
         Array.Clear(colliders, 0, colliders.Length);
