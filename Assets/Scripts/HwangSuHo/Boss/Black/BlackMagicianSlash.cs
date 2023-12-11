@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BlackMagicianSlash : BossBaseState
 {
-    float _firstSlashReadyCount;
-    float _secondSlashReadyCount;
-    float _thirdSlashReadyCount;
-    float _thirdSlashAfterCount;
+    float _firstSlashReadyCount = 1.8f;
+    float _secondSlashReadyCount = 1.5f;
+    float _thirdSlashReadyCount = 3f;
+    float _thirdSlashAfterCount = 3f;
 
     float _countClock;
     int _slashTh;
@@ -28,7 +28,8 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
-                    StateMachine.BlackMagician.GetComponent<Animator>().SetTrigger("Slash");
+                    StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
+                    _countClock = 0;
                     _slashTh++;
                 }
                 break;
@@ -37,7 +38,8 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
-                    StateMachine.BlackMagician.GetComponent<Animator>().SetTrigger("Slash");
+                    StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
+                    _countClock = 0;
                     _slashTh++;
                 }
                 break;
@@ -46,7 +48,8 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
-                    StateMachine.BlackMagician.GetComponent<Animator>().SetTrigger("Slash");
+                    StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
+                    _countClock = 0;
                     _slashTh++;
                 }
                 break;

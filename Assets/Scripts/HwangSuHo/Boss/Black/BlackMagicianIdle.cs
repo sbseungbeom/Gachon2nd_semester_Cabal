@@ -13,7 +13,7 @@ public class BlackMagicianIdle : BossBaseState
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void Perform()
@@ -26,7 +26,12 @@ public class BlackMagicianIdle : BossBaseState
     private void SelectNextPattern()
     {
         float aa;
-        aa = Random.Range(0, 3);
+        if (StateMachine.BlackMagician.TestCase)
+            aa = 0;
+        else
+        {
+            aa = Random.Range(0, 3);
+        }
         int state = Mathf.FloorToInt(aa);
         switch (state)
         {

@@ -15,7 +15,7 @@ public class Player : Entity
 
     [SerializeField] private float _shootDistance;
 
-    [SerializeField] private Transform _boss;
+    public Transform Boss;
     [SerializeField] private bool _isBossMoving;
     [SerializeField] private Light _orbLight;
 
@@ -127,7 +127,7 @@ public class Player : Entity
         float xAxis = Input.GetAxisRaw("Horizontal");
         if (_isBossMoving)
         {
-            var bossDir = (transform.position - _boss.position);
+            var bossDir = (transform.position - Boss.position);
             bossDir.y = 0;
             var distance = bossDir.magnitude;
             var angle = Mathf.Atan2(bossDir.z, bossDir.x);
@@ -135,7 +135,7 @@ public class Player : Entity
             // 각도 * r = 움직이는 속도
             // 속도 / r = 각속도
             angle += xAxis * Time.deltaTime * _speed / distance;
-            transform.position = new Vector3(_boss.position.x, transform.position.y, _boss.position.z) 
+            transform.position = new Vector3(Boss.position.x, transform.position.y, Boss.position.z) 
                 + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)).normalized * distance;
         }
         else
