@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlackMagician : Entity
 {
     //퍼센트 체력바용 오버라이드 체력?
-
+    int _maxHp = 500;
     bool _isTurning;
     float _angleToPlayer;
     [Header("Player chase parameter")]
@@ -29,6 +29,7 @@ public class BlackMagician : Entity
     // Start is called before the first frame update
     void Start()
     {
+        HP = _maxHp;
         _player = FindObjectOfType<Player>();
         transform.LookAt(_player.transform.position);
         StateMachine = GetComponent<BossStateMachine>();
@@ -40,8 +41,12 @@ public class BlackMagician : Entity
     {
         StaringCheck();
         TurnCheck();
+        RenderHealth();
     }
-
+    private void RenderHealth()
+    {
+        BossHPGraphRenderer.Instance.Render(HP / _maxHp);
+    }
     //시야각 기록용 함수
     private void StaringCheck()
     {
