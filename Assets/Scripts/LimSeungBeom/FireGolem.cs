@@ -13,8 +13,9 @@ public class FireGolem : Enemy
     bool AttackAiming;
     
     // Start is called before the first frame update
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Player = GameManager.Instance.Player.gameObject;
 
         Warning = transform.GetChild(0).gameObject;
@@ -42,7 +43,7 @@ public class FireGolem : Enemy
     }
     IEnumerator FireGolemAttack()
     {
-        
+        StartCoroutine(Stop(9));
 
         Warning.SetActive(true);
         AttackAiming = true;

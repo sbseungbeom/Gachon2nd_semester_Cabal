@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build;
@@ -14,6 +15,7 @@ public class GrassDrake : Enemy
     GameObject DRAttack;
     GameObject DRAttackWarning;
 
+    Player ps;
 
 
     Vector3 SavedPlayerPosition;
@@ -28,6 +30,7 @@ public class GrassDrake : Enemy
     void Start()
     {
         Player = GameManager.Instance.Player.gameObject;
+        ps = Player.GetComponent<Player>();
         Laser= transform.GetChild(0).gameObject;
         Laser.SetActive(false);
 
@@ -53,7 +56,8 @@ public class GrassDrake : Enemy
         if(LaserOn)
         {
             Laser.SetActive(true);
-            Aimpoint = Vector3.Lerp(new Vector3(SavedPlayerPosition.x - 5, 0, SavedPlayerPosition.z), new Vector3(SavedPlayerPosition.x + 5, 0, SavedPlayerPosition.z), eX);
+            Aimpoint = Vector3.Lerp(new Vector3(SavedPlayerPosition.x - 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), new Vector3(SavedPlayerPosition.x + 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), eX);
+            
             eX += Time.deltaTime * 0.35f;
             Debug.Log("드레이크 공격");
         }
@@ -129,9 +133,19 @@ public class GrassDrake : Enemy
         GameObject Attack = AQueue.Dequeue().gameObject;
         Attack.SetActive(true);
         Attack.transform.position = new Vector3(SavedPlayerPosition.x + a, 0, SavedPlayerPosition.z + 1);
-        AQueue.Enqueue(Attack);
+        Collider[] colliders = Physics.OverlapSphere(new Vector3(SavedPlayerPosition.x + a, 1, SavedPlayerPosition.z), 2);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject == Player)
+            {
+                ps.HP -= 1;
+            }
+        }
 
+
+        AQueue.Enqueue(Attack);
         yield return new WaitForSeconds(2);
+        Array.Clear(colliders, 0, colliders.Length);
         Attack.SetActive(false);
     }
 

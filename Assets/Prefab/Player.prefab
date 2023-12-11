@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 1465668885435668893}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   _aimDistance: 50
   _projectilePrefab: {fileID: -8760447939717194727, guid: 4a83e6eb9fcad85409ddc255dddeac70, type: 3}
   _shootDistance: 1
-  _boss: {fileID: 0}
+  Boss: {fileID: 0}
   _isBossMoving: 1
   _orbLight: {fileID: 6644433351572396366}
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
