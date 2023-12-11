@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class WhiteMage : Entity
 {
+    BossStateMachine _stateMachine;
+    public Animator MotionAnimator;
+    public SunlightYellowOverdrive SYO;
+    public BossLaser2 ULTLsr2;
     protected override void OnDeath()
     {
-        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _stateMachine = GetComponent<BossStateMachine>();
+        _stateMachine.ChangeState(new WhiteMageIdleState());
     }
-
-    // Update is called once per frame
-    void Update()
+    //50% 남았을때 인지 아닌지 확인
+    public bool SecondPhaseCheck()
     {
-        
+        if (HP < 500)
+            return true;
+        else
+            return false;
     }
 }

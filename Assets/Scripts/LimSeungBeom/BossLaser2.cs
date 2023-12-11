@@ -37,7 +37,7 @@ public class BossLaser2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
-            StartCoroutine(LaserAttack2());
+            StartLaserAttack();
         }
 
         if (Laser2AimingPlayer)
@@ -46,6 +46,10 @@ public class BossLaser2 : MonoBehaviour
         }
 
         
+    }
+    public void StartLaserAttack()
+    {
+        StartCoroutine(LaserAttack2());
     }
     IEnumerator LaserAttack2()
     {

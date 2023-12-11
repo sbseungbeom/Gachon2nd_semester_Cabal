@@ -31,37 +31,53 @@ public class SunlightYellowOverdrive : MonoBehaviour
         /// <summary>
         /// 주먹 50개 생성 후 Fists 배열에 넣음.
         /// </summary>
-        for(int i = 0; i < Fists.Length; i++)
+        for (int i = 0; i < Fists.Length; i++)
         {
             GameObject FistInstances = Instantiate(SunlightYellowOverdrive_Fist);
             Fists[i] = FistInstances;
             FistInstances.SetActive(false);
         }
 
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.I))
         {
-            StartCoroutine(ActivateFist(FistsArrIndex,ex,ex2,ex3));
-                
+            StartFist();
+
             //StartCoroutine(ActivateFist(FistsArrIndex, 0, 0));
-            
+
         }
 
 
+        /*ex = Random.Range(-SpreadX, SpreadX);
+        ex2 = Random.Range(-SpreadY, SpreadY);
+        ex3 = Random.Range(-SpreadZ, SpreadZ);*/
+    }
+    public void StartFist()
+    {
+        float a;
+        a = Random.Range(0, 30);
+        int aa = Mathf.FloorToInt(a);
+        StartCoroutine(FistMotor(FistsArrIndex, aa));
+    }
+    IEnumerator FistMotor(int index, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            yield return new WaitForSeconds(Random.Range(.1f, .7f));
+            StartCoroutine(ActivateFist(index + i));
+        }
+    }
+    //주먹 발사하는 함수. x,y,z의 offset값을 인자로 받아주어야 함.
+    IEnumerator ActivateFist(int Index)
+    {
         ex = Random.Range(-SpreadX, SpreadX);
         ex2 = Random.Range(-SpreadY, SpreadY);
         ex3 = Random.Range(-SpreadZ, SpreadZ);
-    }
-
-
-    //주먹 발사하는 함수. x,y,z의 offset값을 인자로 받아주어야 함.
-    IEnumerator ActivateFist(int Index,float Offset,float Offset2,float Offset3)
-    {
         SavedPlayerPosition = Player.transform;
         GameObject ActivatedFist = Fists[Index];
 
@@ -72,10 +88,10 @@ public class SunlightYellowOverdrive : MonoBehaviour
         }
         ActivatedFist.SetActive(true);
         ActivatedFist.transform.LookAt(Player.transform.position);
-        ActivatedFist.transform.position = new Vector3(this.transform.position.x + Offset, this.transform.position.y + Offset2, this.transform.position.z + Offset3);
-        
+        ActivatedFist.transform.position = new Vector3(this.transform.position.x + ex, this.transform.position.y + ex2, this.transform.position.z + ex3);
+
         yield return new WaitForSeconds(5);
-        
+
         ActivatedFist.SetActive(false);
         ActivatedFist.transform.position = this.transform.position;
     }
