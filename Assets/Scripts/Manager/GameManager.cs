@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public Player Player;
     public DamageScreen DamageScreen;
+    public CanvasGroup BlackScreen;
     public ScoreManager scoreManager;
     public SoundManager SoundManager;
 
@@ -23,7 +25,29 @@ public class GameManager : MonoBehaviour
             Entity boss = Instantiate(bossStageData.Boss, Vector3.zero, Quaternion.identity);
             Player.Boss = boss.transform;
             BossCamera.Boss = boss.transform;
-        } 
+        }
+
+        StartCoroutine(HideBlack());
+    }
+
+    private IEnumerator HideBlack()
+    {
+        for (var i = 0f; i <= 1f; i += Time.deltaTime)
+        {
+            BlackScreen.alpha = 1 - i;
+            yield return null;
+        }
+        BlackScreen.alpha = 0f;
+    }
+
+    public IEnumerator ShowBlack()
+    {
+        for (var i = 0f; i <= 1f; i += Time.deltaTime)
+        {
+            BlackScreen.alpha = i;
+            yield return null;
+        }
+        BlackScreen.alpha = 1f;
     }
 
     private void Start()

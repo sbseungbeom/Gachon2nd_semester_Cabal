@@ -179,8 +179,14 @@ public class Player : Entity
         PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
         var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
         PlayerPrefs.SetInt("RecentStage", NextStage);
+        StartCoroutine(OnClearRoutine());
+    }
+
+    public IEnumerator OnClearRoutine()
+    {
+        yield return GameManager.Instance.ShowBlack();
         var nextStageData = StageManager.CurrentStageData;
-        if(nextStageData != null)
+        if (nextStageData != null)
         {
             SceneManager.LoadScene("StoryScene");
         }
