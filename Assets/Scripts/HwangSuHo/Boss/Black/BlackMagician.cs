@@ -22,7 +22,8 @@ public class BlackMagician : Entity
     public bool TestCase;
     protected override void OnDeath()
     {
-
+        //ÄÆ¾À ³Ñ±ä ÀÌÈÄ ¹ØÁÙ ½ÇÇà
+        GameManager.Instance.Player.OnClear();
     }
 
     // Start is called before the first frame update
