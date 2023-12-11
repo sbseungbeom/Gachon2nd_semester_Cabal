@@ -12,8 +12,7 @@ public class TextUiEx : MonoBehaviour
     public Image SecondCharacterImage;
     public Image BackgroundImage;
     public Image TalkBox;
-
-    public AudioClip TalkSound;
+    public AudioSource talkAudio;
 
     public TMP_Text ChatText;
     public TMP_Text DisplayNameText;
@@ -122,6 +121,7 @@ public class TextUiEx : MonoBehaviour
 
         var writerText = "";
         _isTexting = true;
+        talkAudio.Play();
         foreach (var c in chat.Script)
         {
             writerText += c;
@@ -131,6 +131,7 @@ public class TextUiEx : MonoBehaviour
         }
         _waitForSkip = false;
         _isTexting = false;
+        talkAudio.Stop();
 
         TalkBox.GetComponent<UIPanelShake>().EndShake();
 

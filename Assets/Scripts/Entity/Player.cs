@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
+    [SerializeField] private AudioClip _elementChangeSound;
     [SerializeField] private PlayerElementData _redElementData, _greenElementData, _blueElementData, _darkElementData;
 
     [SerializeField] private float _speed;
@@ -20,7 +21,6 @@ public class Player : Entity
 
     public ParticleSystem DamageParticle;
 
-    private Vector3[] _positions = new Vector3[2];
     [SerializeField] private MeshRenderer _renderer;
 
     public PlayerElementData CurrentElement;
@@ -35,6 +35,15 @@ public class Player : Entity
         MoveUpdate();
         ShootUpdate();
         ElementChangeUpdate();
+    }
+
+    public static bool IsDominentTo(ElementType elementType, ElementType target)
+    {
+        if (elementType == ElementType.Fire && target == ElementType.Earth) return true;
+        if (elementType == ElementType.Water && target == ElementType.Fire) return true;
+        if (elementType == ElementType.Earth && target == ElementType.Water) return true;
+        if (elementType == ElementType.Light && target == ElementType.Dark) return true;
+        return false;
     }
 
     private void ElementChangeUpdate()
@@ -64,7 +73,7 @@ public class Player : Entity
         if(data.SpawnParticle != null && !slient) 
             ParticleManager.SpawnParticle(data.SpawnParticle, transform.position, transform);
         CurrentElement = data;
-        GameManager.Instance.SoundManager.PlaySFX(GameManager.Instance.SoundManager.ElementChangeSound, transform);
+        GameManager.Instance.SoundManager.PlaySFX(_elementChangeSound, transform);
     }
 
     public override void Damage(int damage)
@@ -88,7 +97,7 @@ public class Player : Entity
             projectile.transform.forward = dir;
             projectile.CameraOffset = projectile.transform.position - Camera.main.transform.position;
             projectile.IsEnemyProjectile = false;
-            GameManager.Instance.SoundManager.PlaySFX(GameManager.Instance.SoundManager.BaseAttackSound, transform);
+            GameManager.Instance.SoundManager.PlaySFX(CurrentElement.ShootSound, transform);
         }
     }
 

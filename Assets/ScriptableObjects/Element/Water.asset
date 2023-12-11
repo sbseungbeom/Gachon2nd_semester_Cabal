@@ -17,5 +17,6 @@ MonoBehaviour:
   LightColor: {r: 0, g: 0.17201233, b: 1, a: 0}
   SpawnParticle: {fileID: 0}
   ProjectParticle: {fileID: 0}
-  Projectile: {fileID: 0}
+  Projectile: {fileID: -8760447939717194727, guid: ea9bacc06a5135743b63bcf0e344be39, type: 3}
+  ShootSound: {fileID: 8300000, guid: b9514f931bf644441858fff5b0418f68, type: 3}
   CircleRotation: 180

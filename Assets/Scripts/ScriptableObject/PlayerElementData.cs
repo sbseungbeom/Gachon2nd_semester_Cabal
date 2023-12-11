@@ -9,10 +9,11 @@ public class PlayerElementData : ScriptableObject
     public ParticleSystem SpawnParticle;
     public ParticleSystem ProjectParticle;
     public Projectile Projectile;
+    public AudioClip ShootSound;
     public float CircleRotation;
 }
 
 public enum ElementType
 {
-    Fire, Water, Earth, Dark
+    Fire, Water, Earth, Dark, Light
 }
