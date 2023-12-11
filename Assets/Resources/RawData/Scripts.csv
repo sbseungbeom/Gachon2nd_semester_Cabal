@@ -1,7 +1,7 @@
 ﻿Stage,DisplayName,BGImage,FirstCharacterImage,SecondCharacterImage,Script,Talkbox,Shake
-1,오브,BG_Stage1_1,Orb_Idle,,…........,Talkbox_Idle,
+1,오브,BG_Stage1_1,Orb_Glare,,…........,Talkbox_Idle,
 1,오브,BG_Stage1_1,Orb_Idle,,여기가 어디지?,Talkbox_Idle,
-1,오브,BG_Stage1_1,Orb_Idle,,기억이 하나도 안나…..,Talkbox_Idle,Y
+1,오브,BG_Stage1_1,Orb_Glare,,기억이 하나도 안나…..,Talkbox_Idle,Y
 1,오브,BG_Stage1_1,Orb_Idle,,우선 앞으로 가볼까…..,Talkbox_Idle,
 1,오브,BG_Stage1_1,Orb_Idle,,본능이 나를 인도하는 것 같아….,Talkbox_Idle,
 ,,,,,,,
@@ -10,38 +10,38 @@
 2,오브,BG_Stage2_1,Orb_Idle,,원소의 힘을 내 것으로 만들 수 있을 것 같아.,Talkbox_Idle,
 ,,,,,,,
 3,오브,BG_Stage3_1,Orb_Idle,,"끝없이 펼쳐진 갈대밭 위로, 저 멀리 성당이 나를 바라보고 있어.",Talkbox_Idle,
-3,오브,BG_Stage3_1,Orb_Idle,,그곳에는 답이 있을 것만 같아…,Talkbox_Idle,
-3,오브,BG_Stage3_1,Orb_Idle,,성당의 실루엣이 내 기억 속에 있는 퍼즐 조각처럼 느껴져..,Talkbox_Idle,
-3,오브,BG_Stage3_1,Orb_Idle,,"갈대밭이 나를 시험하는 걸까, 아니면 내 기억을 되돌려주려는 걸까?",Talkbox_Idle,
+3,오브,BG_Stage3_1,Orb_Glare,,그곳에는 답이 있을 것만 같아…,Talkbox_Idle,
+3,오브,BG_Stage3_1,Orb_Glare,,성당의 실루엣이 내 기억 속에 있는 퍼즐 조각처럼 느껴져..,Talkbox_Idle,
+3,오브,BG_Stage3_1,Orb_Glare,,"갈대밭이 나를 시험하는 걸까, 아니면 내 기억을 되돌려주려는 걸까?",Talkbox_Idle,
 ,,,,,,,
 4,오브,BG_Stage4_1,Orb_Idle,,이 곳은… 너무나도 익숙한 느낌이 드는 성당이다.,Talkbox_Idle,
 4,오브,BG_Stage4_1,Orb_Idle,,"이 조각상들, 이 빛의 기둥들… 내 기억 속에 있는 그림과 일치한다.",Talkbox_Idle,
-4,오브,BG_Stage4_1,Orb_Idle,WhiteMage_Idle,저 남자 뭔가 익숙하다….,Talkbox_Idle,
-4,오브,BG_Stage4_1,Orb_Idle,WhiteMage_Idle,엄청난 마력이 느껴져!,Talkbox_Idle,
-4,백마법사,BG_Stage4_1,WhiteMage_Idle,Orb_Idle,어째서… 오브가 여기에?,Talkbox_Idle,Y
-4,오브,BG_Stage4_1,Orb_Idle,WhiteMage_Idle,저 남자 위험하다!,Talkbox_Idle,Y
-4,오브,BG_Stage4_1,Orb_Idle,WhiteMage_Idle,어서 전투 준비를!!,Talkbox_Idle,Y
+4,오브,BG_Stage4_1,Orb_Surprise,WhiteMage_Idle,저 남자 뭔가 익숙하다….,Talkbox_Idle,
+4,오브,BG_Stage4_1,Orb_Surprise,WhiteMage_Idle,엄청난 마력이 느껴져!,Talkbox_Idle,
+4,백마법사,BG_Stage4_1,Orb_Surprise,WhiteMage_Surprised,어째서… 오브가 여기에?,Talkbox_Idle,Y
+4,오브,BG_Stage4_1,Orb_Surprise,WhiteMage_Surprised,저 남자 위험하다!,Talkbox_Idle,Y
+4,오브,BG_Stage4_1,Orb_Pain,WhiteMage_Surprised,어서 전투 준비를!!,Talkbox_Idle,Y
 ,,,,,,,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,이 얘기가 너한테 들릴지는 몰라도 얘기해주마….,Talkbox_Idle,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,너는 이 세계의 균형을 지키기 위해 만들어진 존재다.,Talkbox_Idle,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,어둠의 정령들이 이 세계로 쏟아져 들어오는 차원문을 봉인하기 위해..,Talkbox_Idle,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,너를 창조했다….,Talkbox_Idle,
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,"차원문의 봉인…? 그렇다면, 나의 존재 이유는...?",Talkbox_Idle,
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,으윽!!,Talkbox_Idle,Y
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,기억이…. 기억이 돌아오고 있어!,Talkbox_Idle,
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,나는 빛과 어둠의 경계에 서서.. 세계의 균형을 위해 만들어진 오브…,Talkbox_Idle,
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,"이제, 모든 것이 명확해진다…",Talkbox_Idle,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,"지금 내 손녀, 에버그린이 큰 위험에 처해있다..",Talkbox_Idle,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,내 손녀가 어둠의 정령에 의해 침식되고 있어….,Talkbox_Idle,
-5,백마법사,BG_Stage5_1,WhiteMage_Idle,Orb_Idle,에버그린은 더 이상 자신을 제어할 수 없게 되었다…,Talkbox_Idle,
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,어둠의 정령을 막으러 가야겠어..!,Talkbox_Idle,Y
-5,오브,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,어서 출발하자..!,Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Glare,이 얘기가 너한테 들릴지는 몰라도 얘기해주마….,Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Glare,너는 이 세계의 균형을 지키기 위해 만들어진 존재다.,Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Glare,어둠의 정령들이 이 세계로 쏟아져 들어오는 차원문을 봉인하기 위해..,Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,너를 창조했다….,Talkbox_Idle,
+5,오브,BG_Stage5_1,Orb_Surprise,WhiteMage_Idle,"차원문의 봉인…? 그렇다면, 나의 존재 이유는...?",Talkbox_Idle,
+5,오브,BG_Stage5_1,Orb_Pain,WhiteMage_Idle,으윽!!,Talkbox_Idle,Y
+5,오브,BG_Stage5_1,Orb_Pain,WhiteMage_Idle,기억이…. 기억이 돌아오고 있어!,Talkbox_Idle,
+5,오브,BG_Stage5_1,Orb_Pain,WhiteMage_Idle,나는 빛과 어둠의 경계에 서서.. 세계의 균형을 위해 만들어진 오브…,Talkbox_Idle,
+5,오브,BG_Stage5_1,Orb_Surprise,WhiteMage_Idle,"이제, 모든 것이 명확해진다…",Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Glare,"지금 내 손녀, 에버그린이 큰 위험에 처해있다..",Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Glare,내 손녀가 어둠의 정령에 의해 침식되고 있어….,Talkbox_Idle,
+5,백마법사,BG_Stage5_1,Orb_Idle,WhiteMage_Idle,에버그린은 더 이상 자신을 제어할 수 없게 되었다…,Talkbox_Idle,
+5,오브,BG_Stage5_1,Orb_Pain,WhiteMage_Idle,어둠의 정령을 막으러 가야겠어..!,Talkbox_Idle,Y
+5,오브,BG_Stage5_1,Orb_Pain,WhiteMage_Idle,어서 출발하자..!,Talkbox_Idle,
 5,오브,BG_Stage5_2,Orb_Idle,,이곳은… 내가 처음 깨어났던 그 숲인데.. 모든 것이 변해버렸다…,Talkbox_Idle,
 5,오브,BG_Stage5_2,Orb_Idle,,생명이 가득했던 곳이 어둠의 정령에 의해 삼켜졌어….,Talkbox_Idle,
 ,,,,,,,
-6,오브,BG_Stage6_1,Orb_Idle,,"나는 이 어둠을 물리치고, 이 숲에 다시 한 번 생명을 불어넣을 거야.",Talkbox_Idle,
+6,오브,BG_Stage6_1,Orb_Pain,,"나는 이 어둠을 물리치고, 이 숲에 다시 한 번 생명을 불어넣을 거야.",Talkbox_Idle,
 ,,,,,,,
-7,오브,BG_Stage7_1,Orb_Idle,,죽음의 길… 그 이름만으로도 가슴이 서늘해진다.,Talkbox_Idle,
-7,오브,BG_Stage7_1,Orb_Idle,,하지만 멈춰서선 안 된다.,Talkbox_Idle,
+7,오브,BG_Stage7_1,Orb_Glare,,죽음의 길… 그 이름만으로도 가슴이 서늘해진다.,Talkbox_Idle,
+7,오브,BG_Stage7_1,Orb_Pain,,하지만 멈춰서선 안 된다.,Talkbox_Idle,
 7,오브,BG_Stage7_1,Orb_Idle,,이 길을 통과해야만 그녀를 만날 수 있어…,Talkbox_Idle,
-7,오브,BG_Stage7_1,Orb_Idle,,"그리고 죽음의 길이 끝나는 곳에서, 나는 에버그린과 마주할 것이다.",Talkbox_Idle,
+7,오브,BG_Stage7_1,Orb_Pain,,"그리고 죽음의 길이 끝나는 곳에서, 나는 에버그린과 마주할 것이다.",Talkbox_Idle,
