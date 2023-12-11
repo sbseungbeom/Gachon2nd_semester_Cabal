@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossStateMachine : MonoBehaviour
 {
     public BlackMagician BlackMagician;
+    public WhiteMage WhiteMagician;
     BossBaseState _currentState;
     private void Update()
     {
