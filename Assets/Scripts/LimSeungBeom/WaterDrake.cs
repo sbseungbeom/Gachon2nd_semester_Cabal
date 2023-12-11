@@ -43,7 +43,7 @@ public class WaterDrake : Enemy
 
     IEnumerator WaterDrakeAttack()
     {
-        StartCoroutine(Stop(10));
+        StartCoroutine(Stop(6));
 
         Warn.SetActive(true);
         Aiming = true;

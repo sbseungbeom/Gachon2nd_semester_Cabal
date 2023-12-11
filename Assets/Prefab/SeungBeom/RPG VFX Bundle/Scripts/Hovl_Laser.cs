@@ -68,6 +68,30 @@ public class Hovl_Laser : MonoBehaviour
             //ADD THIS IF YOU WANNT TO USE LASERS IN 2D: RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, MaxLength);       
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, MaxLength, layerMask))//CHANGE THIS IF YOU WANT TO USE LASERRS IN 2D: if (hit.collider != null)
             {
+
+
+                IEnumerator AttackCool()
+                {
+                    var cols = Physics.OverlapSphere(hit.point, 1f);
+                    foreach (var col in cols)
+                    {
+                        if (col.TryGetComponent(out Player p) && !AttackCoolTime)
+                        {
+                            p.Damage(1);
+                            //print("Hp down");
+                            AttackCoolTime = true;
+                            //StartCoroutine(AtkCoolTime());
+                            break;
+                        }
+                    }
+                    yield return new WaitForSeconds(1);
+                    Array.Clear(cols, 0, cols.Length);
+                    yield return new WaitForSeconds(2);
+                    AttackCoolTime = false;
+                }
+
+
+
                 //End laser position if collides with object
                 Laser.SetPosition(1, hit.point);
 
@@ -90,18 +114,22 @@ public class Hovl_Laser : MonoBehaviour
 
                 if(!AttackCoolTime && IsDamageLaser)
                 {
+
+                    StartCoroutine(AttackCool());
+                    /*
                     var cols = Physics.OverlapSphere(hit.point, 1f);
                     foreach (var col in cols)
                     {
                         if (col.TryGetComponent(out Player p) && !AttackCoolTime)
                         {
                             p.Damage(1);
-                            print("Hp down");
+                            //print("Hp down");
                             AttackCoolTime = true;
                             StartCoroutine(AtkCoolTime());
                             break;
                         }
                     }
+                    */
                 }
                 
             }
@@ -149,7 +177,7 @@ public class Hovl_Laser : MonoBehaviour
 
     IEnumerator AtkCoolTime()
     {
-        AttackCoolTime = true;
+        //AttackCoolTime = true;
         yield return new WaitForSeconds(3);
         AttackCoolTime = false;
     }
