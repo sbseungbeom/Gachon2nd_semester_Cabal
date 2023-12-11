@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class BossStateMachine : MonoBehaviour
 {
+    public BlackMagician BlackMagician;
     BossBaseState _currentState;
+    private void Update()
+    {
+        Perform();
+    }
     public void ChangeState(BossBaseState state)
     {
-        _currentState.Exit();
+        if (_currentState != null)
+            _currentState.Exit();
         _currentState = state;
         _currentState.Enter();
+        _currentState.StateMachine = this;
     }
     public void Perform()
     {

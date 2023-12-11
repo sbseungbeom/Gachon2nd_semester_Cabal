@@ -8,14 +8,19 @@ public class BlackMagician : Entity
 
     bool _isTurning;
     float _angleToPlayer;
+    [Header("Player chase parameter")]
     [SerializeField] float _rotationPow;
-
     [SerializeField] float _turnDegree;
     [SerializeField] float _stareDegree;
 
-    RoundaboutMovement _player;
+    Player _player;
 
     public BossStateMachine StateMachine { get; private set; }
+
+    [SerializeField] BlackLaserProjectile _projectile;
+
+    public Animator MotionAnimator;
+    public bool TestCase;
     protected override void OnDeath()
     {
 
@@ -24,8 +29,10 @@ public class BlackMagician : Entity
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<RoundaboutMovement>();
+        _player = FindObjectOfType<Player>();
         transform.LookAt(_player.transform.position);
+        StateMachine = GetComponent<BossStateMachine>();
+        StateMachine.ChangeState(new BlackMagicianIdle());
     }
 
     // Update is called once per frame
@@ -72,5 +79,14 @@ public class BlackMagician : Entity
         }
         _isTurning = false;
         print("TurningEnd");
+    }
+    public void LaserSummon(bool switc)
+    {
+        _projectile.gameObject.SetActive(switc);
+        _projectile.IsRotating = switc;
+    }
+    public void ResetPattern()
+    {
+        StateMachine.ChangeState(new BlackMagicianIdle());
     }
 }
