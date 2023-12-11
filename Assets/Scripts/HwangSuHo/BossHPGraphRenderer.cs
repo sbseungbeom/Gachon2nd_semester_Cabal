@@ -5,16 +5,10 @@ using UnityEngine.UI;
 
 public class BossHPGraphRenderer : MonoBehaviour
 {
-    Slider _slider;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] Slider _slider;
     // Update is called once per frame
-    void Update()
+    public void Render(float percentage)
     {
-        
+        _slider.value = percentage;
     }
 }

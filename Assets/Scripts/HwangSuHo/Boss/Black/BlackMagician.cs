@@ -8,14 +8,16 @@ public class BlackMagician : Entity
 
     bool _isTurning;
     float _angleToPlayer;
+    [Header("Player chase parameter")]
     [SerializeField] float _rotationPow;
-
     [SerializeField] float _turnDegree;
     [SerializeField] float _stareDegree;
 
     RoundaboutMovement _player;
 
     public BossStateMachine StateMachine { get; private set; }
+
+    [SerializeField] BlackLaserProjectile _projectile;
     protected override void OnDeath()
     {
 
@@ -72,5 +74,14 @@ public class BlackMagician : Entity
         }
         _isTurning = false;
         print("TurningEnd");
+    }
+    public void LaserSummon(bool switc)
+    {
+        _projectile.gameObject.SetActive(switc);
+        _projectile.IsRotating = switc;
+    }
+    public void ResetPattern()
+    {
+        StateMachine.ChangeState(new BlackMagicianIdle());
     }
 }

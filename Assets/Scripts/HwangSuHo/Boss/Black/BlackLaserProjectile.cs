@@ -5,11 +5,11 @@ using UnityEngine;
 public class BlackLaserProjectile : MonoBehaviour
 {
     [SerializeField] int _damage;
-    bool _isRotating;
+    public bool IsRotating;
     float _rotationPow;
     private void Update()
     {
-        if (_isRotating)
+        if (IsRotating)
         {
             transform.Rotate(Vector3.up * _rotationPow * Time.deltaTime);
         }
