@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 2
+  ElementType: 1
   Data: {fileID: 11400000, guid: f5cf4b20bdfa9054d9c22c27187b8b71, type: 2}
   Rope: {fileID: 0}
 --- !u!65 &5372072310781858550
@@ -149,7 +150,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 23.66, y: 15.46, z: 1}
+  m_Size: {x: 23.66, y: 15.46, z: 5.38}
   m_Center: {x: 0, y: -0.4, z: 0}
 --- !u!1 &5527382738335075923
 GameObject:

@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 3
+  _elementChangeSound: {fileID: 8300000, guid: 6f0b1d82e147f594f998552383b436ca, type: 3}
   _redElementData: {fileID: 11400000, guid: 9c5a34e74a33d334e9cb860aa3181a9d, type: 2}
   _greenElementData: {fileID: 11400000, guid: ec065157e03652e4f986d3315901cc5f, type: 2}
   _blueElementData: {fileID: 11400000, guid: 2719d4649cb34934183a115af0e95c49, type: 2}

@@ -8,8 +8,6 @@ public class SoundManager : MonoBehaviour
     public AudioMixerGroup MasterMixerGroup, SFXMixerGroup, BGMMixerGroup;
     public AudioSource BGMSource;
 
-    public AudioClip BaseAttackSound, ElementChangeSound;
-
     private readonly Queue<AudioSource> _unusedSources = new();
     private readonly List<AudioSource> _usingSources = new();
 
@@ -75,6 +73,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip, Transform parent, float volume = 1f, float pitch = 1f)
     {
+        print(clip);
         PlaySFX(clip, parent.position, volume, pitch, parent);
     }
 

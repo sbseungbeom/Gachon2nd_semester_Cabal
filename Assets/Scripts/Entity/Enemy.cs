@@ -10,6 +10,7 @@ public class Enemy : Entity
 
     private int _dir;
 
+    public ElementType ElementType;
     public EnemyData Data;
     public Transform Rope;
     private SpriteRenderer _renderer;
@@ -27,7 +28,13 @@ public class Enemy : Entity
 
     public override void Damage(int damage)
     {
-        base.Damage(damage);
+        base.Damage(
+            Player.IsDominentTo(
+                GameManager.Instance.Player.CurrentElement.ElementType, ElementType
+                ) ? 
+            damage * 2 : 
+            damage
+            );
         _damageShowTimer = DamageShowTime;
         ParticleManager.SpawnParticle(Data.DamageParticle, transform.position);
     }
@@ -88,5 +95,4 @@ public class Enemy : Entity
         yield return new WaitForSeconds(StopTime);
         _dir = SettedDir;
     }
-
 }

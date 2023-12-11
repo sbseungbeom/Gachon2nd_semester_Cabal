@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: da6d915e1cce74f479b02a7b4d3391fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
+  ElementType: 2
   Data: {fileID: 11400000, guid: e9d7da0f73157f4409aa1385cdaa788e, type: 2}
   Rope: {fileID: 0}
   AttackWarning: {fileID: 1705352579348300405, guid: 04d1573144e54984ead3b7f830bb76b5, type: 3}
@@ -145,7 +146,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.04, y: 12.8, z: 0.2}
+  m_Size: {x: 18.04, y: 12.8, z: 6.14}
   m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &3643306943545042880
 GameObject:
