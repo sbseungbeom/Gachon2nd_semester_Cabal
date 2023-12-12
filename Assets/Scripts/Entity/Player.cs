@@ -33,6 +33,8 @@ public class Player : Entity
     private float _attackTimer = 0f;
     private float _fireSkillTimer = 0f, _waterSkillTimer = 0f, _earthSkillTimer = 0f;
 
+    private bool _isClearing = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -176,9 +178,11 @@ public class Player : Entity
 
     public void OnClear()
     {
+        if(_isClearing) return;
         PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
         var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
         PlayerPrefs.SetInt("RecentStage", NextStage);
+        _isClearing = true;
         StartCoroutine(OnClearRoutine());
     }
 
@@ -194,6 +198,7 @@ public class Player : Entity
         {
             SceneManager.LoadScene("EndingScene");
         }
+        _isClearing = false;
     }
 
     private void MoveUpdate()
