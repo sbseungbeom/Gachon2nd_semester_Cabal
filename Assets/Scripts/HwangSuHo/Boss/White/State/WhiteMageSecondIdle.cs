@@ -18,8 +18,8 @@ public class WhiteMageSecondIdle : BossBaseState
             _count += Time.deltaTime;
         else
         {
-            float aa = Random.Range(0, 4);
-            int a = 1;
+            float aa = Random.Range(0, 3);
+            int a = Mathf.FloorToInt(aa);
             switch (a)
             {
                 case 0:

@@ -8,6 +8,7 @@ public class WhiteMageUltimateLaser : BossBaseState
     public override void Enter()
     {
         StateMachine.WhiteMagician.ULTLsr2.StartLaserAttack();
+        StateMachine.WhiteMagician.Ultmode = true;
     }
 
     public override void Exit()
@@ -16,14 +17,11 @@ public class WhiteMageUltimateLaser : BossBaseState
 
     public override void Perform()
     {
-        if (_count < .27f)
+        if (_count < 3f)
             _count += Time.deltaTime;
         else
         {
-            if (StateMachine.WhiteMagician.MotionAnimator.GetCurrentAnimatorStateInfo(0).IsName(""))
-            {
-                
-            }
+            
         }
     }
 }
