@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80a29fc66d98ff94696da7dc348f00a6, type: 3}
-  m_Name: FireGolem
+  m_Name: LowWaterGolem
   m_EditorClassIdentifier: 
   Score: 50
   MinX: -15
@@ -18,6 +18,6 @@ MonoBehaviour:
   MoveSpeed: 5
   ShootCooldown: 10
   RandomShootCooldown: 3
-  projectile: {fileID: -8760447939717194727, guid: 23d3d8b13bae28946ab2eac0d3d1e036, type: 3}
+  projectile: {fileID: -8760447939717194727, guid: d4020ec2108b71f4b9ea9cfe8cdcf413, type: 3}
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
   YOffset: 2

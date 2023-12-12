@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6034513139744606746}
   - component: {fileID: 586411614274572012}
   m_Layer: 0
-  m_Name: LowGolem
+  m_Name: LowWaterGolem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,6 +101,3 @@ MonoBehaviour:
   ElementType: 0
   Data: {fileID: 11400000, guid: 915aa998032210f46b755c8d6ca80f1c, type: 2}
   Rope: {fileID: 0}
-  LowFireGolem: {fileID: 21300000, guid: cd3f0126548ccb94fbf0b7663f9ae1e7, type: 3}
-  LowWaterGolem: {fileID: 21300000, guid: d012b71ba2fc0174e918082481faf9d2, type: 3}
-  LowGrassGolem: {fileID: 21300000, guid: 8e3448dce03cd5b42935bb853bb9a3ff, type: 3}
