@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RopePrefab: {fileID: 7508860239197997289, guid: d384d07b9b53d354199a8b28fb681ae0, type: 3}
   EnemyPrefabs:
-  - {fileID: 4491146011954820092, guid: e312778d0d4374a41b02df8233068b46, type: 3}
-  SpawnCount: 1
+  - {fileID: 586411614274572012, guid: 45dd29721168ab94ea372847903ed0d1, type: 3}
+  SpawnCount: 3
   MaxSpawn: 6
   SpawnSpan: 7
   SpawnZPos:
