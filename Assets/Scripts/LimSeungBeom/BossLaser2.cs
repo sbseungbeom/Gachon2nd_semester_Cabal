@@ -19,7 +19,6 @@ public class BossLaser2 : MonoBehaviour
 
     private void Awake()
     {
-        
         Laser2Warn = Instantiate(Laser2Warn);
         Laser2Laser = Instantiate(Laser2Laser);
     }
@@ -37,7 +36,7 @@ public class BossLaser2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
-            StartCoroutine(LaserAttack2());
+            StartLaserAttack();
         }
 
         if (Laser2AimingPlayer)
@@ -46,6 +45,10 @@ public class BossLaser2 : MonoBehaviour
         }
 
         
+    }
+    public void StartLaserAttack()
+    {
+        StartCoroutine(LaserAttack2());
     }
     IEnumerator LaserAttack2()
     {

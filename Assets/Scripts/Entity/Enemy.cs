@@ -19,8 +19,9 @@ public class Enemy : Entity
 
     private float _timer = 0f;
     
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _renderer = GetComponent<SpriteRenderer>();
         _dir = Random.value < 0.5f ? 1 : -1;
         _timer = Random.Range(0f, Data.ShootCooldown);

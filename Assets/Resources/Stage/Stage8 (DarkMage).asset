@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Stage8 (DarkMage)
   m_EditorClassIdentifier: 
   StageNum: 8
-  MapObject: {fileID: 5840848783592463529, guid: c5b159d57cd7a414eb4b83d6d69e2b3a, type: 3}
-  Boss: {fileID: 0}
+  MapObject: {fileID: 256978391305270260, guid: 9505532771838674a8503eb9fbb90425, type: 3}
+  BackgroundMusic: {fileID: 8300000, guid: 999716df70b0f5d4b9d89bf858359be9, type: 3}
+  Boss: {fileID: 3929071807136420017, guid: bb90ecb0bdb79784ba8f2e9e876a1d35, type: 3}

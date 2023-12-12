@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageNum: 4
   MapObject: {fileID: 997460489954804004, guid: 91e041fc10212ee42bd7305d4458b792, type: 3}
-  Boss: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: c6e12948bcb9a5c4385213db4cc76ab0, type: 3}
+  Boss: {fileID: 3929071807136420017, guid: bb90ecb0bdb79784ba8f2e9e876a1d35, type: 3}

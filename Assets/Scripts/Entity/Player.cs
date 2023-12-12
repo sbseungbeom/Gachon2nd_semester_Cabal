@@ -15,7 +15,7 @@ public class Player : Entity
 
     [SerializeField] private float _shootDistance;
 
-    [SerializeField] private Transform _boss;
+    public Transform Boss;
     [SerializeField] private bool _isBossMoving;
     [SerializeField] private Light _orbLight;
 
@@ -25,8 +25,17 @@ public class Player : Entity
 
     public PlayerElementData CurrentElement;
 
-    private void Awake()
+    [HideInInspector] public bool IsInvulnerable = false;
+
+    public float AttackCooldown = 0.5f;
+    public float SkillCooldown = 10f;
+
+    private float _attackTimer = 0f;
+    private float _fireSkillTimer = 0f, _waterSkillTimer = 0f, _earthSkillTimer = 0f;
+
+    protected override void Awake()
     {
+        base.Awake();
         ChangeElement(CurrentElement, true);
     }
 
@@ -35,6 +44,7 @@ public class Player : Entity
         MoveUpdate();
         ShootUpdate();
         ElementChangeUpdate();
+        SkillUpdate();
     }
 
     public static bool IsDominentTo(ElementType elementType, ElementType target)
@@ -66,6 +76,13 @@ public class Player : Entity
         }
     }
 
+    private void SkillUpdate()
+    {
+        if (_fireSkillTimer > 0f) _fireSkillTimer -= Time.deltaTime;
+        if (_earthSkillTimer > 0f) _earthSkillTimer -= Time.deltaTime;
+        if (_waterSkillTimer > 0f) _waterSkillTimer -= Time.deltaTime;
+    }
+
     public void ChangeElement(PlayerElementData data, bool slient = false)
     {
         _renderer.material = data.Material;
@@ -74,12 +91,60 @@ public class Player : Entity
             ParticleManager.SpawnParticle(data.SpawnParticle, transform.position, transform);
         CurrentElement = data;
         GameManager.Instance.SoundManager.PlaySFX(_elementChangeSound, transform);
+
+        switch(data.ElementType)
+        {
+            case ElementType.Fire:
+                {
+                    if(_fireSkillTimer <= 0f)
+                        StartCoroutine(FireSkill());
+                }
+                break;
+            case ElementType.Water:
+                {
+                    if (_waterSkillTimer <= 0f)
+                        StartCoroutine(WaterSkill());
+
+                }
+                break;
+            case ElementType.Earth:
+                {
+                    if (_earthSkillTimer <= 0f)
+                        StartCoroutine(EarthSkill());
+
+                }
+                break;
+        }
+    }
+
+    private IEnumerator FireSkill()
+    {
+        AttackCooldown /= 2f;
+        yield return new WaitForSeconds(2f);
+        AttackCooldown *= 2f;
+    }
+
+    private IEnumerator WaterSkill()
+    {
+        IsInvulnerable = true;
+        yield return new WaitForSeconds(2f);
+        IsInvulnerable = false;
+    }
+
+    private IEnumerator EarthSkill()
+    {
+        if (hp < MaxHP) hp++;
+
+        yield return null;
     }
 
     public override void Damage(int damage)
     {
-        base.Damage(damage);
-        GameManager.Instance.DamageScreen.ShowDamage();
+        if (!IsInvulnerable)
+        {
+            base.Damage(damage);
+            GameManager.Instance.DamageScreen.ShowDamage();
+        }
         ParticleManager.SpawnParticle(DamageParticle, transform.position);
     }
 
@@ -89,8 +154,11 @@ public class Player : Entity
         var dir = ray.direction;
         transform.forward = dir;
 
-        if (Input.GetMouseButtonDown(0))
+        if (_attackTimer > 0) _attackTimer -= Time.deltaTime;
+
+        if (Input.GetMouseButton(0) && _attackTimer <= 0f)
         {
+            _attackTimer = AttackCooldown;
             if (CurrentElement.ProjectParticle != null)
                 ParticleManager.SpawnParticle(CurrentElement.ProjectParticle, transform.position, transform);
             var projectile = Instantiate(CurrentElement.Projectile, transform.position + transform.forward * _shootDistance, Quaternion.identity);
@@ -111,8 +179,14 @@ public class Player : Entity
         PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
         var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
         PlayerPrefs.SetInt("RecentStage", NextStage);
+        StartCoroutine(OnClearRoutine());
+    }
+
+    public IEnumerator OnClearRoutine()
+    {
+        yield return GameManager.Instance.ShowBlack();
         var nextStageData = StageManager.CurrentStageData;
-        if(nextStageData != null)
+        if (nextStageData != null)
         {
             SceneManager.LoadScene("StoryScene");
         }
@@ -127,7 +201,7 @@ public class Player : Entity
         float xAxis = Input.GetAxisRaw("Horizontal");
         if (_isBossMoving)
         {
-            var bossDir = (transform.position - _boss.position);
+            var bossDir = (transform.position - Boss.position);
             bossDir.y = 0;
             var distance = bossDir.magnitude;
             var angle = Mathf.Atan2(bossDir.z, bossDir.x);
@@ -135,7 +209,7 @@ public class Player : Entity
             // 각도 * r = 움직이는 속도
             // 속도 / r = 각속도
             angle += xAxis * Time.deltaTime * _speed / distance;
-            transform.position = new Vector3(_boss.position.x, transform.position.y, _boss.position.z) 
+            transform.position = new Vector3(Boss.position.x, transform.position.y, Boss.position.z) 
                 + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)).normalized * distance;
         }
         else

@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Hovl_Laser : MonoBehaviour
 {
+    public bool IsDamageLaser = false;
+    public bool IsCollideedToPlayerLaser = false;
+
     public GameObject HitEffect;
     public float HitOffset = 0;
     public bool useLaserRotation = false;
@@ -27,9 +30,13 @@ public class Hovl_Laser : MonoBehaviour
 
     private int layerMask;
 
+    //--------- 직접 추가한 부분----
+    bool AttackCoolTime;
 
     void Start ()
     {
+        AttackCoolTime = false;
+
         layerMask = ~LayerMask.GetMask("Pattern1Bullet");
         //Get LineRender and ParticleSystem components from current prefab;  
         Laser = GetComponent<LineRenderer>();
@@ -52,9 +59,39 @@ public class Hovl_Laser : MonoBehaviour
         {
             Laser.SetPosition(0, transform.position);
             RaycastHit hit; //DELETE THIS IF YOU WANT USE LASERS IN 2D
+
+            if(IsCollideedToPlayerLaser)
+            {
+                int layerMask = 1 << LayerMask.NameToLayer("Player");  // Player 레이어만 충돌 체크함
+            }
+
             //ADD THIS IF YOU WANNT TO USE LASERS IN 2D: RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, MaxLength);       
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, MaxLength, layerMask))//CHANGE THIS IF YOU WANT TO USE LASERRS IN 2D: if (hit.collider != null)
             {
+
+
+                IEnumerator AttackCool()
+                {
+                    var cols = Physics.OverlapSphere(hit.point, 1f);
+                    foreach (var col in cols)
+                    {
+                        if (col.TryGetComponent(out Player p) && !AttackCoolTime)
+                        {
+                            p.Damage(1);
+                            //print("Hp down");
+                            AttackCoolTime = true;
+                            //StartCoroutine(AtkCoolTime());
+                            break;
+                        }
+                    }
+                    yield return new WaitForSeconds(1);
+                    Array.Clear(cols, 0, cols.Length);
+                    yield return new WaitForSeconds(2);
+                    AttackCoolTime = false;
+                }
+
+
+
                 //End laser position if collides with object
                 Laser.SetPosition(1, hit.point);
 
@@ -74,6 +111,27 @@ public class Hovl_Laser : MonoBehaviour
                 //Texture speed balancer {DISABLED AFTER UPDATE}
                 //LaserSpeed[0] = (LaserStartSpeed[0] * 4) / (Vector3.Distance(transform.position, hit.point));
                 //LaserSpeed[2] = (LaserStartSpeed[2] * 4) / (Vector3.Distance(transform.position, hit.point));
+
+                if(!AttackCoolTime && IsDamageLaser)
+                {
+
+                    StartCoroutine(AttackCool());
+                    /*
+                    var cols = Physics.OverlapSphere(hit.point, 1f);
+                    foreach (var col in cols)
+                    {
+                        if (col.TryGetComponent(out Player p) && !AttackCoolTime)
+                        {
+                            p.Damage(1);
+                            //print("Hp down");
+                            AttackCoolTime = true;
+                            StartCoroutine(AtkCoolTime());
+                            break;
+                        }
+                    }
+                    */
+                }
+                
             }
             else
             {
@@ -115,5 +173,12 @@ public class Hovl_Laser : MonoBehaviour
                 if (AllPs.isPlaying) AllPs.Stop();
             }
         }
+    }
+
+    IEnumerator AtkCoolTime()
+    {
+        //AttackCoolTime = true;
+        yield return new WaitForSeconds(3);
+        AttackCoolTime = false;
     }
 }

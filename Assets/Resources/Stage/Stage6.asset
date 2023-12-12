@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Stage6
   m_EditorClassIdentifier: 
   StageNum: 6
-  MapObject: {fileID: 5840848783592463529, guid: c5b159d57cd7a414eb4b83d6d69e2b3a, type: 3}
+  MapObject: {fileID: 5919588515086603650, guid: a4862bec3d0390a41a5c9e8f38531a82, type: 3}
+  BackgroundMusic: {fileID: 8300000, guid: 2fc07317832c3cc4699c1faaf63a5188, type: 3}
   EnemySpawnData: {fileID: 11400000, guid: eb89f74654011744eaacbee9e33c7eb1, type: 2}

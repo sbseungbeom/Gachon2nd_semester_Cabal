@@ -5,27 +5,34 @@ using UnityEngine;
 public class BlackMagician : Entity
 {
     //퍼센트 체력바용 오버라이드 체력?
-
     bool _isTurning;
     float _angleToPlayer;
+    [Header("Player chase parameter")]
     [SerializeField] float _rotationPow;
-
     [SerializeField] float _turnDegree;
     [SerializeField] float _stareDegree;
 
-    RoundaboutMovement _player;
+    Player _player;
 
     public BossStateMachine StateMachine { get; private set; }
+
+    [SerializeField] BlackLaserProjectile _projectile;
+
+    public Animator MotionAnimator;
+    public bool TestCase;
     protected override void OnDeath()
     {
-
+        //컷씬 넘긴 이후 밑줄 실행
+        GameManager.Instance.Player.OnClear();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<RoundaboutMovement>();
+        _player = FindObjectOfType<Player>();
         transform.LookAt(_player.transform.position);
+        StateMachine = GetComponent<BossStateMachine>();
+        StateMachine.ChangeState(new BlackMagicianIdle());
     }
 
     // Update is called once per frame
@@ -33,14 +40,17 @@ public class BlackMagician : Entity
     {
         StaringCheck();
         TurnCheck();
+        RenderHealth();
     }
-
+    private void RenderHealth()
+    {
+        BossHPGraphRenderer.Instance.Render(HP / (float)MaxHP);
+    }
     //시야각 기록용 함수
     private void StaringCheck()
     {
         Vector3 targetDirection = _player.transform.position - transform.position;
         _angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
-        print(_angleToPlayer);
     }
     //각도 체크 및 뒤돌기 확인 함수
     private void TurnCheck()
@@ -72,5 +82,14 @@ public class BlackMagician : Entity
         }
         _isTurning = false;
         print("TurningEnd");
+    }
+    public void LaserSummon(bool switc)
+    {
+        _projectile.gameObject.SetActive(switc);
+        _projectile.IsRotating = switc;
+    }
+    public void ResetPattern()
+    {
+        StateMachine.ChangeState(new BlackMagicianIdle());
     }
 }
