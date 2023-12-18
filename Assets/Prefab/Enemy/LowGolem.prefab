@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6755577611109911527}
   - component: {fileID: 6034513139744606746}
   - component: {fileID: 586411614274572012}
+  - component: {fileID: 5709637684396445421}
   m_Layer: 0
   m_Name: LowGolem
   m_TagString: Untagged
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: da6d915e1cce74f479b02a7b4d3391fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,9 +99,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 3
-  ElementType: 0
+  ElementType: 1
   Data: {fileID: 11400000, guid: 915aa998032210f46b755c8d6ca80f1c, type: 2}
   Rope: {fileID: 0}
   LowFireGolem: {fileID: 21300000, guid: cd3f0126548ccb94fbf0b7663f9ae1e7, type: 3}
   LowWaterGolem: {fileID: 21300000, guid: d012b71ba2fc0174e918082481faf9d2, type: 3}
   LowGrassGolem: {fileID: 21300000, guid: 8e3448dce03cd5b42935bb853bb9a3ff, type: 3}
+--- !u!65 &5709637684396445421
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856093890831963914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 25.340002, y: 25.340002, z: 9.12}
+  m_Center: {x: 0, y: 0, z: 0}

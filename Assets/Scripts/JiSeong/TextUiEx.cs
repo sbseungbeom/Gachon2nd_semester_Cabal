@@ -76,6 +76,7 @@ public class TextUiEx : MonoBehaviour
         }
         else
         {
+            print("CSV Not Loaded");
             SceneManager.LoadScene("StartScene");
         }
 
@@ -137,11 +138,6 @@ public class TextUiEx : MonoBehaviour
 
         yield return null;
         while (!(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))) yield return null;
-    }
-
-    void PlayAudio(AudioClip clip)
-    {
-        _audioSource.PlayOneShot(clip);
     }
 }
 

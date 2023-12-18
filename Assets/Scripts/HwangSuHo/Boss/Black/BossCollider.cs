@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BossCollider : Entity
 {
-    [SerializeField] BlackMagician _origin;
+    [SerializeField] Entity _origin;
     [SerializeField] bool _isBack;
     protected override void OnDeath()
     {
-        throw new System.NotImplementedException();
     }
     public override void Damage(int damage)
     {

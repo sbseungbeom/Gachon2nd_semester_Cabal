@@ -38,7 +38,7 @@ public class WhiteMage : Entity
     }
     private void RenderHealth()
     {
-        BossHPGraphRenderer.Instance.Render(HP / MaxHP);
+        BossHPGraphRenderer.Instance.Render(HP / (float)MaxHP);
     }
 
     //50% 남았을때 인지 아닌지 확인

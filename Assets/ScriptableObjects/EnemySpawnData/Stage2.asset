@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf095169bf7c13c4986312af5146c6bb, type: 3}
+  m_Name: Stage2
+  m_EditorClassIdentifier: 
+  RopePrefab: {fileID: 7508860239197997289, guid: d384d07b9b53d354199a8b28fb681ae0, type: 3}
+  EnemyPrefabs:
+  - {fileID: 2918352339638155225, guid: 5b380f02f5b87944b8f58c0ea6df548a, type: 3}
+  SpawnCount: 3
+  MaxSpawn: 6
+  SpawnSpan: 7
+  SpawnZPos:
+  - 7
+  - 12
+  - 17
+  SpawnYPos: 0

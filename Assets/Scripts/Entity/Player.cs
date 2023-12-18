@@ -47,6 +47,8 @@ public class Player : Entity
         ShootUpdate();
         ElementChangeUpdate();
         SkillUpdate();
+
+        if (Input.GetKeyDown(KeyCode.T)) OnClear();
     }
 
     public static bool IsDominentTo(ElementType elementType, ElementType target)

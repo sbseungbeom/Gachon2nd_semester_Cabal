@@ -15,4 +15,5 @@ MonoBehaviour:
   StageNum: 8
   MapObject: {fileID: 256978391305270260, guid: 9505532771838674a8503eb9fbb90425, type: 3}
   BackgroundMusic: {fileID: 8300000, guid: 999716df70b0f5d4b9d89bf858359be9, type: 3}
+  Skybox: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
   Boss: {fileID: 3929071807136420017, guid: bb90ecb0bdb79784ba8f2e9e876a1d35, type: 3}

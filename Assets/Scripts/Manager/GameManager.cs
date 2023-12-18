@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
             BossCamera.Boss = boss.transform;
         }
 
+        RenderSettings.skybox = StageManager.CurrentStageData.Skybox;
+
         StartCoroutine(HideBlack());
     }
 

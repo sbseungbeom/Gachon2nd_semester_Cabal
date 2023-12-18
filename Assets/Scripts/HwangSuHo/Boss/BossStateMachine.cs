@@ -16,8 +16,8 @@ public class BossStateMachine : MonoBehaviour
         if (_currentState != null)
             _currentState.Exit();
         _currentState = state;
-        _currentState.Enter();
         _currentState.StateMachine = this;
+        _currentState.Enter();
     }
     public void Perform()
     {

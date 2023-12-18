@@ -7,6 +7,7 @@ public class WhiteMageUltimateLaser : BossBaseState
     float _count = 0;
     public override void Enter()
     {
+        Debug.Log(StateMachine.WhiteMagician.ULTLsr2);
         StateMachine.WhiteMagician.ULTLsr2.StartLaserAttack();
         StateMachine.WhiteMagician.Ultmode = true;
     }

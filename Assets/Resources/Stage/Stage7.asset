@@ -15,4 +15,5 @@ MonoBehaviour:
   StageNum: 7
   MapObject: {fileID: 8282537701988350679, guid: de8f4408b7b83364eb20270e50eed359, type: 3}
   BackgroundMusic: {fileID: 8300000, guid: f2fc61dda478fa84fa3efcdb06da1e03, type: 3}
-  EnemySpawnData: {fileID: 11400000, guid: eb89f74654011744eaacbee9e33c7eb1, type: 2}
+  Skybox: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+  EnemySpawnData: {fileID: 11400000, guid: c13c43677b1cf5a47a081e19c32656f4, type: 2}

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HeartDisplay : MonoBehaviour
 {
+    public Sprite liveHeart, brokenHeart;
     public Image[] _hearts;
 
     private void Update()
@@ -13,11 +14,11 @@ public class HeartDisplay : MonoBehaviour
         {
             if(i < GameManager.Instance.Player.HP)
             {
-                _hearts[i].color = Color.white;
+                _hearts[i].sprite = liveHeart;
             }
             else
             {
-                _hearts[i].color = new Color(0.3f, 0.3f, 0.6f, 0.9f);
+                _hearts[i].sprite = brokenHeart;
             }
         }   
     }
