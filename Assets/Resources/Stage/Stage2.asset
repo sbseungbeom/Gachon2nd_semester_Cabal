@@ -16,4 +16,6 @@ MonoBehaviour:
   MapObject: {fileID: 5919588515086603650, guid: d094ea193151f654bac14e89ba587a74, type: 3}
   BackgroundMusic: {fileID: 8300000, guid: f6ebeb703f4d6f6409061644f3a7c7ab, type: 3}
   Skybox: {fileID: 2100000, guid: 55e64e617a8bfff4ba846574e2651eb9, type: 2}
+  FogColor: {r: 0.62352943, g: 0.7882353, b: 0.7921569, a: 1}
+  FogDensity: 0.003
   EnemySpawnData: {fileID: 11400000, guid: 8c50f760c62c3424f8dd7faeb07255cd, type: 2}

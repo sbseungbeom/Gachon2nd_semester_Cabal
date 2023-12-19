@@ -6,4 +6,6 @@ public abstract class StageData : ScriptableObject
     public GameObject MapObject;
     public AudioClip BackgroundMusic;
     public Material Skybox;
+    public Color FogColor;
+    public float FogDensity;
 }

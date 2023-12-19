@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
         }
 
         RenderSettings.skybox = StageManager.CurrentStageData.Skybox;
+        RenderSettings.fogDensity = StageManager.CurrentStageData.FogDensity;
+        RenderSettings.fogColor = StageManager.CurrentStageData.FogColor;
 
         StartCoroutine(HideBlack());
     }
