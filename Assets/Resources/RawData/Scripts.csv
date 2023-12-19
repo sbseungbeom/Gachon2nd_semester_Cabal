@@ -49,3 +49,13 @@
 8,오브,BG_Stage7_1,Orb_Pain,,드디어 죽음의 길을 벗어났다..,Talkbox_Idle,
 8,오브,BG_Stage7_1,Orb_Idle,,저건.. 에버그린!,Talkbox_Idle,
 8,오브,BG_Stage7_1,Orb_Idle,,에버그린을 해방시켜야 해!,Talkbox_Idle,Y
+,,,,,,,
+9,오브,BG_Stage8_1,Orb_Pain,BlackMage_Pain,에…에버그린?,Talkbox_Idle,Y
+9,흑마법사,BG_Stage8_1,Orb_Pain,BlackMage_Pain,크으윽….,Talkbox_Idle,Y
+9,오브,BG_Stage8_1,Orb_Idle,BlackMage_Pain,에버그린 괜찮아…?,Talkbox_Idle,
+9,흑마법사,BG_Stage8_1,Orb_Idle,BlackMage_Cry,네 덕분에 마침내 내 자신을 되찾았어. ,Talkbox_Idle,
+9,흑마법사,BG_Stage8_1,Orb_Idle,BlackMage_Cry,네가 없었다면 나는 영원히 어둠 속에 갇혔을 거야.,Talkbox_Idle,
+9,오브,BG_Stage8_1,Orb_Idle,BlackMage_Cry,나의 임무는 이 세계의 균형을 지키는 것이었어….,Talkbox_Idle,
+9,오브,BG_Stage8_1,Orb_Idle,BlackMage_Cry,너도 이 세계의 일부니까…..,Talkbox_Idle,
+9,흑마법사,BG_Stage8_1,Orb_Idle,BlackMage_Smile,오브…...,Talkbox_Idle,
+9,흑마법사,BG_Stage8_1,Orb_Idle,BlackMage_Smile,고마워…...,Talkbox_Idle,
