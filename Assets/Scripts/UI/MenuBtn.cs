@@ -32,6 +32,10 @@ public class MenuBtn : MonoBehaviour
             {
                 transform.localScale = originalScale * 0.9f;
             }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                //this.button.GetComponent<Button>().onClick.Invoke();
+            }
         }
         else
         {
