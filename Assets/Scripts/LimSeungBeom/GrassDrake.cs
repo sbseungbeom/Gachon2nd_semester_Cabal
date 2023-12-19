@@ -24,6 +24,17 @@ public class GrassDrake : Enemy
     bool LaserOn;
     Vector3 Aimpoint;
 
+    [Header("레이저 보간 속도. 0.01~0.99 내로 설정할 것.")]
+    [SerializeField] float Speed;
+
+    [Header("빛 기둥 생성 후 폭발까지 걸리는 시간(초)")]
+    [SerializeField] float ExplosionWaitTime;
+    [Header("폭발이 플레이어에게 줄 데미지")]
+    [SerializeField] int Damage;
+    [Header("빛 기둥 생성 시간 간격 (초)")]
+    [SerializeField] float lightTime;
+
+
     private Queue <GameObject> AWQueue = new Queue <GameObject>();
     private Queue<GameObject> AQueue = new Queue<GameObject>();
    
@@ -58,14 +69,12 @@ public class GrassDrake : Enemy
             Laser.SetActive(true);
             Aimpoint = Vector3.Lerp(new Vector3(SavedPlayerPosition.x - 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), new Vector3(SavedPlayerPosition.x + 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), eX);
             
-            eX += Time.deltaTime * 0.35f;
-            Debug.Log("드레이크 공격");
+            eX += Time.deltaTime * Speed;
         }
         if(!LaserOn)
         {
             Laser.SetActive(false);
             eX = 0;
-            Debug.Log("드레이크 공격 끝");
         }
     }
     protected override void Attack()
@@ -77,28 +86,31 @@ public class GrassDrake : Enemy
         StartCoroutine(Stop(12));
         SavedPlayerPosition = Player.transform.position;
         LaserOn = true;
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(lightTime);
         StartCoroutine(ActiveAW(-3f));
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(lightTime);
         StartCoroutine(ActiveAW(-1.5f));
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(lightTime);
         StartCoroutine(ActiveAW(0));
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(lightTime);
         StartCoroutine(ActiveAW(1.5f));
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(lightTime);
         StartCoroutine(ActiveAW(3f));
+
+        //------------------- 빛 기둥 소환 끝 -------------------
         /*
         for (int i = 0; i < 5; i++)
         {
             b += 2.5f * i;
             StartCoroutine(ActiveAW(b));
-            Debug.Log(b);
             yield return new WaitForSeconds(0.6f);
             b = -5;
         }              // 3초동안 5개 생성.
         */
-        yield return new WaitForSeconds(1);
         LaserOn = false;
+
+
+        /*
         yield return new WaitForSeconds(1);
         StartCoroutine(ActiveAttack(-3f));
         yield return new WaitForSeconds(0.4f);
@@ -109,6 +121,9 @@ public class GrassDrake : Enemy
         StartCoroutine(ActiveAttack(1.5f));
         yield return new WaitForSeconds(0.4f);
         StartCoroutine(ActiveAttack(3f));
+        */
+
+
         /*
         for(int i = 0; i < 5; i++)
         {
@@ -125,8 +140,9 @@ public class GrassDrake : Enemy
         aw.SetActive(true);
         aw.transform.position = new Vector3(SavedPlayerPosition.x + a, 0, SavedPlayerPosition.z + 1);
         AWQueue.Enqueue(aw);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         aw.SetActive(false);
+        StartCoroutine(ActiveAttack(a));
     }
     IEnumerator ActiveAttack(float a)
     {
@@ -138,11 +154,9 @@ public class GrassDrake : Enemy
         {
             if (collider.gameObject == Player)
             {
-                ps.Damage(1);
+                ps.Damage(Damage);
             }
         }
-
-
         AQueue.Enqueue(Attack);
         yield return new WaitForSeconds(2);
         Array.Clear(colliders, 0, colliders.Length);
