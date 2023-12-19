@@ -108,7 +108,7 @@ Material:
     - EFFECT_BILLBOARD: 0
     - EFFECT_EXTRA_TEX: 1
     - _AO: 0
-    - _AlphaClipThreshold: 0.33
+    - _AlphaClipThreshold: 0.896
     - _BaseLight: 0.409
     - _BillboardKwToggle: 0
     - _BillboardShadowFade: 0.5
@@ -143,7 +143,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0.7783019, g: 1, b: 0.93434906, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _HueVariationColor: {r: 1, g: 1, b: 1, a: 1}
