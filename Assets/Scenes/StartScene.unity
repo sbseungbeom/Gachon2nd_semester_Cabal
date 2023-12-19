@@ -469,8 +469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloomSpeed: 2.4
   scaleSpeed: 1
-  bloomMin: 4
-  bloomMax: 12
+  bloomMin: 2
+  bloomMax: 6
   scaleMin: 0.97
   scaleMax: 1.01
   volume: {fileID: 11400000, guid: a75154e4b0ea86442b131a8d086f16ff, type: 2}
