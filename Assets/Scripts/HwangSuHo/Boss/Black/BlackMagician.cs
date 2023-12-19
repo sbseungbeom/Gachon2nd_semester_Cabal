@@ -16,10 +16,18 @@ public class BlackMagician : Entity
 
     public BossStateMachine StateMachine { get; private set; }
 
+    [Header("Attack parameters")]
+    public float FirstSlashReadyCount = 1.8f;
+    public float SecondSlashReadyCount = 1.5f;
+    public float ThirdSlashReadyCount = 3f;
+    public float ThirdSlashAfterCount = 3f;
+
     [SerializeField] BlackLaserProjectile _projectile;
 
     public Animator MotionAnimator;
     public bool TestCase;
+
+    public Coroutine Turning;
     protected override void OnDeath()
     {
         //ÄÆ¾À ³Ñ±ä ÀÌÈÄ ¹ØÁÙ ½ÇÇà
@@ -58,7 +66,7 @@ public class BlackMagician : Entity
         if (!_isTurning && _angleToPlayer >= _turnDegree && _angleToPlayer >= 0)
         {
             _isTurning = true;
-            StartCoroutine(TurnAround());
+            Turning = StartCoroutine(TurnAround());
         }
     }
     //µÞ ¸ð½À º¸ÀÏ°æ¿ì È£Ãâ
@@ -81,6 +89,7 @@ public class BlackMagician : Entity
                 break;
         }
         _isTurning = false;
+        Turning = null;
         print("TurningEnd");
     }
     public void LaserSummon(bool switc)

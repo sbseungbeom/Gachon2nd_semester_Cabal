@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class BlackMagicianSlash : BossBaseState
 {
-    float _firstSlashReadyCount = 1.8f;
-    float _secondSlashReadyCount = 1.5f;
-    float _thirdSlashReadyCount = 3f;
-    float _thirdSlashAfterCount = 3f;
+    float _firstSlashReadyCount;
+    float _secondSlashReadyCount;
+    float _thirdSlashReadyCount;
+    float _thirdSlashAfterCount;
 
     float _countClock;
     int _slashTh;
     public override void Enter()
     {
-
+        _firstSlashReadyCount = StateMachine.BlackMagician.FirstSlashReadyCount;
+         _secondSlashReadyCount = StateMachine.BlackMagician.SecondSlashReadyCount;
+         _thirdSlashReadyCount = StateMachine.BlackMagician.ThirdSlashReadyCount;
+         _thirdSlashAfterCount = StateMachine.BlackMagician.ThirdSlashAfterCount;
     }
     public override void Exit()
     {
@@ -24,10 +27,14 @@ public class BlackMagicianSlash : BossBaseState
         switch (_slashTh)
         {
             case 0:
+                if (StateMachine.BlackMagician.Turning != null)
+                    StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
                 if (_countClock < _firstSlashReadyCount)
                     _countClock += Time.deltaTime;
                 else
                 {
+                    if (StateMachine.BlackMagician.Turning != null)
+                        StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
                     StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
                     _countClock = 0;
                     _slashTh++;
@@ -38,6 +45,8 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
+                    if (StateMachine.BlackMagician.Turning != null)
+                        StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
                     StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
                     _countClock = 0;
                     _slashTh++;
@@ -48,6 +57,8 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
+                    if (StateMachine.BlackMagician.Turning != null)
+                        StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
                     StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
                     _countClock = 0;
                     _slashTh++;
