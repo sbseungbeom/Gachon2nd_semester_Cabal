@@ -12,6 +12,13 @@ public class WaterDrake : Enemy
     bool Aiming;
     bool StartAttack;
     Vector3 SavedPlayerPosition;
+
+    [Header("조준 시간")]
+    [SerializeField] float AimingTime;
+    [Header("조준 완료 후 레이저 발사까지 유예 시간")]
+    [SerializeField] float AttackWaitTime;
+    [Header("레이저 유지 시간")]
+    [SerializeField] float AttackDuration;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,24 +50,18 @@ public class WaterDrake : Enemy
 
     IEnumerator WaterDrakeAttack()
     {
-        StartCoroutine(Stop(6));
+        StartCoroutine(Stop(AimingTime + AttackWaitTime + AttackDuration));
 
         Warn.SetActive(true);
         Aiming = true;
-
-        yield return new WaitForSeconds(3);
-
+        yield return new WaitForSeconds(AimingTime);
         Aiming = false;
-
-
         SavedPlayerPosition = Player.transform.position;
         Warn.transform.LookAt(new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z));
         Laser.transform.LookAt(new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y, SavedPlayerPosition.z));
-
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(AttackWaitTime);
         Laser.SetActive(true);
-
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(AttackDuration);
         Laser.SetActive(false);
         Warn.SetActive(false);
 

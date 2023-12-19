@@ -18,7 +18,7 @@ public class Hovl_Laser : MonoBehaviour
 
     public float MainTextureLength = 1f;
     public float NoiseTextureLength = 1f;
-    private Vector4 Length = new Vector4(1,1,1,1);
+    private Vector4 Length = new Vector4(1, 1, 1, 1);
     //private Vector4 LaserSpeed = new Vector4(0, 0, 0, 0); {DISABLED AFTER UPDATE}
     //private Vector4 LaserStartSpeed; {DISABLED AFTER UPDATE}
     //One activation per shoot
@@ -33,7 +33,7 @@ public class Hovl_Laser : MonoBehaviour
     //--------- 직접 추가한 부분----
     bool AttackCoolTime;
 
-    void Start ()
+    void Start()
     {
         AttackCoolTime = false;
 
@@ -50,52 +50,39 @@ public class Hovl_Laser : MonoBehaviour
 
     void Update()
     {
-        //if (Laser.material.HasProperty("_SpeedMainTexUVNoiseZW")) Laser.material.SetVector("_SpeedMainTexUVNoiseZW", LaserSpeed);
-        //SetVector("_TilingMainTexUVNoiseZW", Length); - old code, _TilingMainTexUVNoiseZW no more exist
-        Laser.material.SetTextureScale("_MainTex", new Vector2(Length[0], Length[1]));                    
+        Laser.material.SetTextureScale("_MainTex", new Vector2(Length[0], Length[1]));
         Laser.material.SetTextureScale("_Noise", new Vector2(Length[2], Length[3]));
         //To set LineRender position
         if (Laser != null && UpdateSaver == false)
         {
+            // 레이저 시작지점 설정
             Laser.SetPosition(0, transform.position);
-            RaycastHit hit; //DELETE THIS IF YOU WANT USE LASERS IN 2D
-
-            if(IsCollideedToPlayerLaser)
+  
+            // 앞으로 레이저 발사
+            if (Physics.Raycast(transform.position, transform.forward, out var hit, MaxLength, LayerMask.GetMask("Player")))
             {
-                int layerMask = 1 << LayerMask.NameToLayer("Player");  // Player 레이어만 충돌 체크함
-            }
-
-            //ADD THIS IF YOU WANNT TO USE LASERS IN 2D: RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, MaxLength);       
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, MaxLength, layerMask))//CHANGE THIS IF YOU WANT TO USE LASERRS IN 2D: if (hit.collider != null)
-            {
-
-
+                // 공격 함수
                 IEnumerator AttackCool()
                 {
-                    var cols = Physics.OverlapSphere(hit.point, 1f);
-                    foreach (var col in cols)
+                    var colliders = Physics.OverlapSphere(hit.point, 1f);
+                    foreach (var col in colliders)
                     {
                         if (col.TryGetComponent(out Player p) && !AttackCoolTime)
                         {
                             p.Damage(1);
-                            //print("Hp down");
                             AttackCoolTime = true;
-                            //StartCoroutine(AtkCoolTime());
                             break;
                         }
                     }
-                    yield return new WaitForSeconds(1);
-                    Array.Clear(cols, 0, cols.Length);
                     yield return new WaitForSeconds(2);
                     AttackCoolTime = false;
                 }
 
-
-
-                //End laser position if collides with object
+                // 레이저 끝 지점 설정
                 Laser.SetPosition(1, hit.point);
 
-                    HitEffect.transform.position = hit.point + hit.normal * HitOffset;
+                HitEffect.transform.position = hit.point + hit.normal * HitOffset;
+
                 if (useLaserRotation)
                     HitEffect.transform.rotation = transform.rotation;
                 else
@@ -112,7 +99,7 @@ public class Hovl_Laser : MonoBehaviour
                 //LaserSpeed[0] = (LaserStartSpeed[0] * 4) / (Vector3.Distance(transform.position, hit.point));
                 //LaserSpeed[2] = (LaserStartSpeed[2] * 4) / (Vector3.Distance(transform.position, hit.point));
 
-                if(!AttackCoolTime && IsDamageLaser)
+                if (!AttackCoolTime && IsDamageLaser)
                 {
 
                     StartCoroutine(AttackCool());
@@ -131,7 +118,7 @@ public class Hovl_Laser : MonoBehaviour
                     }
                     */
                 }
-                
+
             }
             else
             {
@@ -155,7 +142,7 @@ public class Hovl_Laser : MonoBehaviour
                 LaserSaver = true;
                 Laser.enabled = true;
             }
-        }  
+        }
     }
 
     public void DisablePrepare()
