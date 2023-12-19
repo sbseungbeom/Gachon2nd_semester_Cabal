@@ -20,7 +20,7 @@ MonoBehaviour:
   MaxSpawn: 6
   SpawnSpan: 7
   SpawnZPos:
-  - 7
-  - 12
-  - 17
+  - 9
+  - 14
+  - 22
   SpawnYPos: 0

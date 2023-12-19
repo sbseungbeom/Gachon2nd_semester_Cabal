@@ -60,8 +60,6 @@ public class TextUiEx : MonoBehaviour
                 var secondCharImage = Resources.Load<Sprite>("Story/Character/" + secondCharImageStr);
                 var talkboxImage = Resources.Load<Sprite>("Story/Talkbox/" + talkboxImageStr);
 
-                print(secondCharImageStr);
-
                 _chatList.Add(new()
                 {
                     Script = script,

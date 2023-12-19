@@ -6,6 +6,8 @@ using UnityEngine;
 public class GrassDrake : Enemy
 {
 
+    public float laserDelay = 5;
+
     GameObject Player;
     GameObject Laser;
     [SerializeField] GameObject AttackWarning; //공격 전 경고표시
@@ -55,7 +57,10 @@ public class GrassDrake : Enemy
         if(LaserOn)
         {
             Laser.SetActive(true);
-            Aimpoint = Vector3.Lerp(new Vector3(SavedPlayerPosition.x - 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), new Vector3(SavedPlayerPosition.x + 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), eX);
+            Aimpoint = Vector3.Lerp(
+                new Vector3(SavedPlayerPosition.x - 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), 
+                new Vector3(SavedPlayerPosition.x + 5, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z), 
+                eX);
             
             eX += Time.deltaTime * 0.35f;
             Debug.Log("드레이크 공격");
@@ -73,7 +78,7 @@ public class GrassDrake : Enemy
     }
     IEnumerator AttackCoroutine()
     {
-        StartCoroutine(Stop(12));
+        StartCoroutine(Stop(laserDelay));
         SavedPlayerPosition = Player.transform.position;
         LaserOn = true;
         yield return new WaitForSeconds(0.6f);

@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     {
         transform.position += Time.deltaTime * speed * transform.forward;
 
-        var movement = Time.deltaTime * 3f;
+        var movement = Time.deltaTime * 6f;
 
         transform.position += -CameraOffset * movement;
         CameraOffset *= (1 - movement);
