@@ -12,7 +12,20 @@ public class WaterGolem : Enemy
     GameObject Warning;
     bool IsAiming;
     Vector3 SettedPlayerPosition;
+
+    [Header("조준 시간")]
+    [SerializeField] float AimingTime;
+
+    [Header("총알 수")]
+    [SerializeField] int AmoutOfBullet;
+
+    [Header("총알 연사 속도 (초)")]
+    [SerializeField] float Rapid;
+
+    [Header("조준 완료 후 총알 발사까지 유예 시간 (초)")]
+    [SerializeField] float AttackWaitTime;
     
+
     void Start()
     {
         WarningRotator = transform.GetChild(0).gameObject;
@@ -41,22 +54,26 @@ public class WaterGolem : Enemy
 
     IEnumerator WaterGolemAttack()
     {
-        StartCoroutine(Stop(8));
         IsAiming = true;
         WarningRotator.SetActive(true);
 
-        yield return new WaitForSeconds(3); //3초동안 준비 후 회전 중지.-------------------------------------------------
+        yield return new WaitForSeconds(AimingTime);
         IsAiming = false;
         SettedPlayerPosition = Player.transform.position;
 
-        yield return new WaitForSeconds(2); // 2초후 전에 플레이어가 있던 위치로 발사.
-        Projectile bullet = Instantiate(Data.projectile,transform.position, Quaternion.identity);
-        bullet.IsEnemyProjectile = true;
-        bullet.transform.LookAt(SettedPlayerPosition);
+        yield return new WaitForSeconds(AttackWaitTime);
+
+        WarningRotator.SetActive(false);
         WarningRotator.transform.LookAt(new Vector3(SettedPlayerPosition.x, SettedPlayerPosition.y - 1, SettedPlayerPosition.z));
 
-        yield return new WaitForSeconds(1);  // 공격 연출을 바꿔서 곧 없앨 것. 
-        WarningRotator.SetActive(false);
+        for (int i =0; i < AmoutOfBullet; i++)
+        {
+            Projectile bullet = Instantiate(Data.projectile, transform.position, Quaternion.identity);
+            bullet.IsEnemyProjectile = true;
+            bullet.transform.LookAt(SettedPlayerPosition);
+            yield return new WaitForSeconds(Rapid);
+        }
+
 
     }
 }
