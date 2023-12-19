@@ -9,9 +9,12 @@ public class WhiteMage : Entity
     [SerializeField] GameObject _phase1Model;
     public Animator MotionAnimator;
     [SerializeField] GameObject _phase2Model;
+    public Animator Phase2Animator { get => _phase2Model.GetComponent<Animator>(); }
 
     public SunlightYellowOverdrive SYO;
     public BossLaser2 ULTLsr2;
+
+    public bool SecPhase = false;
 
     [SerializeField] bool TestCase;
 
@@ -46,19 +49,13 @@ public class WhiteMage : Entity
     {
         if (HP < 150)
         {
-            StartCoroutine(PhaseTwoIn());
+            _phase2Model.gameObject.SetActive(true);
+            _phase1Model.SetActive(false);
+            _phase2Model.GetComponent<Animator>().SetTrigger("In");
             return true;
         }
         else
             return false;
-    }
-    IEnumerator PhaseTwoIn()
-    {
-        MotionAnimator.gameObject.SetActive(true);
-        _phase1Model.SetActive(false);
-        yield return new WaitForSeconds(1);
-        MotionAnimator.gameObject.SetActive(false);
-        _phase2Model.SetActive(true);
     }
     public override void Damage(int damage)
     {

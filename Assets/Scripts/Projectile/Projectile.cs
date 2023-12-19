@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public int Damage = 1;
     public float DestroyDistance = 50f;
     public float DistanceCheckTime = 1f;
+    public bool DestroyOnCollision = true;
 
     [HideInInspector] public Vector3 CameraOffset;
 
@@ -28,7 +29,7 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent(out Entity ent) && IsEnemyProjectile == (ent is Player))
         {
             ent.Damage(Damage);
-            Destroy(gameObject);
+            if(DestroyOnCollision) Destroy(gameObject);
         }
     }
 
