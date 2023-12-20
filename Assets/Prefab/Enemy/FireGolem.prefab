@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01166a223e5a864195124c61f2e33cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHP: 3
+  initHP: 4
   ElementType: 0
   Data: {fileID: 11400000, guid: 5b29a6e51d785564f8fdb81026a01fc6, type: 2}
   Rope: {fileID: 0}

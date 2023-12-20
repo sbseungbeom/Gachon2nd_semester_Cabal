@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : Entity
 {
     [SerializeField] private AudioClip _elementChangeSound;
-    [SerializeField] private PlayerElementData _redElementData, _greenElementData, _blueElementData, _darkElementData;
+    [SerializeField] private PlayerElementData _fireElementData, _earthElementData, _waterElementData, _darkElementData;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _aimDistance;
@@ -18,6 +18,9 @@ public class Player : Entity
     public Transform Boss;
     [SerializeField] private bool _isBossMoving;
     [SerializeField] private Light _orbLight;
+
+    [SerializeField] private MeshRenderer WaterProtector;
+    [SerializeField] private ParticleSystem SpeedUpParticle;
 
     public ParticleSystem DamageParticle;
 
@@ -35,10 +38,17 @@ public class Player : Entity
 
     private bool _isClearing = false;
 
+    [Header("skill")]
+    [SerializeField] private float _invulnerableTime = 2f;
+    [SerializeField] private float _speedUpTime = 2f;
+    [SerializeField] private float _speedUpModifier = 2f;
+
     protected override void Awake()
     {
         base.Awake();
         ChangeElement(CurrentElement, true);
+        WaterProtector.gameObject.SetActive(false);
+        SpeedUpParticle.Stop();
     }
 
     private void Update()
@@ -68,15 +78,15 @@ public class Player : Entity
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
         {
-            ChangeElement(_blueElementData);
+            ChangeElement(_waterElementData);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
-            ChangeElement(_greenElementData);
+            ChangeElement(_earthElementData);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
-            ChangeElement(_redElementData);
+            ChangeElement(_fireElementData);
         }
     }
 
@@ -85,6 +95,10 @@ public class Player : Entity
         if (_fireSkillTimer > 0f) _fireSkillTimer -= Time.deltaTime;
         if (_earthSkillTimer > 0f) _earthSkillTimer -= Time.deltaTime;
         if (_waterSkillTimer > 0f) _waterSkillTimer -= Time.deltaTime;
+
+        GameManager.Instance.FireSkillCooldown.fillAmount = 1 - _fireSkillTimer / _fireElementData.SkillCooldown;
+        GameManager.Instance.WaterSkillCooldown.fillAmount = 1 - _waterSkillTimer / _waterElementData.SkillCooldown;
+        GameManager.Instance.EarthSkillCooldown.fillAmount = 1 - _earthSkillTimer / _earthElementData.SkillCooldown;
     }
 
     public void ChangeElement(PlayerElementData data, bool slient = false)
@@ -100,21 +114,30 @@ public class Player : Entity
         {
             case ElementType.Fire:
                 {
-                    if(_fireSkillTimer <= 0f)
+                    if (_fireSkillTimer <= 0f)
+                    {
+                        _fireSkillTimer = CurrentElement.SkillCooldown;
                         StartCoroutine(FireSkill());
+                    }
                 }
                 break;
             case ElementType.Water:
                 {
                     if (_waterSkillTimer <= 0f)
+                    {
+                        _waterSkillTimer = CurrentElement.SkillCooldown;
                         StartCoroutine(WaterSkill());
+                    }
 
                 }
                 break;
             case ElementType.Earth:
                 {
                     if (_earthSkillTimer <= 0f)
+                    {
+                        _earthSkillTimer = CurrentElement.SkillCooldown;
                         StartCoroutine(EarthSkill());
+                    }
 
                 }
                 break;
@@ -123,16 +146,33 @@ public class Player : Entity
 
     private IEnumerator FireSkill()
     {
-        AttackCooldown /= 2f;
-        yield return new WaitForSeconds(2f);
-        AttackCooldown *= 2f;
+        SpeedUpParticle.Play();
+        AttackCooldown /= _speedUpModifier;
+        yield return new WaitForSeconds(_speedUpTime);
+        AttackCooldown *= _speedUpModifier;
+
+        SpeedUpParticle.Stop();
     }
 
     private IEnumerator WaterSkill()
     {
+        WaterProtector.gameObject.SetActive(true);
+        for(float i = 0; i < 1f; i += Time.deltaTime / 0.3f)
+        {
+            WaterProtector.material.color = new Color(1, 1, 1, i);
+            yield return null;
+        }
         IsInvulnerable = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_invulnerableTime);
         IsInvulnerable = false;
+
+        for (float i = 0; i < 1f; i += Time.deltaTime / 0.3f)
+        {
+            WaterProtector.material.color = new Color(1, 1, 1, 1 - i);
+            yield return null;
+        }
+
+        WaterProtector.gameObject.SetActive(false);
     }
 
     private IEnumerator EarthSkill()

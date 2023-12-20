@@ -127,11 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b01a996ecf6dba418780506873d82b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHP: 3
+  initHP: 4
   ElementType: 1
   Data: {fileID: 11400000, guid: f5cf4b20bdfa9054d9c22c27187b8b71, type: 2}
   Rope: {fileID: 0}
-  StopTime: 1
   AimingTime: 0.6
   AmoutOfBullet: 3
   Rapid: 0.2
