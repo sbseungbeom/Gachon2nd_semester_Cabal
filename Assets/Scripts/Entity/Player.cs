@@ -254,6 +254,13 @@ public class Player : Entity
         else
         {
             transform.position += _speed * xAxis * Time.deltaTime * Vector3.right;
+            var stage = StageManager.CurrentStageData;
+            if(stage is NormalStageData normalStage)
+            {
+                var pos = transform.position;
+                pos.x = Mathf.Clamp(pos.x, normalStage.PlayerMinX, normalStage.PlayerMaxX);
+                transform.position = pos;
+            }
         }
     }
 }
