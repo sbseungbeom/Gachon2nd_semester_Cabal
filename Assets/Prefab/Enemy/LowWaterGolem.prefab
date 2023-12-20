@@ -102,6 +102,7 @@ MonoBehaviour:
   ElementType: 1
   Data: {fileID: 11400000, guid: 915aa998032210f46b755c8d6ca80f1c, type: 2}
   Rope: {fileID: 0}
+  DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
 --- !u!65 &5709637684396445421
 BoxCollider:
   m_ObjectHideFlags: 0
