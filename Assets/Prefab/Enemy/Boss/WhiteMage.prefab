@@ -3860,6 +3860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Laser2Warn: {fileID: 107217194082721152, guid: 408ffe1a988d1434aa80c04f66dc21dd, type: 3}
   Laser2Laser: {fileID: 2401785542925741902, guid: 69ef5066ce41a394fa4441fdc899dc01, type: 3}
+  AimingTIme: 0
   Laser2Radius: 2
 --- !u!1 &5611140792017687354
 GameObject:
@@ -4178,6 +4179,8 @@ MonoBehaviour:
   _phase1Model: {fileID: 7463019830823285557}
   MotionAnimator: {fileID: 413805517342543967}
   _phase2Model: {fileID: 407703307405396408}
+  _weakHeight: 0
+  _weakDagger: {fileID: 8360935918838135048, guid: 769e24fc3b101c64ab9da9f4c876eed4, type: 3}
   SYO: {fileID: 990921269152552104}
   ULTLsr2: {fileID: 5890520789984632995}
   SecPhase: 0
