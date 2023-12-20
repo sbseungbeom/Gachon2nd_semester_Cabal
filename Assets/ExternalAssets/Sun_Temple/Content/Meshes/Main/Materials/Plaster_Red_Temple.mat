@@ -157,7 +157,7 @@ Material:
     - _GlossMapScale: 0.798
     - _Glossiness: 0.378
     - _GlossyReflections: 1
-    - _Metallic: 0.393
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -167,7 +167,7 @@ Material:
     - _Roughness: 0.5
     - _Shift: 0.356
     - _Smooth: 0.4
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

@@ -570,26 +570,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1201412287981713060, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_text
-      value: <color=yellow>SCORE</color> 999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1201412287981713060, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e5a54aaf0f92be4f85e4142687edde6, type: 2}
-    - target: {fileID: 1201412287981713060, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -4688761125004931526, guid: 2e5a54aaf0f92be4f85e4142687edde6, type: 2}
-    - target: {fileID: 1201412287981713060, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1201412287981713060, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1329418804329994656, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -670,42 +650,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2270731114674775206, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270731114674775206, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270731114674775206, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270731114674775206, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270731114674775206, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
---- !u!114 &723899115 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3865288053162055901, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
-  m_PrefabInstance: {fileID: 723899114}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5908723b0970f46ac3eb7eef9d807a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &724465891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1386,7 @@ PrefabInstance:
     - target: {fileID: 1973301110977698483, guid: 930d47ddaba5e1248b5ee0f4a0965784, type: 3}
       propertyPath: DamageScreen
       value: 
-      objectReference: {fileID: 723899115}
+      objectReference: {fileID: 0}
     - target: {fileID: 5374836327242813929, guid: 930d47ddaba5e1248b5ee0f4a0965784, type: 3}
       propertyPath: m_Name
       value: GameManager
