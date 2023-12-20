@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
     public ScoreManager scoreManager;
     public SoundManager SoundManager;
 
-    public Image FireSkillCooldown, EarthSkillCooldown, WaterSkillCooldown;
-
     public BossCameraMove BossCamera;
 
     private void Awake()
