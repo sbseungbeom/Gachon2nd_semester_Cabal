@@ -12,6 +12,8 @@ public class TextUiEx : MonoBehaviour
     public Image SecondCharacterImage;
     public Image BackgroundImage;
     public Image TalkBox;
+    public Image NameBack;
+    public Sprite NameBackSprite;
     public AudioSource talkAudio;
 
     public TMP_Text ChatText;
@@ -110,6 +112,14 @@ public class TextUiEx : MonoBehaviour
 
         FirstCharacterImage.gameObject.SetActive(FirstCharacterImage.sprite != null);
         SecondCharacterImage.gameObject.SetActive(SecondCharacterImage.sprite != null);
+        if (chat.DisplayName=="")
+        {
+            NameBack.sprite = chat.TalkboxImage;
+        }
+        else
+        {
+            NameBack.sprite = NameBackSprite;
+        }
 
         if (chat.Shake)
             TalkBox.GetComponent<UIPanelShake>().StartShake();
