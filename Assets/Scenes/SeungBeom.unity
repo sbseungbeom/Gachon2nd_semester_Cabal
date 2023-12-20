@@ -368,6 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Laser2Warn: {fileID: 107217194082721152, guid: 408ffe1a988d1434aa80c04f66dc21dd, type: 3}
   Laser2Laser: {fileID: 2401785542925741902, guid: 69ef5066ce41a394fa4441fdc899dc01, type: 3}
+  AimingTIme: 0
   Laser2Radius: 2
 --- !u!114 &1168551976
 MonoBehaviour:
