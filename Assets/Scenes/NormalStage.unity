@@ -409,23 +409,27 @@ PrefabInstance:
       objectReference: {fileID: 1825607387}
     - target: {fileID: 2144108573911888444, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3824199220966321435, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4049583276849448355, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_Name
       value: MenuCanvas_Test
       objectReference: {fileID: 0}
+    - target: {fileID: 4049583276849448355, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5705045487186969385, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5752987038135284917, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5980113884413222674, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_Pivot.x
@@ -509,11 +513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6804913308702655085, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7999906984776622253, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8814895065082828611, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
