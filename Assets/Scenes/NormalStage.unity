@@ -399,61 +399,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 686005820151195205, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 865294871402723850, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1825607387}
-    - target: {fileID: 865294871402723850, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetSFXVolume
-      objectReference: {fileID: 0}
-    - target: {fileID: 942247570649697989, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 953107549708391762, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1098098183983078466, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1990859068407572631, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1995779330179944043, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1995779330179944043, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1825607387}
-    - target: {fileID: 1995779330179944043, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetBGMVolume
-      objectReference: {fileID: 0}
     - target: {fileID: 2144108573911888444, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398969271238834583, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3685488397217072709, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3824199220966321435, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4049583276849448355, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_Name
@@ -461,11 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5705045487186969385, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5752987038135284917, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5980113884413222674, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_Pivot.x
@@ -547,41 +507,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6466712719940100996, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartScene
-      objectReference: {fileID: 0}
     - target: {fileID: 6804913308702655085, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7999906984776622253, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8049263556469058038, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8049263556469058038, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 8049263556469058038, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8814895065082828611, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1825607387}
-    - target: {fileID: 8814895065082828611, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMasterVolume
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6899681248402578435, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89361478b9059204d882dd1ae330f1b2, type: 3}
@@ -828,6 +767,10 @@ PrefabInstance:
     - target: {fileID: 1329418804329994656, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585501544268354443, guid: 54db681b93cc92645aab8ac5b95b3c47, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
