@@ -21,13 +21,13 @@ public class BlackMagician : Entity
     public float SecondSlashReadyCount = 1.5f;
     public float ThirdSlashReadyCount = 3f;
     public float ThirdSlashAfterCount = 3f;
+    public bool IsSlashing;
 
     [SerializeField] BlackLaserProjectile _projectile;
 
     public Animator MotionAnimator;
     public bool TestCase;
 
-    public Coroutine Turning;
     protected override void OnDeath()
     {
         //컷씬 넘긴 이후 밑줄 실행
@@ -63,10 +63,9 @@ public class BlackMagician : Entity
     //각도 체크 및 뒤돌기 확인 함수
     private void TurnCheck()
     {
-        if (!_isTurning && _angleToPlayer >= _turnDegree && _angleToPlayer >= 0)
+        if (!_isTurning && _angleToPlayer >= _turnDegree && _angleToPlayer >= 0 && !IsSlashing)
         {
             _isTurning = true;
-            Turning = StartCoroutine(TurnAround());
         }
     }
     //뒷 모습 보일경우 호출
@@ -77,8 +76,10 @@ public class BlackMagician : Entity
         while (true)
         {
             yield return null;
+            if (IsSlashing)
+                break;
             //플레이어가 일정 시야각 이내에 들어오지 않았을 경우
-            if (_angleToPlayer > _stareDegree)
+            else if (_angleToPlayer > _stareDegree)
             {
                 transform.Rotate(Vector3.up * _rotationPow * Time.deltaTime);
                 print("Turning");
@@ -89,7 +90,6 @@ public class BlackMagician : Entity
                 break;
         }
         _isTurning = false;
-        Turning = null;
         print("TurningEnd");
     }
     public void LaserSummon(bool switc)

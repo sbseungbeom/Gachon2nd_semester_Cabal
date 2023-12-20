@@ -79,6 +79,8 @@ public class SunlightYellowOverdrive : MonoBehaviour
         ex2 = Random.Range(-SpreadY, SpreadY);
         ex3 = Random.Range(-SpreadZ, SpreadZ);
         SavedPlayerPosition = Player.transform;
+        if (Index >= Fists.Length)
+            Index -= Fists.Length;
         GameObject ActivatedFist = Fists[Index];
 
         FistsArrIndex++;
