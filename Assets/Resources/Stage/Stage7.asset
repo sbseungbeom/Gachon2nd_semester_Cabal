@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageNum: 7
   MapObject: {fileID: 8282537701988350679, guid: de8f4408b7b83364eb20270e50eed359, type: 3}
-  BackgroundMusic: {fileID: 8300000, guid: f2fc61dda478fa84fa3efcdb06da1e03, type: 3}
+  BackgroundMusic: {fileID: 8300000, guid: 8bf7f77418d96bd49b0da3cce1815347, type: 3}
   Skybox: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
   FogColor: {r: 0.8584906, g: 0.5458704, b: 0.7696618, a: 0}
   FogDensity: 0.002
+  PlayerMinX: -30
+  PlayerMaxX: 30
   EnemySpawnData: {fileID: 11400000, guid: c13c43677b1cf5a47a081e19c32656f4, type: 2}
