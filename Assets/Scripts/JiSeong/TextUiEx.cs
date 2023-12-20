@@ -12,6 +12,8 @@ public class TextUiEx : MonoBehaviour
     public Image SecondCharacterImage;
     public Image BackgroundImage;
     public Image TalkBox;
+    public Image NameBack;
+    public Sprite NameBackSprite;
     public AudioSource talkAudio;
 
     public TMP_Text ChatText;
@@ -37,45 +39,37 @@ public class TextUiEx : MonoBehaviour
         var recentStageNum = StageManager.CurrentStageNumber;
         _recentStageData = StageManager.CurrentStageData;
 
-        if(_recentStageData != null)
+        _chatScriptData = CSVReader.Read("RawData/Scripts");
+        foreach(var line in _chatScriptData)
         {
-            _chatScriptData = CSVReader.Read("RawData/Scripts");
-            foreach(var line in _chatScriptData)
+            line.TryGetValue("Stage", out var stageStr);
+
+            if (!int.TryParse(stageStr, out int stage) || stage != recentStageNum) continue;
+
+            line.TryGetValue("DisplayName", out var displayName);
+            line.TryGetValue("BGImage", out var bgImageStr);
+            line.TryGetValue("FirstCharacterImage", out var firstCharImageStr);
+            line.TryGetValue("SecondCharacterImage", out var secondCharImageStr);
+            line.TryGetValue("Talkbox", out var talkboxImageStr);
+            line.TryGetValue("Shake", out var shakeStr);
+            line.TryGetValue("Script", out var script);
+
+            bool shake = shakeStr.ToUpper() == "Y";
+            var bgImage = Resources.Load<Sprite>("Story/Background/" + bgImageStr);
+            var firstCharImage = Resources.Load<Sprite>("Story/Character/" + firstCharImageStr);
+            var secondCharImage = Resources.Load<Sprite>("Story/Character/" + secondCharImageStr);
+            var talkboxImage = Resources.Load<Sprite>("Story/Talkbox/" + talkboxImageStr);
+
+            _chatList.Add(new()
             {
-                line.TryGetValue("Stage", out var stageStr);
-
-                if (!int.TryParse(stageStr, out int stage) || stage != recentStageNum) continue;
-
-                line.TryGetValue("DisplayName", out var displayName);
-                line.TryGetValue("BGImage", out var bgImageStr);
-                line.TryGetValue("FirstCharacterImage", out var firstCharImageStr);
-                line.TryGetValue("SecondCharacterImage", out var secondCharImageStr);
-                line.TryGetValue("Talkbox", out var talkboxImageStr);
-                line.TryGetValue("Shake", out var shakeStr);
-                line.TryGetValue("Script", out var script);
-
-                bool shake = shakeStr.ToUpper() == "Y";
-                var bgImage = Resources.Load<Sprite>("Story/Background/" + bgImageStr);
-                var firstCharImage = Resources.Load<Sprite>("Story/Character/" + firstCharImageStr);
-                var secondCharImage = Resources.Load<Sprite>("Story/Character/" + secondCharImageStr);
-                var talkboxImage = Resources.Load<Sprite>("Story/Talkbox/" + talkboxImageStr);
-
-                _chatList.Add(new()
-                {
-                    Script = script,
-                    DisplayName = displayName,
-                    BGImage = bgImage,
-                    FirstCharacterImage = firstCharImage,
-                    SecondCharacterImage = secondCharImage,
-                    TalkboxImage = talkboxImage,
-                    Shake = shake,
-                });
-            }
-        }
-        else
-        {
-            print("CSV Not Loaded");
-            SceneManager.LoadScene("StartScene");
+                Script = script,
+                DisplayName = displayName,
+                BGImage = bgImage,
+                FirstCharacterImage = firstCharImage,
+                SecondCharacterImage = secondCharImage,
+                TalkboxImage = talkboxImage,
+                Shake = shake,
+            });
         }
 
         StartCoroutine(TextPractice());
@@ -94,11 +88,15 @@ public class TextUiEx : MonoBehaviour
         {
             yield return StartCoroutine(NormalChat(chat));
         }
-        if(StageManager.CurrentStageData is NormalStageData)
+        if(_recentStageData == null)
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
+        else if(_recentStageData is NormalStageData)
         {
             SceneManager.LoadScene("NormalStage");
         }
-        else if(StageManager.CurrentStageData is BossStageData)
+        else if(_recentStageData is BossStageData)
         {
             SceneManager.LoadScene("BossStage");
         }
@@ -114,6 +112,14 @@ public class TextUiEx : MonoBehaviour
 
         FirstCharacterImage.gameObject.SetActive(FirstCharacterImage.sprite != null);
         SecondCharacterImage.gameObject.SetActive(SecondCharacterImage.sprite != null);
+        if (chat.DisplayName=="")
+        {
+            NameBack.sprite = chat.TalkboxImage;
+        }
+        else
+        {
+            NameBack.sprite = NameBackSprite;
+        }
 
         if (chat.Shake)
             TalkBox.GetComponent<UIPanelShake>().StartShake();

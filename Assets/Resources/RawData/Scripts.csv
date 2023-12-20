@@ -47,9 +47,10 @@
 7,오브,BG_Stage7_1,Orb_Pain,,"그리고 죽음의 길이 끝나는 곳에서, 나는 에버그린과 마주할 것이다.",Talkbox_Idle,
 ,,,,,,,
 8,오브,BG_Stage7_1,Orb_Pain,,드디어 죽음의 길을 벗어났다..,Talkbox_Idle,
-8,오브,BG_Stage7_1,Orb_Idle,,저건.. 에버그린!,Talkbox_Idle,
-8,오브,BG_Stage7_1,Orb_Idle,,에버그린을 해방시켜야 해!,Talkbox_Idle,Y
+8,오브,BG_Stage7_1,Orb_Idle,BlackMage_Idle,저건.. 에버그린!,Talkbox_Idle,
+8,오브,BG_Stage7_1,Orb_Idle,BlackMage_Idle,에버그린을 해방시켜야 해!,Talkbox_Idle,Y
 ,,,,,,,
+9,,Ending,,,,NullBox,
 9,오브,BG_Stage8_1,Orb_Pain,BlackMage_Pain,에…에버그린?,Talkbox_Idle,Y
 9,흑마법사,BG_Stage8_1,Orb_Pain,BlackMage_Pain,크으윽….,Talkbox_Idle,Y
 9,오브,BG_Stage8_1,Orb_Idle,BlackMage_Pain,에버그린 괜찮아…?,Talkbox_Idle,

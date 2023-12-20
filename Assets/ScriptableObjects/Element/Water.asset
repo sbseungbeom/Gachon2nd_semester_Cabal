@@ -20,3 +20,4 @@ MonoBehaviour:
   Projectile: {fileID: -8760447939717194727, guid: ea9bacc06a5135743b63bcf0e344be39, type: 3}
   ShootSound: {fileID: 8300000, guid: b2381b8c9ffa6d2449431d46c840a778, type: 3}
   CircleRotation: 180
+  SkillCooldown: 10

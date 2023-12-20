@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Enemy : Entity
 {
-    public const float DamageShowTime = 0.2f;
-    public static readonly Color DamagedColor = new(1f, 0.7f, 0.7f, 1f);
+    public const float DamageShowTime = 0.4f;
+    public static readonly Color DamagedColor = new(1f, 1f, 1f, 1f);
 
     private int _dir;
 
