@@ -29,7 +29,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
     void Start()
     {
         /// <summary>
-        /// 주먹 50개 생성 후 Fists 배열에 넣음.
+        /// 주먹 30개 생성 후 Fists 배열에 넣음.
         /// </summary>
         for (int i = 0; i < Fists.Length; i++)
         {
@@ -70,6 +70,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(.1f, .7f));
             StartCoroutine(ActivateFist(index + i));
+            
         }
     }
     //주먹 발사하는 함수. x,y,z의 offset값을 인자로 받아주어야 함.
@@ -78,11 +79,11 @@ public class SunlightYellowOverdrive : MonoBehaviour
         ex = Random.Range(-SpreadX, SpreadX);
         ex2 = Random.Range(-SpreadY, SpreadY);
         ex3 = Random.Range(-SpreadZ, SpreadZ);
-        SavedPlayerPosition = Player.transform;
+        //SavedPlayerPosition = Player.transform;
         GameObject ActivatedFist = Fists[Index];
 
         FistsArrIndex++;
-        if (FistsArrIndex == Fists.Length)
+        if (FistsArrIndex >= Fists.Length)
         {
             FistsArrIndex = 0;
         }

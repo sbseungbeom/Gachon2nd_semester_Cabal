@@ -13,8 +13,14 @@ public class BossLaser2 : MonoBehaviour
     //---------------------------------------------------------------- 아래만 필요함.
     [SerializeField] GameObject Laser2Warn;
     [SerializeField] GameObject Laser2Laser;
+
+
+    [Header("조준 시간 : 마법진이 플레이어를 추적하는 시간 (초) ")]
+    [SerializeField] float AimingTIme; 
     Vector3 Laser2SavedPlayerPosition;
     bool Laser2AimingPlayer;
+    bool Laser2Attacking;
+    Player ps;
     [SerializeField] float Laser2Radius = 2;
 
     private void Awake()
@@ -25,7 +31,8 @@ public class BossLaser2 : MonoBehaviour
     void Start()
     {
 
-        Player = GameObject.FindWithTag("Player");
+        Player = GameManager.Instance.Player.gameObject;
+        ps = Player.GetComponent<Player>();
         //---------------------------------------------------------------- 아래만 필요함.
         Laser2Laser.SetActive(false);
         Laser2Warn.SetActive(false);
@@ -43,6 +50,19 @@ public class BossLaser2 : MonoBehaviour
         {
             Laser2Warn.transform.position = Player.transform.position;
         }
+        if(Laser2Attacking)
+        {
+            Vector3 center = Laser2Laser.transform.position;
+
+            Collider[] colliders = Physics.OverlapSphere(center, Laser2Radius);
+            foreach (Collider collider in colliders)
+            {
+                if (collider.gameObject == Player)
+                {
+                    ps.Damage(1);
+                }
+            }
+        }
 
         
     }
@@ -55,28 +75,21 @@ public class BossLaser2 : MonoBehaviour
         Laser2Warn.SetActive(true);
         Laser2AimingPlayer = true;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(AimingTIme);
         Laser2AimingPlayer = false;
         Laser2SavedPlayerPosition = Player.transform.position;
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(5 - AimingTIme);
 
         Laser2Laser.SetActive(true);
-        Laser2Laser.transform.position = new Vector3(Laser2SavedPlayerPosition.x, Laser2SavedPlayerPosition.y - 0.7f, Laser2SavedPlayerPosition.z);
+        Laser2Laser.transform.position = new Vector3(Laser2SavedPlayerPosition.x, Laser2SavedPlayerPosition.y - 0.4f, Laser2SavedPlayerPosition.z);
 
-        //-------------------------------------------------플레이어 데미지 주는 부분
-        Vector3 center = Laser2Laser.transform.position;
-
-        Collider[] colliders = Physics.OverlapSphere(center, Laser2Radius);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject == Player)
-            {
-
-            }
-        }
-        yield return new WaitForSeconds(3);
-
-        Array.Clear(colliders, 0, colliders.Length);
+        Laser2Attacking = true;
+        
+        yield return new WaitForSeconds(2.5f);
+        Laser2Attacking = false;
+        
+        yield return new WaitForSeconds(1f);
         Laser2Warn.SetActive(false);
         Laser2Laser.SetActive(false);
     }
