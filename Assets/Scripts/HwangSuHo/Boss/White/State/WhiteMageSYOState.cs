@@ -7,9 +7,6 @@ public class WhiteMageSYOState : BossBaseState
     float _count = 0, _maxcount = 5;
     public override void Enter()
     {
-        Debug.Log("Statemachine : " + StateMachine);
-        Debug.Log("Statemachine.Whitemagician : " + StateMachine.WhiteMagician);
-        Debug.Log("Statemachine.Whitemagician.SYO : " + StateMachine.WhiteMagician.SYO);
         StateMachine.WhiteMagician.SYO.StartFist();
     }
 

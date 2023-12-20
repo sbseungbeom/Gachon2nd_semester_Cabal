@@ -13,7 +13,6 @@ public class FireGolem : Enemy
 
 
     bool AttackAiming;
-    bool Attacking;
     
     // Start is called before the first frame update
     protected override void Awake()
@@ -48,8 +47,6 @@ public class FireGolem : Enemy
         Warning.gameObject.SetActive(true);
         AttackAiming = true;
         yield return new WaitForSeconds(AttackWarningTime);
-
-        Attacking = true;
 
         Meteor.gameObject.SetActive(true);
         Meteor.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y - 0.5f, Player.transform.position.z);

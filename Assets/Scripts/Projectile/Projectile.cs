@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public ElementType ElementType;
     public float speed;
-    public bool IsEnemyProjectile;
+    public Entity Owner;
     public int Damage = 1;
     public float DestroyDistance = 50f;
     public float DistanceCheckTime = 1f;
@@ -26,9 +27,9 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Entity ent) && IsEnemyProjectile == (ent is Player))
+        if (other.TryGetComponent(out Entity ent) && (Owner is Player) != (ent is Player))
         {
-            ent.Damage(Damage);
+            ent.Damage(Damage, ElementType);
             if(DestroyOnCollision) Destroy(gameObject);
         }
     }

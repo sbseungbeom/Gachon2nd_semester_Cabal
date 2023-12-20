@@ -18,6 +18,6 @@ MonoBehaviour:
   MoveSpeed: 5
   ShootCooldown: 4
   RandomShootCooldown: 2
-  projectile: {fileID: -8760447939717194727, guid: 0a481d2cc535c824e92106426037d675, type: 3}
+  projectile: {fileID: -8760447939717194727, guid: 17f336fa4363ed149853cc6aecca16c5, type: 3}
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
   YOffset: 2

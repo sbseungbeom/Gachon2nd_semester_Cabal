@@ -13,7 +13,6 @@ public class WhiteMagicianNormalShot : Projectile
     // Start is called before the first frame update
     void Start()
     {
-        IsEnemyProjectile = true;
         _player = FindObjectOfType<RoundaboutMovement>();
     }
 

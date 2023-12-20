@@ -69,7 +69,8 @@ public class WaterGolem : Enemy
         for (int i =0; i < AmoutOfBullet; i++)
         {
             Projectile bullet = Instantiate(Data.projectile, transform.position, Quaternion.identity);
-            bullet.IsEnemyProjectile = true;
+
+            bullet.Owner = this;
             bullet.transform.LookAt(SettedPlayerPosition);
             yield return new WaitForSeconds(Rapid);
         }

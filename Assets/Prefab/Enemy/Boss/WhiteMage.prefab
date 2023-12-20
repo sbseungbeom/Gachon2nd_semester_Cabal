@@ -1124,6 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 3
+  _elementType: 0
   _origin: {fileID: 6689514184144016837}
   _isBack: 0
 --- !u!65 &5519497944157868370
@@ -4176,6 +4177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 300
+  _elementType: 4
   _phase1Model: {fileID: 7463019830823285557}
   MotionAnimator: {fileID: 413805517342543967}
   _phase2Model: {fileID: 407703307405396408}

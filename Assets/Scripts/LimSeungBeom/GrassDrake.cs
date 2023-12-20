@@ -31,7 +31,7 @@ public class GrassDrake : Enemy
     [Header("빛 기둥 생성 후 폭발까지 걸리는 시간(초)")]
     [SerializeField] float ExplosionWaitTime;
     [Header("폭발이 플레이어에게 줄 데미지")]
-    [SerializeField] int Damage;
+    [SerializeField] int ExplosionDamage = 1;
     [Header("빛 기둥 생성 시간 간격 (초)")]
     [SerializeField] float lightTime;
 
@@ -158,7 +158,7 @@ public class GrassDrake : Enemy
         {
             if (collider.gameObject == Player)
             {
-                ps.Damage(Damage);
+                ps.Damage(ExplosionDamage);
             }
         }
         AQueue.Enqueue(Attack);

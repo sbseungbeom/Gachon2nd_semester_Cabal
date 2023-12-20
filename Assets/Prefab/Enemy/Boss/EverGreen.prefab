@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 3
+  _elementType: 0
   _origin: {fileID: 3929071807136420017}
   _isBack: 1
 --- !u!65 &2724254562665915054
@@ -6802,6 +6803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 500
+  _elementType: 3
   _rotationPow: 200
   _turnDegree: 120
   _stareDegree: 16
@@ -8523,6 +8525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 3
+  _elementType: 0
   _origin: {fileID: 3929071807136420017}
   _isBack: 0
 --- !u!65 &8557119560529306842
@@ -14088,8 +14091,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15dcbf784461704c8ff1c6bcc300ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ElementType: 0
   speed: 0
-  IsEnemyProjectile: 1
+  Owner: {fileID: 0}
   Damage: 1
   DestroyDistance: 50
   DistanceCheckTime: 1

@@ -208,7 +208,7 @@ public class Player : Entity
             var projectile = Instantiate(CurrentElement.Projectile, transform.position + transform.forward * _shootDistance, Quaternion.identity);
             projectile.transform.forward = dir;
             projectile.CameraOffset = projectile.transform.position - Camera.main.transform.position;
-            projectile.IsEnemyProjectile = false;
+            projectile.Owner = this;
             GameManager.Instance.SoundManager.PlaySFX(CurrentElement.ShootSound, transform);
         }
     }

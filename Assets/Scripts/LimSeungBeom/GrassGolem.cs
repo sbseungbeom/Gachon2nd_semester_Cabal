@@ -42,7 +42,7 @@ public class GrassGolem : Enemy
         for(int i = 0; i < _AmountOfBullet;  i++)
         {
             Projectile bullet = Instantiate(Data.projectile, transform.position, Quaternion.identity);
-            bullet.IsEnemyProjectile = true;
+            bullet.Owner = this;
             bullet.transform.LookAt(new Vector3((SettedPlayerPosition.x - Spread) + (i * (Spread * 2 / _AmountOfBullet)), SettedPlayerPosition.y, SettedPlayerPosition.z));
             
         }

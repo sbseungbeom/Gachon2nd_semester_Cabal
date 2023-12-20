@@ -5,12 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Enemy : Entity
 {
-    public const float DamageShowTime = 0.4f;
+    public const float DamageShowTime = 0.3f;
     public static readonly Color DamagedColor = new(1f, 1f, 1f, 1f);
 
     private int _dir;
 
-    public ElementType ElementType;
     public EnemyData Data;
     public Transform Rope;
     private SpriteRenderer _renderer;
@@ -33,13 +32,7 @@ public class Enemy : Entity
 
     public override void Damage(int damage)
     {
-        base.Damage(
-            Player.IsDominentTo(
-                GameManager.Instance.Player.CurrentElement.ElementType, ElementType
-                ) ? 
-            damage * 2 : 
-            damage
-            );
+        base.Damage(damage);
         _damageShowTimer = DamageShowTime;
         ParticleManager.SpawnParticle(Data.DamageParticle, transform.position);
 
@@ -89,10 +82,9 @@ public class Enemy : Entity
     }
 
     protected virtual void Attack() {
-
         var projectile = Instantiate(Data.projectile, transform.position, Quaternion.identity);
         projectile.transform.LookAt(GameManager.Instance.Player.transform.position);
-        projectile.IsEnemyProjectile = true;
+        projectile.Owner = this;
     }
 
     protected IEnumerator Stop(float StopTime)
