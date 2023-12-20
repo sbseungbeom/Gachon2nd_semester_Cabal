@@ -27,14 +27,11 @@ public class BlackMagicianSlash : BossBaseState
         switch (_slashTh)
         {
             case 0:
-                if (StateMachine.BlackMagician.Turning != null)
-                    StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
                 if (_countClock < _firstSlashReadyCount)
                     _countClock += Time.deltaTime;
                 else
                 {
-                    if (StateMachine.BlackMagician.Turning != null)
-                        StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
+                    StateMachine.BlackMagician.IsSlashing = true;
                     StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
                     _countClock = 0;
                     _slashTh++;
@@ -45,8 +42,7 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
-                    if (StateMachine.BlackMagician.Turning != null)
-                        StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
+                    StateMachine.BlackMagician.IsSlashing = true;
                     StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
                     _countClock = 0;
                     _slashTh++;
@@ -57,8 +53,7 @@ public class BlackMagicianSlash : BossBaseState
                     _countClock += Time.deltaTime;
                 else
                 {
-                    if (StateMachine.BlackMagician.Turning != null)
-                        StateMachine.BlackMagician.StopCoroutine(StateMachine.BlackMagician.Turning);
+                    StateMachine.BlackMagician.IsSlashing = true;
                     StateMachine.BlackMagician.MotionAnimator.SetTrigger("Slash");
                     _countClock = 0;
                     _slashTh++;
