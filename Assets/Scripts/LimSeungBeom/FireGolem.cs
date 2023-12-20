@@ -42,8 +42,6 @@ public class FireGolem : Enemy
     }
     IEnumerator FireGolemAttack()
     {
-        //StartCoroutine(Stop(AttackWarningTime + 3));
-
         Warning.gameObject.SetActive(true);
         AttackAiming = true;
         yield return new WaitForSeconds(AttackWarningTime);

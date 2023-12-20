@@ -38,9 +38,6 @@ public class FireGolemMeteor : MonoBehaviour
                 PlayerScript.Damage(1);
             }
         }
-        yield return new WaitForSeconds(1);             //배열에 담긴것들 전부 없앰.
-
-        Array.Clear(colliders,0,colliders.Length);
         
     }
 }
