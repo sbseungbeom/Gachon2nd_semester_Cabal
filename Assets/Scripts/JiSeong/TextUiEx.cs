@@ -15,6 +15,7 @@ public class TextUiEx : MonoBehaviour
     public Image NameBack;
     public Sprite NameBackSprite;
     public AudioSource talkAudio;
+    public CanvasGroup BlackScreen;
 
     public TMP_Text ChatText;
     public TMP_Text DisplayNameText;
@@ -24,6 +25,7 @@ public class TextUiEx : MonoBehaviour
 
     private bool _isTexting = false;
     private bool _waitForSkip = false;
+    private bool ending = false;
 
     private StageData _recentStageData = null;
     private AudioSource _audioSource = null;
@@ -104,6 +106,15 @@ public class TextUiEx : MonoBehaviour
 
     IEnumerator NormalChat(Chat chat)
     {
+        if (ending == true)
+        {
+            for (var i = 0f; i <= 1f; i += Time.deltaTime)
+            {
+                BlackScreen.alpha = i;
+                yield return null;
+            }
+            BlackScreen.alpha = 1f;
+        }
         DisplayNameText.SetText(chat.DisplayName);
         BackgroundImage.sprite = chat.BGImage;
         FirstCharacterImage.sprite = chat.FirstCharacterImage;
@@ -112,9 +123,26 @@ public class TextUiEx : MonoBehaviour
 
         FirstCharacterImage.gameObject.SetActive(FirstCharacterImage.sprite != null);
         SecondCharacterImage.gameObject.SetActive(SecondCharacterImage.sprite != null);
+        if (ending == true)
+        {
+            ending = false;
+            for (var i = 0f; i <= 1f; i += Time.deltaTime)
+            {
+                BlackScreen.alpha = 1 - i;
+                yield return null;
+            }
+            BlackScreen.alpha = 0f;
+        }
         if (chat.DisplayName=="")
         {
             NameBack.sprite = chat.TalkboxImage;
+            for (var i = 0f; i <= 1f; i += Time.deltaTime)
+            {
+                BlackScreen.alpha = 1 - i;
+                yield return null;
+            }
+            BlackScreen.alpha = 0f;
+            ending = true;
         }
         else
         {
