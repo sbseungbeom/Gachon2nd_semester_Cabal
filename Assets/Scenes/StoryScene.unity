@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4145591384489747168, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
       propertyPath: m_text
-      value: "............... \uC5EC\uAE34 \uC5B4\uB514\uC9C0?"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4145591384489747168, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
       propertyPath: m_fontSize
@@ -416,9 +416,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4668251043755076749, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
+      propertyPath: NameBack
+      value: 
+      objectReference: {fileID: 2003277896}
+    - target: {fileID: 4668251043755076749, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
       propertyPath: talkAudio
       value: 
       objectReference: {fileID: 1614953154}
+    - target: {fileID: 4668251043755076749, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
+      propertyPath: NameBackSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d0ff40fd608052146bdb15170186c5ae, type: 3}
+    - target: {fileID: 5752524669637786657, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5964534234463704383, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1195
@@ -461,6 +473,10 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0280bbb2c1ff04f4285f3ab9e034f532, type: 3}
     - target: {fileID: 6259393890194620856, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
       propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887284923999852462, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7146337900762814918, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
@@ -544,6 +560,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2041406152109000085, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
   m_PrefabInstance: {fileID: 308492460}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &939218358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939218359}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &939218359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939218358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 200, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1364610300
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +978,17 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &2003277896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8959278074244320322, guid: fbc8f4a57877e2b46b37db181d0ee8b1, type: 3}
+  m_PrefabInstance: {fileID: 308492460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -938,3 +996,4 @@ SceneRoots:
   - {fileID: 1364610303}
   - {fileID: 1701837733}
   - {fileID: 308492460}
+  - {fileID: 939218359}
