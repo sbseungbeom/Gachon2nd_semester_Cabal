@@ -8,6 +8,5 @@ public class LowGolem : Enemy
     protected override void Update()
     {
         base.Update();
-
     }
 }

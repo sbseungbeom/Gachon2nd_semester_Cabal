@@ -23,15 +23,17 @@ public class ProjectileMover : MonoBehaviour
             var flashPs = flashInstance.GetComponent<ParticleSystem>();
             if (flashPs != null)
             {
-                Destroy(flashInstance, flashPs.main.duration);
+                //Destroy(flashInstance, flashPs.main.duration);
+                flashInstance.SetActive(false);
             }
             else
             {
                 var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(flashInstance, flashPsParts.main.duration);
+                //Destroy(flashInstance, flashPsParts.main.duration);
+                flashInstance.SetActive(false);
             }
         }
-        Destroy(gameObject,5);
+        //Destroy(gameObject,5);
 	}
 
     void FixedUpdate ()
@@ -64,12 +66,14 @@ public class ProjectileMover : MonoBehaviour
             var hitPs = hitInstance.GetComponent<ParticleSystem>();
             if (hitPs != null)
             {
-                Destroy(hitInstance, hitPs.main.duration);
+                //Destroy(hitInstance, hitPs.main.duration);
+                hitInstance.SetActive(false);
             }
             else
             {
                 var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(hitInstance, hitPsParts.main.duration);
+                //Destroy(hitInstance, hitPsParts.main.duration);
+                hitInstance.SetActive(false);
             }
         }
         foreach (var detachedPrefab in Detached)
@@ -79,6 +83,7 @@ public class ProjectileMover : MonoBehaviour
                 detachedPrefab.transform.parent = null;
             }
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
