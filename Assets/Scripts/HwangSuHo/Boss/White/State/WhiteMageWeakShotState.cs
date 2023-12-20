@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class WhiteMageWeakShotState : BossBaseState
 {
+    int _index;
+    bool _isLight = false;
+    float _count;
+    float _eachCount;
     public override void Enter()
     {
         StateMachine.WhiteMagician.Phase2Animator.SetBool("Cast", true);
-        //if(StateMachine.WhiteMagician.SecPhase)
-        //속성 고정  
 
-        //오브젝트 풀링에서 처리하게
+        if (StateMachine.WhiteMagician.SecPhase)
+            _isLight = true;
+        float count = Random.Range(0, 10);
+        _index = Mathf.FloorToInt(count);
     }
 
     public override void Exit()
@@ -20,6 +25,14 @@ public class WhiteMageWeakShotState : BossBaseState
 
     public override void Perform()
     {
+        if (_count < .3f)
+            _count += Time.deltaTime;
+        else
+        {
+            _count = 0;
+            _index--;
+            StateMachine.WhiteMagician.DaggerSummon();
+        }
         //기다렸다가 idle로
     }
 }
