@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float _spawnTimer = 0f;
     private List<Enemy> _list = new();
-    private readonly Queue<Enemy> _prefabs = new();
+    private readonly List<Enemy> _prefabs = new();
 
     private bool _isCleared = false;
 
@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 for(int i = 0; i < certainData.Count; i++)
                 {
-                    _prefabs.Enqueue(certainData.EnemyPrefab);
+                    _prefabs.Add(certainData.EnemyPrefab);
                 }
             }
         }
@@ -35,7 +35,9 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        var enemyPrefab = _prefabs.Dequeue();
+        var index = Random.Range(0, _prefabs.Count);
+        var enemyPrefab = _prefabs[index];
+        _prefabs.RemoveAt(index);
         var rope = Instantiate(SpawnData.RopePrefab, new Vector3(
             Random.Range(enemyPrefab.Data.MinX, enemyPrefab.Data.MaxX),
             SpawnData.SpawnYPos + enemyPrefab.Data.YOffset + SpawnData.RopePrefab.RopeLength,
