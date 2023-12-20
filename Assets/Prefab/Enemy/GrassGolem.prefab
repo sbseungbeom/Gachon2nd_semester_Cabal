@@ -152,6 +152,7 @@ MonoBehaviour:
   ElementType: 2
   Data: {fileID: 11400000, guid: 03fa06eaac043fb459e1e667341fe3d3, type: 2}
   Rope: {fileID: 0}
+  DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
   Spread: 5
   _AmountOfBullet: 4
   _SpreadCooltime: 0.05

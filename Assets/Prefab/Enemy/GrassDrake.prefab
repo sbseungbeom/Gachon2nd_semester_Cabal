@@ -125,6 +125,7 @@ MonoBehaviour:
   ElementType: 2
   Data: {fileID: 11400000, guid: e9d7da0f73157f4409aa1385cdaa788e, type: 2}
   Rope: {fileID: 0}
+  DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
   laserDelay: 5
   AttackWarning: {fileID: 1705352579348300405, guid: 04d1573144e54984ead3b7f830bb76b5, type: 3}
   ExplosionAttack: {fileID: 304902405731262857, guid: 2d59062c61c6f814a88691f9f377f2c8, type: 3}

@@ -105,6 +105,7 @@ MonoBehaviour:
   ElementType: 0
   Data: {fileID: 11400000, guid: 5b29a6e51d785564f8fdb81026a01fc6, type: 2}
   Rope: {fileID: 0}
+  DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
   Warning: {fileID: 7394433988834826474}
   Meteor: {fileID: 321950971993514236}
   AttackWarningTime: 1.5
