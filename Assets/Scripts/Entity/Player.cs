@@ -36,6 +36,10 @@ public class Player : Entity
     private float _attackTimer = 0f;
     private float _fireSkillTimer = 0f, _waterSkillTimer = 0f, _earthSkillTimer = 0f;
 
+    public float FireRemainCooldown { get => _fireSkillTimer / _fireElementData.SkillCooldown; }
+    public float EarthRemainCooldown { get => _earthSkillTimer / _earthElementData.SkillCooldown; }
+    public float WaterRemainCooldown { get => _waterSkillTimer / _waterElementData.SkillCooldown; }
+
     private bool _isClearing = false;
 
     [Header("skill")]
@@ -95,10 +99,6 @@ public class Player : Entity
         if (_fireSkillTimer > 0f) _fireSkillTimer -= Time.deltaTime;
         if (_earthSkillTimer > 0f) _earthSkillTimer -= Time.deltaTime;
         if (_waterSkillTimer > 0f) _waterSkillTimer -= Time.deltaTime;
-
-        GameManager.Instance.FireSkillCooldown.fillAmount = 1 - _fireSkillTimer / _fireElementData.SkillCooldown;
-        GameManager.Instance.WaterSkillCooldown.fillAmount = 1 - _waterSkillTimer / _waterElementData.SkillCooldown;
-        GameManager.Instance.EarthSkillCooldown.fillAmount = 1 - _earthSkillTimer / _earthElementData.SkillCooldown;
     }
 
     public void ChangeElement(PlayerElementData data, bool slient = false)
