@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6755577611109911527}
   - component: {fileID: 6034513139744606746}
   - component: {fileID: 586411614274572012}
+  - component: {fileID: 3743425746599473167}
   m_Layer: 0
   m_Name: LowFireGolem
   m_TagString: Untagged
@@ -102,3 +103,24 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 915aa998032210f46b755c8d6ca80f1c, type: 2}
   Rope: {fileID: 0}
   DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
+--- !u!65 &3743425746599473167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856093890831963914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 23.250017, y: 15.765895, z: 5.41}
+  m_Center: {x: -0.08410931, y: -0.2009803, z: -1.74}
