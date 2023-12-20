@@ -14089,7 +14089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  IsEnemyProjectile: 0
+  IsEnemyProjectile: 1
   Damage: 1
   DestroyDistance: 50
   DistanceCheckTime: 1
