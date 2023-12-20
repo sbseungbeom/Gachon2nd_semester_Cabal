@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class WhiteMage : Entity
 {
+    Transform _playerPos;
     BossStateMachine _stateMachine;
 
     [SerializeField] GameObject _phase1Model;
     public Animator MotionAnimator;
     [SerializeField] GameObject _phase2Model;
     public Animator Phase2Animator { get => _phase2Model.GetComponent<Animator>(); }
+
+    [SerializeField] float _weakHeight;
+    [SerializeField] Projectile _weakDagger;
 
     public SunlightYellowOverdrive SYO;
     public BossLaser2 ULTLsr2;
@@ -34,6 +38,7 @@ public class WhiteMage : Entity
             hp = 160;
         _stateMachine = GetComponent<BossStateMachine>();
         _stateMachine.ChangeState(new WhiteMageIdleState());
+        _playerPos = GameManager.Instance.Player.transform;
     }
     private void Update()
     {
@@ -56,6 +61,13 @@ public class WhiteMage : Entity
         }
         else
             return false;
+    }
+    public void DaggerSummon()
+    {
+        GameObject ii = Instantiate(_weakDagger, new Vector3(_playerPos.position.x, _weakHeight, _playerPos.position.z), transform.rotation).gameObject;
+        ii.transform.forward = Vector3.down;
+        int a = Mathf.FloorToInt(Random.Range(0, 4));
+        ii.GetComponent<WhiteMageWeakS>().ModelSet(a);
     }
     public override void Damage(int damage)
     {
