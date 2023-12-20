@@ -15,6 +15,9 @@ public class Enemy : Entity
     public Transform Rope;
     private SpriteRenderer _renderer;
 
+    
+    [SerializeField] AudioClip DamagedSound;
+
     private float _damageShowTimer = 0f;
 
     private float _timer = 0f;
@@ -23,6 +26,7 @@ public class Enemy : Entity
     {
         base.Awake();
         _renderer = GetComponent<SpriteRenderer>();
+        
         _dir = Random.value < 0.5f ? 1 : -1;
         _timer = Random.Range(0f, Data.ShootCooldown);
     }
@@ -38,6 +42,8 @@ public class Enemy : Entity
             );
         _damageShowTimer = DamageShowTime;
         ParticleManager.SpawnParticle(Data.DamageParticle, transform.position);
+
+        GameManager.Instance.SoundManager.PlaySFX(DamagedSound,transform.position,1,1);
     }
 
     protected virtual void OnDestroy()

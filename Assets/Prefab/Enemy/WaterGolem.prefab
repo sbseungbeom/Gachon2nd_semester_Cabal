@@ -131,7 +131,7 @@ MonoBehaviour:
   ElementType: 1
   Data: {fileID: 11400000, guid: f5cf4b20bdfa9054d9c22c27187b8b71, type: 2}
   Rope: {fileID: 0}
-  StopTime: 1
+  DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
   AimingTime: 0.6
   AmoutOfBullet: 3
   Rapid: 0.2
