@@ -8,9 +8,9 @@ public class SunlightYellowOverdrive : MonoBehaviour
 {
 
 
-    [SerializeField] float SpreadX; // ÁÂ¿ì ÆÛÁö´Â Á¤µµ
-    [SerializeField] float SpreadY; // »óÇÏ ÆÛÁö´Â Á¤µµ
-    [SerializeField] float SpreadZ; // ÀüÈÄ ÆÛÁö´Â Á¤µµ
+    [SerializeField] float SpreadX; // ì¢Œìš° í¼ì§€ëŠ” ì •ë„
+    [SerializeField] float SpreadY; // ìƒí•˜ í¼ì§€ëŠ” ì •ë„
+    [SerializeField] float SpreadZ; // ì „í›„ í¼ì§€ëŠ” ì •ë„
 
     [SerializeField] float FistCoolTime;
     [SerializeField] GameObject Player;
@@ -29,7 +29,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
     void Start()
     {
         /// <summary>
-        /// ÁÖ¸Ô 50°³ »ı¼º ÈÄ Fists ¹è¿­¿¡ ³ÖÀ½.
+        /// ì£¼ë¨¹ 30ê°œ ìƒì„± í›„ Fists ë°°ì—´ì— ë„£ìŒ.
         /// </summary>
         for (int i = 0; i < Fists.Length; i++)
         {
@@ -70,9 +70,10 @@ public class SunlightYellowOverdrive : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(.1f, .7f));
             StartCoroutine(ActivateFist(index + i));
+            
         }
     }
-    //ÁÖ¸Ô ¹ß»çÇÏ´Â ÇÔ¼ö. x,y,zÀÇ offset°ªÀ» ÀÎÀÚ·Î ¹Ş¾ÆÁÖ¾î¾ß ÇÔ.
+    //ì£¼ë¨¹ ë°œì‚¬í•˜ëŠ” í•¨ìˆ˜. x,y,zì˜ offsetê°’ì„ ì¸ìë¡œ ë°›ì•„ì£¼ì–´ì•¼ í•¨.
     IEnumerator ActivateFist(int Index)
     {
         ex = Random.Range(-SpreadX, SpreadX);
@@ -84,7 +85,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
         GameObject ActivatedFist = Fists[Index];
 
         FistsArrIndex++;
-        if (FistsArrIndex == Fists.Length)
+        if (FistsArrIndex >= Fists.Length)
         {
             FistsArrIndex = 0;
         }

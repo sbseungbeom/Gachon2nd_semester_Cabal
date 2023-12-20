@@ -231,15 +231,7 @@ public class Player : Entity
     public IEnumerator OnClearRoutine()
     {
         yield return GameManager.Instance.ShowBlack();
-        var nextStageData = StageManager.CurrentStageData;
-        if (nextStageData != null)
-        {
-            SceneManager.LoadScene("StoryScene");
-        }
-        else
-        {
-            SceneManager.LoadScene("EndingScene");
-        }
+        SceneManager.LoadScene("StoryScene");
         _isClearing = false;
     }
 

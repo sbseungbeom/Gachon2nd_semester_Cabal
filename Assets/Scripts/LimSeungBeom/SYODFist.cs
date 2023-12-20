@@ -10,15 +10,16 @@ public class SYODFist : MonoBehaviour
 
     private void Awake()
     {
-        Player = GameObject.FindWithTag("Player");
-        /*
+        //Player = GameObject.FindWithTag("Player");    //실제 보스에 적용 시 이 문을 삭제할 것.
+
+        
         Player = GameManager.Instance.Player.gameObject;
         PlayerScript = Player.GetComponent<Player>();
-        */
+        
     }
     private void OnEnable()
     {
-        transform.LookAt(Player.transform.position);
+        //transform.LookAt(Player.transform.position);
     }
 
     void Update()
@@ -30,8 +31,7 @@ public class SYODFist : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
-            //PlayerScript.HP -= 1;
+            PlayerScript.Damage(1);
             this.gameObject.SetActive(false);
         }
     }

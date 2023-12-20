@@ -21,11 +21,8 @@ public class BossCameraMove : MonoBehaviour
     private void LateUpdate()
     {
         var cameraBossDir = (Boss.position - transform.position);
-        cameraBossDir.y = 0f;
-        var rotX = transform.eulerAngles.x;
-        transform.forward = cameraBossDir;
         var angles = transform.eulerAngles;
-        angles.x = rotX;
+        angles.y = Mathf.Atan2(cameraBossDir.x, cameraBossDir.z) * Mathf.Rad2Deg;
         transform.eulerAngles = angles;
 
         var bossDir = (_player.transform.position - Boss.position);
