@@ -50,18 +50,21 @@ public class WaterDrake : Enemy
 
     IEnumerator WaterDrakeAttack()
     {
-        StartCoroutine(Stop(AimingTime + AttackWaitTime + AttackDuration));
 
         Warn.SetActive(true);
         Aiming = true;
         yield return new WaitForSeconds(AimingTime);
+
         Aiming = false;
         SavedPlayerPosition = Player.transform.position;
         Warn.transform.LookAt(new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y - 0.5f, SavedPlayerPosition.z));
         Laser.transform.LookAt(new Vector3(SavedPlayerPosition.x, SavedPlayerPosition.y, SavedPlayerPosition.z));
+        StartCoroutine(Stop(AttackWaitTime + AttackDuration + 1));
         yield return new WaitForSeconds(AttackWaitTime);
+
         Laser.SetActive(true);
         yield return new WaitForSeconds(AttackDuration);
+
         Laser.SetActive(false);
         Warn.SetActive(false);
 
