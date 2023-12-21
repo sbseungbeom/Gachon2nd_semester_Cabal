@@ -108,7 +108,7 @@ MonoBehaviour:
   DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
   Warning: {fileID: 7394433988834826474}
   Meteor: {fileID: 321950971993514236}
-  AttackWarningTime: 1.5
+  AttackWarningTime: 0.7
 --- !u!65 &3908492219228813885
 BoxCollider:
   m_ObjectHideFlags: 0

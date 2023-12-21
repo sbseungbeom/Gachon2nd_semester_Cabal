@@ -271,11 +271,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15dcbf784461704c8ff1c6bcc300ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ElementType: 0
   speed: 40
-  IsEnemyProjectile: 0
+  Owner: {fileID: 0}
   Damage: 1
   DestroyDistance: 50
   DistanceCheckTime: 1
+  DestroyOnCollision: 1
   CameraOffset: {x: 0, y: 0, z: 0}
 --- !u!54 &-2672315207601843633
 Rigidbody:

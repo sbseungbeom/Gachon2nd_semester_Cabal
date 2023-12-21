@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementType: 1
-  speed: 40
+  speed: 50
   Owner: {fileID: 0}
   Damage: 1
   DestroyDistance: 50
