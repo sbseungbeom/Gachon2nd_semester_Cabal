@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 3
-  ElementType: 0
+  _elementType: 0
   Data: {fileID: 11400000, guid: 96e2d07df0f459f41bc4215f4e67c253, type: 2}
   Rope: {fileID: 0}
   DamagedSound: {fileID: 8300000, guid: b76ed1ac54f170d499f53ce14ce2b9dc, type: 3}
@@ -149,5 +149,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.04, y: 12.8, z: 1.54}
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Size: {x: 18.04, y: 12.8, z: 5.577611}
+  m_Center: {x: 0, y: 1.1000001, z: 2.0188067}

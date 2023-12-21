@@ -16,9 +16,7 @@ MonoBehaviour:
   EnemySpawns:
   - EnemyPrefab: {fileID: 586411614274572012, guid: 45dd29721168ab94ea372847903ed0d1, type: 3}
     Count: 4
-  - EnemyPrefab: {fileID: 586411614274572012, guid: 992a249cc9995f04cbcac3f0dfae61f5, type: 3}
-    Count: 4
-  MaxSpawn: 2
+  MaxSpawn: 3
   SpawnSpan: 5
   SpawnZPos:
   - 9

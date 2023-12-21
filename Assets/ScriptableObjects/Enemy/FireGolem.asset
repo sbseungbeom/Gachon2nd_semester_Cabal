@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: FireGolem
   m_EditorClassIdentifier: 
   Score: 50
-  MinX: -15
-  MaxX: 15
+  MinX: -20
+  MaxX: 20
   MoveSpeed: 5
-  ShootCooldown: 4
-  RandomShootCooldown: 3
+  ShootCooldown: 0
+  RandomShootCooldown: 2
   projectile: {fileID: -8760447939717194727, guid: c809f5767cc798b42bb079e7d8ba6463, type: 3}
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
   YOffset: 2
