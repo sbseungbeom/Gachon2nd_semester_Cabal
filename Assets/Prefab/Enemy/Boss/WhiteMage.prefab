@@ -4178,10 +4178,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHP: 300
   _elementType: 4
-  _rotationPow: 0
-  _turnDegree: 0
-  _stareDegree: 0
   BossName: "\uB9C8\uB974\uC140\uB9AC\uC6B0\uC2A4 \uD734\uACE0"
+  _rotationPow: 120
+  _turnDegree: 50
+  _stareDegree: 10
   _phase1Model: {fileID: 7463019830823285557}
   MotionAnimator: {fileID: 413805517342543967}
   _phase2Model: {fileID: 407703307405396408}
@@ -5061,7 +5061,6 @@ MonoBehaviour:
   SpreadY: 0
   SpreadZ: 0
   FistCoolTime: 0
-  Player: {fileID: 487530341319910659}
   SunlightYellowOverdrive_Fist: {fileID: 3569232037958897796, guid: 6e4968e8ac9f52142af86a642d58709e, type: 3}
 --- !u!1 &8225070143116056347
 GameObject:

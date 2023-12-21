@@ -119,22 +119,19 @@ public class WhiteMage : Boss
     IEnumerator TurnAround()
     {
         yield return new WaitForSeconds(.7f);
-        print("TurnStart");
         while (true)
         {
             yield return null;
             //플레이어가 일정 시야각 이내에 들어오지 않았을 경우
             if (_angleToPlayer > _stareDegree)
             {
-                transform.Rotate(Vector3.up * _rotationPow * Time.deltaTime);
-                print("Turning");
+                var euler = transform.eulerAngles;
+                euler.y = Mathf.MoveTowardsAngle(euler.y, _angleToPlayer, _rotationPow * Time.deltaTime);
+                transform.eulerAngles = euler;
             }
-            /* else if (_angleToPlayer <= -_stareDegree && _angleToPlayer >= 0)
-                 transform.Rotate(transform.right * _rotationPow);*/
             else
                 break;
         }
         _isTurning = false;
-        print("TurningEnd");
     }
 }

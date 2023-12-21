@@ -13,7 +13,6 @@ public class SunlightYellowOverdrive : MonoBehaviour
     [SerializeField] float SpreadZ; // 전후 퍼지는 정도
 
     [SerializeField] float FistCoolTime;
-    [SerializeField] GameObject Player;
     int FistsArrIndex = 0;
     float ex;
     float ex2;
@@ -79,7 +78,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
         ex = Random.Range(-SpreadX, SpreadX);
         ex2 = Random.Range(-SpreadY, SpreadY);
         ex3 = Random.Range(-SpreadZ, SpreadZ);
-        SavedPlayerPosition = Player.transform;
+        SavedPlayerPosition = GameManager.Instance.Player.transform;
         if (Index >= Fists.Length)
             Index -= Fists.Length;
         GameObject ActivatedFist = Fists[Index];
@@ -90,7 +89,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
             FistsArrIndex = 0;
         }
         ActivatedFist.SetActive(true);
-        ActivatedFist.transform.LookAt(Player.transform.position);
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
         ActivatedFist.transform.position = new Vector3(this.transform.position.x + ex, this.transform.position.y + ex2, this.transform.position.z + ex3);
 
         yield return new WaitForSeconds(5);
