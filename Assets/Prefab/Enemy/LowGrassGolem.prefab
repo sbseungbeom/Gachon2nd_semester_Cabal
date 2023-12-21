@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2a1309c5460c24087fc9c4dd5c4317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHP: 4
+  initHP: 3
   _elementType: 2
   Data: {fileID: 11400000, guid: 86dd4a933ac0ea24d82edb2e2af09457, type: 2}
   Rope: {fileID: 0}
