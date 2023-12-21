@@ -14091,9 +14091,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15dcbf784461704c8ff1c6bcc300ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ElementType: 0
+  ElementType: 3
   speed: 0
-  Owner: {fileID: 0}
+  Owner: {fileID: 3929071807136420017}
   Damage: 1
   DestroyDistance: 50
   DistanceCheckTime: 1

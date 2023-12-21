@@ -66,6 +66,7 @@ public class BlackMagician : Entity
         if (!_isTurning && _angleToPlayer >= _turnDegree && _angleToPlayer >= 0 && !IsSlashing)
         {
             _isTurning = true;
+            StartCoroutine(TurnAround());
         }
     }
     //뒷 모습 보일경우 호출

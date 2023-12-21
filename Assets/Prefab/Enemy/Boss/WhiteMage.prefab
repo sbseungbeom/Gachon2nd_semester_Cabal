@@ -282,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 407703307405396408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4178,10 +4178,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHP: 300
   _elementType: 4
+  _rotationPow: 0
+  _turnDegree: 0
+  _stareDegree: 0
   _phase1Model: {fileID: 7463019830823285557}
   MotionAnimator: {fileID: 413805517342543967}
   _phase2Model: {fileID: 407703307405396408}
-  _weakHeight: 0
+  _weakHeight: 10
   _weakDagger: {fileID: 8360935918838135048, guid: 769e24fc3b101c64ab9da9f4c876eed4, type: 3}
   SYO: {fileID: 990921269152552104}
   ULTLsr2: {fileID: 5890520789984632995}
@@ -4713,7 +4716,7 @@ Transform:
   m_GameObject: {fileID: 7463019830823285557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
