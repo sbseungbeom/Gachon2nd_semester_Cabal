@@ -50,6 +50,14 @@ public class BossLaser2 : MonoBehaviour
         {
             Laser2Warn.transform.position = Player.transform.position;
         }
+        if(!Laser2AimingPlayer)
+        {
+            Laser2Warn.transform.position = Laser2SavedPlayerPosition;
+        }
+
+
+
+
         if(Laser2Attacking)
         {
             Vector3 center = Laser2Laser.transform.position;
