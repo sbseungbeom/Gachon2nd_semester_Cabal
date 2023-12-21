@@ -8,6 +8,7 @@ public class Player : Entity
 {
     [SerializeField] private AudioClip _elementChangeSound;
     [SerializeField] private AudioClip _playerDamageSound, _playerHealSound;
+    [SerializeField] private AudioSource _playerHeartbeat;
     [SerializeField] private PlayerElementData _fireElementData, _earthElementData, _waterElementData, _darkElementData;
 
     [SerializeField] private float _speed;
@@ -62,6 +63,7 @@ public class Player : Entity
         ShootUpdate();
         ElementChangeUpdate();
         SkillUpdate();
+        HeartBeatUpdate();
 
         if (Input.GetKeyDown(KeyCode.T)) OnClear();
     }
@@ -73,6 +75,17 @@ public class Player : Entity
         if (elementType == ElementType.Earth && target == ElementType.Water) return true;
         if (elementType == ElementType.Light && target == ElementType.Dark) return true;
         return false;
+    }
+
+    private void HeartBeatUpdate()
+    {
+        var hbDeltaTime = HP <= 1 ? Time.deltaTime : -Time.deltaTime;
+        
+        _playerHeartbeat.volume = Mathf.Clamp01(_playerHeartbeat.volume + hbDeltaTime);
+
+        var col = GameManager.Instance.HeartBeatScreen.color;
+        col.a = 0.6f * Mathf.Clamp01(col.a + hbDeltaTime);
+        GameManager.Instance.HeartBeatScreen.color = col;
     }
 
     private void ElementChangeUpdate()

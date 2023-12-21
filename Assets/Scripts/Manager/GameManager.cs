@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public Player Player;
     public DamageScreen DamageScreen;
+    public Image HeartBeatScreen;
     public CanvasGroup BlackScreen;
     public ScoreManager scoreManager;
     public SoundManager SoundManager;
