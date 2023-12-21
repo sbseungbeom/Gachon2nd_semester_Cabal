@@ -5,6 +5,10 @@ public static class StageManager
 {
     private static readonly Dictionary<int, StageData> cache = new();
 
+    public static bool HasRecentStageData
+    {
+        get => PlayerPrefs.HasKey("RecentStage");
+    }
     public static int CurrentStageNumber
     {
         get => PlayerPrefs.GetInt("RecentStage", 1);
