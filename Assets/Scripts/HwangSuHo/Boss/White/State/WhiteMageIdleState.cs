@@ -21,7 +21,7 @@ public class WhiteMageIdleState : BossBaseState
             _count += Time.deltaTime;
         else
         {
-            int a = 1;
+            int a = 0;
             switch (a)
             {
                 case 0:

@@ -20,6 +20,7 @@ public class BlackMagicianSlash : BossBaseState
     }
     public override void Exit()
     {
+        StateMachine.BlackMagician.IsSlashing = false;
 
     }
     public override void Perform()
@@ -39,7 +40,10 @@ public class BlackMagicianSlash : BossBaseState
                 break;
             case 1:
                 if (_countClock < _secondSlashReadyCount)
+                {
+                    StateMachine.BlackMagician.IsSlashing = false;
                     _countClock += Time.deltaTime;
+                }
                 else
                 {
                     StateMachine.BlackMagician.IsSlashing = true;
@@ -50,7 +54,10 @@ public class BlackMagicianSlash : BossBaseState
                 break;
             case 2:
                 if (_countClock < _thirdSlashReadyCount)
+                {
+                    StateMachine.BlackMagician.IsSlashing = false;
                     _countClock += Time.deltaTime;
+                }
                 else
                 {
                     StateMachine.BlackMagician.IsSlashing = true;
@@ -61,7 +68,10 @@ public class BlackMagicianSlash : BossBaseState
                 break;
             case 3:
                 if (_countClock < _thirdSlashAfterCount)
+                {
                     _countClock += Time.deltaTime;
+                    StateMachine.BlackMagician.IsSlashing = false;
+                }
                 else
                 {
                     StateMachine.ChangeState(new BlackMagicianIdle());
