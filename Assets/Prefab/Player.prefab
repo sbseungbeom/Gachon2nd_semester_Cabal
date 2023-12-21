@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initHP: 3
-  _elementType: 0
+  _elementType: 3
   _elementChangeSound: {fileID: 8300000, guid: f36dfeb5a7fb91d4f80361c3cc37002a, type: 3}
   _fireElementData: {fileID: 11400000, guid: 9c5a34e74a33d334e9cb860aa3181a9d, type: 2}
   _earthElementData: {fileID: 11400000, guid: ec065157e03652e4f986d3315901cc5f, type: 2}

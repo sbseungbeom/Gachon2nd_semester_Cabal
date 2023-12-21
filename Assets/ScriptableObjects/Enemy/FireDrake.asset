@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: FireDrake
   m_EditorClassIdentifier: 
   Score: 50
-  MinX: -15
-  MaxX: 15
-  MoveSpeed: 4
+  MinX: -20
+  MaxX: 20
+  MoveSpeed: 8
   ShootCooldown: 12
   RandomShootCooldown: 0
   projectile: {fileID: -8760447939717194727, guid: 7c8838ee1d309864c94668d388447f1d, type: 3}
   DamageParticle: {fileID: 1590039965784815200, guid: 567a9eba6cc906947beccf494bfe08c3, type: 3}
-  YOffset: 5
+  YOffset: 4

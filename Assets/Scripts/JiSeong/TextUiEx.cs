@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 
 public class TextUiEx : MonoBehaviour
@@ -86,22 +87,52 @@ public class TextUiEx : MonoBehaviour
 
     IEnumerator TextPractice()
     {
+        if(_chatList.Count > 0) ApplyChatSituation(_chatList[0]);
+        for (var i = 0f; i <= 1f; i += Time.deltaTime)
+        {
+            BlackScreen.alpha = 1 - i;
+            yield return null;
+        }
+        BlackScreen.alpha = 0f;
+
         foreach (var chat in _chatList)
         {
             yield return StartCoroutine(NormalChat(chat));
         }
-        if(_recentStageData == null)
+
+
+        for (var i = 0f; i <= 1f; i += Time.deltaTime)
         {
-            SceneManager.LoadScene("EndingScene");
+            BlackScreen.alpha = i;
+            yield return null;
+        }
+        BlackScreen.alpha = 1f;
+        ending = true;
+
+        if (_recentStageData == null)
+        {
+            SceneManager.LoadSceneAsync("EndingScene");
         }
         else if(_recentStageData is NormalStageData)
         {
-            SceneManager.LoadScene("NormalStage");
+            SceneManager.LoadSceneAsync("NormalStage");
         }
         else if(_recentStageData is BossStageData)
         {
-            SceneManager.LoadScene("BossStage");
+            SceneManager.LoadSceneAsync("BossStage");
         }
+    }
+
+    private void ApplyChatSituation(Chat chat)
+    {
+        DisplayNameText.SetText(chat.DisplayName);
+        BackgroundImage.sprite = chat.BGImage;
+        FirstCharacterImage.sprite = chat.FirstCharacterImage;
+        SecondCharacterImage.sprite = chat.SecondCharacterImage;
+        TalkBox.sprite = chat.TalkboxImage;
+
+        FirstCharacterImage.gameObject.SetActive(FirstCharacterImage.sprite != null);
+        SecondCharacterImage.gameObject.SetActive(SecondCharacterImage.sprite != null);
     }
 
     IEnumerator NormalChat(Chat chat)
@@ -115,14 +146,7 @@ public class TextUiEx : MonoBehaviour
             }
             BlackScreen.alpha = 1f;
         }
-        DisplayNameText.SetText(chat.DisplayName);
-        BackgroundImage.sprite = chat.BGImage;
-        FirstCharacterImage.sprite = chat.FirstCharacterImage;
-        SecondCharacterImage.sprite = chat.SecondCharacterImage;
-        TalkBox.sprite = chat.TalkboxImage;
-
-        FirstCharacterImage.gameObject.SetActive(FirstCharacterImage.sprite != null);
-        SecondCharacterImage.gameObject.SetActive(SecondCharacterImage.sprite != null);
+        ApplyChatSituation(chat);
         if (ending == true)
         {
             ending = false;
