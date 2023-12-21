@@ -25,7 +25,7 @@ public class WhiteMageIdleState : BossBaseState
             switch (a)
             {
                 case 0:
-                    //StateMachine.ChangeState();
+                    StateMachine.ChangeState(new WhiteMageWeakShotState());
                     break;
             }
             //아이들 카운트 if 문
