@@ -1449,10 +1449,6 @@ PrefabInstance:
       propertyPath: BossCamera
       value: 
       objectReference: {fileID: 67495756}
-    - target: {fileID: 1973301110977698483, guid: 930d47ddaba5e1248b5ee0f4a0965784, type: 3}
-      propertyPath: DamageScreen
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5374836327242813929, guid: 930d47ddaba5e1248b5ee0f4a0965784, type: 3}
       propertyPath: m_Name
       value: GameManager
