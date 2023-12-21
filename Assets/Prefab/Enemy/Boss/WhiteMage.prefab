@@ -4181,6 +4181,7 @@ MonoBehaviour:
   _rotationPow: 0
   _turnDegree: 0
   _stareDegree: 0
+  BossName: "\uB9C8\uB974\uC140\uB9AC\uC6B0\uC2A4 \uD734\uACE0"
   _phase1Model: {fileID: 7463019830823285557}
   MotionAnimator: {fileID: 413805517342543967}
   _phase2Model: {fileID: 407703307405396408}

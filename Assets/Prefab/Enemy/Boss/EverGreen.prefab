@@ -6804,6 +6804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHP: 500
   _elementType: 3
+  BossName: "\uC5B4\uB460\uC5D0 \uC7A0\uC2DD\uB41C \uC5D0\uBC84\uADF8\uB9B0"
   _rotationPow: 200
   _turnDegree: 120
   _stareDegree: 16

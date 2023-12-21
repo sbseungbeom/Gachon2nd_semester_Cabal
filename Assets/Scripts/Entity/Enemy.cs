@@ -77,7 +77,8 @@ public class Enemy : Entity
         {
             _damageShowTimer -= Time.deltaTime;
 
-            _renderer.material.SetColor("_TintColor", DamagedColor * new Color(1f, 1f, 1f, _damageShowTimer / DamageShowTime));
+            _renderer.material.SetColor("_TintColor", DamagedColor * new Color(1f, 1f, 1f, 
+                Mathf.Clamp01(_damageShowTimer / DamageShowTime)));
         }
     }
 

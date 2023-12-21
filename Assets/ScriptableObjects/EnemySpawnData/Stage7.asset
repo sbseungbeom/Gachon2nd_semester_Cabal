@@ -20,7 +20,7 @@ MonoBehaviour:
     Count: 10
   - EnemyPrefab: {fileID: 2918352339638155225, guid: 5b380f02f5b87944b8f58c0ea6df548a, type: 3}
     Count: 10
-  MaxSpawn: 10
+  MaxSpawn: 5
   SpawnSpan: 4
   SpawnZPos:
   - 7

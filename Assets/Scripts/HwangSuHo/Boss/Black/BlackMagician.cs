@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackMagician : Entity
+public class BlackMagician : Boss
 {
     //퍼센트 체력바용 오버라이드 체력?
     bool _isTurning;
