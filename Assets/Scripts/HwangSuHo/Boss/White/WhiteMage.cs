@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class WhiteMage : Entity
 {
+    bool _isTurning;
+    float _angleToPlayer;
+    [Header("Player chase parameter")]
+    [SerializeField] float _rotationPow;
+    [SerializeField] float _turnDegree;
+    [SerializeField] float _stareDegree;
     Transform _playerPos;
+
     BossStateMachine _stateMachine;
 
     [SerializeField] GameObject _phase1Model;
@@ -42,6 +50,8 @@ public class WhiteMage : Entity
     }
     private void Update()
     {
+        StaringCheck();
+        TurnCheck();
         RenderHealth();
     }
     private void RenderHealth()
@@ -57,6 +67,7 @@ public class WhiteMage : Entity
             _phase2Model.gameObject.SetActive(true);
             _phase1Model.SetActive(false);
             _phase2Model.GetComponent<Animator>().SetTrigger("In");
+            SecPhase = true;
             return true;
         }
         else
@@ -66,8 +77,14 @@ public class WhiteMage : Entity
     {
         GameObject ii = Instantiate(_weakDagger, new Vector3(_playerPos.position.x, _weakHeight, _playerPos.position.z), transform.rotation).gameObject;
         ii.transform.forward = Vector3.down;
-        int a = Mathf.FloorToInt(Random.Range(0, 4));
+        int a = Mathf.FloorToInt(Random.Range(0, 5));
+        if (SecPhase)
+            a = 3;
         ii.GetComponent<WhiteMageWeakS>().ModelSet(a);
+        if (a == 3)
+            a = 4;
+        ii.GetComponent<WhiteMageWeakS>().ElementType = (ElementType)a;
+        ii.GetComponent<WhiteMageWeakS>().Owner = this;
     }
     public override void Damage(int damage)
     {
@@ -82,5 +99,42 @@ public class WhiteMage : Entity
                 _stateMachine.ChangeState(new WhiteMageSecondIdle());
             }
         }
+    }
+
+    private void StaringCheck()
+    {
+        Vector3 targetDirection = _playerPos.position - transform.position;
+        _angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
+    }
+    //각도 체크 및 뒤돌기 확인 함수
+    private void TurnCheck()
+    {
+        if (!_isTurning && _angleToPlayer >= _turnDegree && _angleToPlayer >= 0)
+        {
+            _isTurning = true;
+            StartCoroutine(TurnAround());
+        }
+    }
+    //뒷 모습 보일경우 호출
+    IEnumerator TurnAround()
+    {
+        yield return new WaitForSeconds(.7f);
+        print("TurnStart");
+        while (true)
+        {
+            yield return null;
+            //플레이어가 일정 시야각 이내에 들어오지 않았을 경우
+            if (_angleToPlayer > _stareDegree)
+            {
+                transform.Rotate(Vector3.up * _rotationPow * Time.deltaTime);
+                print("Turning");
+            }
+            /* else if (_angleToPlayer <= -_stareDegree && _angleToPlayer >= 0)
+                 transform.Rotate(transform.right * _rotationPow);*/
+            else
+                break;
+        }
+        _isTurning = false;
+        print("TurningEnd");
     }
 }
