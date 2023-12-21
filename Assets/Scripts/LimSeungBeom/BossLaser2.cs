@@ -48,11 +48,11 @@ public class BossLaser2 : MonoBehaviour
 
         if (Laser2AimingPlayer)
         {
-            Laser2Warn.transform.position = Player.transform.position;
+            Laser2Warn.transform.position = new Vector3(Player.transform.position.x,Player.transform.position.y,Player.transform.position.z);
         }
         if(!Laser2AimingPlayer)
         {
-            Laser2Warn.transform.position = Laser2SavedPlayerPosition;
+            Laser2Warn.transform.position = new Vector3(Laser2SavedPlayerPosition.x,Laser2SavedPlayerPosition.y,Laser2SavedPlayerPosition.z);
         }
 
 
