@@ -15,13 +15,14 @@ public class ElementCircleUI : MonoBehaviour
     private void Start()
     {
         _curZ = ElementImage.transform.eulerAngles.z;
+        _targetRot = GameManager.Instance.Player.CurrentElement.CircleRotation;
     }
 
     private void Update()
     {
         var curCircleRot = GameManager.Instance.Player.CurrentElement.CircleRotation;
 
-        if(!Mathf.Approximately(curCircleRot, _targetRot))
+        if(Mathf.DeltaAngle(curCircleRot, _targetRot) > 1f)
         {
             _targetRot = curCircleRot;
             _swingTimer = SwingTime;

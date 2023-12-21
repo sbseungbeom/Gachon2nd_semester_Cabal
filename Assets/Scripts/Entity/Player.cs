@@ -64,8 +64,28 @@ public class Player : Entity
         ElementChangeUpdate();
         SkillUpdate();
         HeartBeatUpdate();
+        TutorialCheck();
 
         if (Input.GetKeyDown(KeyCode.T)) OnClear();
+    }
+
+    private void TutorialCheck()
+    {
+        if(GameManager.Instance.BlackScreen.alpha <= 0.01f)
+        {
+            if (!PlayerPrefs.HasKey("ControllTutorial"))
+            {
+                PlayerPrefs.SetInt("ControllTutorial", 1);
+                TutorialManager.Instance.ShowTutorial(TutorialManager.Instance.ControllTutorial);
+            }
+
+            if (!PlayerPrefs.HasKey("ElementTutorial") && StageManager.CurrentStageNumber == 2)
+            {
+                PlayerPrefs.SetInt("ElementTutorial", 1);
+                TutorialManager.Instance.ShowTutorial(TutorialManager.Instance.ElementTutorial);
+            }
+
+        }
     }
 
     public static bool IsDominentTo(ElementType elementType, ElementType target)
@@ -90,21 +110,24 @@ public class Player : Entity
 
     private void ElementChangeUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        if (StageManager.CurrentStageNumber > 1)
         {
-            ChangeElement(_darkElementData);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            ChangeElement(_waterElementData);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            ChangeElement(_earthElementData);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            ChangeElement(_fireElementData);
+            if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+            {
+                ChangeElement(_darkElementData);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                ChangeElement(_waterElementData);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                ChangeElement(_earthElementData);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                ChangeElement(_fireElementData);
+            }
         }
     }
 
@@ -122,7 +145,9 @@ public class Player : Entity
         if(data.SpawnParticle != null && !slient) 
             ParticleManager.SpawnParticle(data.SpawnParticle, transform.position, transform);
         CurrentElement = data;
-        GameManager.Instance.SoundManager.PlaySFX(_elementChangeSound, transform);
+        
+        if(!slient)
+            GameManager.Instance.SoundManager.PlaySFX(_elementChangeSound, transform);
 
         switch(data.ElementType)
         {
@@ -237,9 +262,6 @@ public class Player : Entity
     public void OnClear()
     {
         if(_isClearing) return;
-        PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
-        var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
-        PlayerPrefs.SetInt("RecentStage", NextStage);
         _isClearing = true;
         StartCoroutine(OnClearRoutine());
     }
@@ -247,6 +269,9 @@ public class Player : Entity
     public IEnumerator OnClearRoutine()
     {
         yield return GameManager.Instance.ShowBlack();
+        PlayerPrefs.SetInt("Score", GameManager.Instance.scoreManager.score);
+        var NextStage = PlayerPrefs.GetInt("RecentStage", 0) + 1;
+        PlayerPrefs.SetInt("RecentStage", NextStage);
         SceneManager.LoadScene("StoryScene");
         _isClearing = false;
     }
