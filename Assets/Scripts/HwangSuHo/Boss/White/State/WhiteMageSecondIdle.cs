@@ -9,7 +9,7 @@ public class WhiteMageSecondIdle : BossBaseState
     {
     }
     public override void Exit()
-    { 
+    {
     }
 
     public override void Perform()
@@ -28,10 +28,11 @@ public class WhiteMageSecondIdle : BossBaseState
                 case 1:
                     StateMachine.ChangeState(new WhiteMageUltimateLaser());
                     break;
-                /*case 2:
-                    StateMachine.ChangeState(new)
-                    break;*/
+                case 2:
+                    StateMachine.ChangeState(new WhiteMageWeakShotState());
+                    break;
             }
+            _count = 0;
             //아이들 카운트 if 문
         }
     }
