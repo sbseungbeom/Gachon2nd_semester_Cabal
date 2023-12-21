@@ -7,12 +7,12 @@
 ,,,,,,,
 2,오브,BG_Stage2_1,Orb_Idle,,이 푸른 숲의 생명력이 내 속에 흐르는 걸 느낄 수 있어.,Talkbox_Idle,
 2,오브,BG_Stage2_1,Orb_Idle,,"내가 왜 여기 있는지, 무엇을 해야 하는지 명확하진 않지만,",Talkbox_Idle,
-2,오브,BG_Stage2_1,Orb_Idle,,원소의 힘을 내 것으로 만들 수 있을 것 같아.,Talkbox_Idle,
+2,오브,BG_Stage2_1,Orb_Idle,,원소의 힘이 내 것이 된 것 같아…,Talkbox_Idle,
 ,,,,,,,
-3,오브,BG_Stage2_1,Orb_Idle,,"끝없이 펼쳐진 갈대밭 위로, 저 멀리 성당이 나를 바라보고 있어.",Talkbox_Idle,
+3,오브,BG_Stage2_1,Orb_Idle,,"끝없이 펼쳐진 숲 위로, 저 멀리 성당이 나를 바라보고 있어.",Talkbox_Idle,
 3,오브,BG_Stage2_1,Orb_Glare,,그곳에는 답이 있을 것만 같아...,Talkbox_Idle,
 3,오브,BG_Stage2_1,Orb_Glare,,성당의 실루엣이 내 기억 속에 있는 퍼즐 조각처럼 느껴져..,Talkbox_Idle,
-3,오브,BG_Stage2_1,Orb_Glare,,"갈대밭이 나를 시험하는 걸까, 아니면 내 기억을 되돌려주려는 걸까?",Talkbox_Idle,
+3,오브,BG_Stage2_1,Orb_Glare,,"환상의 숲이 나를 시험하는 걸까, 아니면 내 기억을 되돌려주려는 걸까?",Talkbox_Idle,
 ,,,,,,,
 4,오브,BG_Stage4_1,Orb_Idle,,이 곳은... 너무나도 익숙한 느낌이 드는 성당이다.,Talkbox_Idle,
 4,오브,BG_Stage4_1,Orb_Idle,,"이 조각상들, 이 빛의 기둥들... 내 기억 속에 있는 그림과 일치한다.",Talkbox_Idle,
@@ -50,7 +50,6 @@
 8,오브,BG_Stage7_1,Orb_Idle,BlackMage_Idle,저건.. 에버그린!,Talkbox_Idle,
 8,오브,BG_Stage7_1,Orb_Idle,BlackMage_Idle,에버그린을 해방시켜야 해!,Talkbox_Idle,Y
 ,,,,,,,
-9,,Ending,,,,NullBox,
 9,오브,BG_Stage8_1,Orb_Pain,BlackMage_Pain,에…에버그린?,Talkbox_Idle,Y
 9,흑마법사,BG_Stage8_1,Orb_Pain,BlackMage_Pain,크으윽….,Talkbox_Idle,Y
 9,오브,BG_Stage8_1,Orb_Idle,BlackMage_Pain,에버그린 괜찮아…?,Talkbox_Idle,
