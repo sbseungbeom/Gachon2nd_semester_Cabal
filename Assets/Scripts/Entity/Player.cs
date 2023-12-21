@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : Entity
 {
     [SerializeField] private AudioClip _elementChangeSound;
+    [SerializeField] private AudioClip _playerDamageSound, _playerHealSound;
     [SerializeField] private PlayerElementData _fireElementData, _earthElementData, _waterElementData, _darkElementData;
 
     [SerializeField] private float _speed;
@@ -178,6 +179,7 @@ public class Player : Entity
     private IEnumerator EarthSkill()
     {
         if (hp < MaxHP) hp++;
+        GameManager.Instance.SoundManager.PlaySFX(_playerHealSound, transform.position, 1, 1);
 
         yield return null;
     }
@@ -189,6 +191,7 @@ public class Player : Entity
             base.Damage(damage);
             GameManager.Instance.DamageScreen.ShowDamage();
         }
+        GameManager.Instance.SoundManager.PlaySFX(_playerDamageSound, transform.position, 1, 1);
         ParticleManager.SpawnParticle(DamageParticle, transform.position);
     }
 

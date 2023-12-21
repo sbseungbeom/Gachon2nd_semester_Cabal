@@ -240,6 +240,8 @@ MonoBehaviour:
   initHP: 3
   _elementType: 3
   _elementChangeSound: {fileID: 8300000, guid: f36dfeb5a7fb91d4f80361c3cc37002a, type: 3}
+  _playerDamageSound: {fileID: 8300000, guid: e5d8f987e47c1e543a60d6ba90a1d118, type: 3}
+  _playerHealSound: {fileID: 8300000, guid: 0457a7981f25f8643a6088a6bf2147da, type: 3}
   _fireElementData: {fileID: 11400000, guid: 9c5a34e74a33d334e9cb860aa3181a9d, type: 2}
   _earthElementData: {fileID: 11400000, guid: ec065157e03652e4f986d3315901cc5f, type: 2}
   _waterElementData: {fileID: 11400000, guid: 2719d4649cb34934183a115af0e95c49, type: 2}
