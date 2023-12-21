@@ -235,6 +235,7 @@ public class Player : Entity
 
     private void ShootUpdate()
     {
+        if (TutorialManager.Instance.Showing) return;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         var dir = ray.direction;
         transform.forward = dir;
@@ -278,6 +279,7 @@ public class Player : Entity
 
     private void MoveUpdate()
     {
+        if (TutorialManager.Instance.Showing) return;
         float xAxis = Input.GetAxisRaw("Horizontal");
         if (_isBossMoving)
         {

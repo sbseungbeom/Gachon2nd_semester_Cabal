@@ -6,6 +6,7 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager Instance;
     [SerializeField] private CanvasGroup _canvasGroup;
 
+    public bool Showing { get => _canvasGroup.alpha > 0.5f; }
     public TutorialPanel ControllTutorial, ElementTutorial;
 
     private void Awake()
