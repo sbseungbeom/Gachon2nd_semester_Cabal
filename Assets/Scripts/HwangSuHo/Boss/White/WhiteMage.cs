@@ -64,6 +64,7 @@ public class WhiteMage : Boss
     {
         if (HP < 150)
         {
+            _stateMachine.ChangeState(new WhiteMageSecondIdle());
             _phase2Model.gameObject.SetActive(true);
             _phase1Model.SetActive(false);
             _phase2Model.GetComponent<Animator>().SetTrigger("In");

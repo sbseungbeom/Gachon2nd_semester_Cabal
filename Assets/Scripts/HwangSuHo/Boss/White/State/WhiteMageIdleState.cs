@@ -15,9 +15,8 @@ public class WhiteMageIdleState : BossBaseState
 
     public override void Perform()
     {
-        if (StateMachine.WhiteMagician.SecondPhaseCheck())
-            StateMachine.ChangeState(new WhiteMageSecondIdle());
-        else if (_count < _maxcount)
+        StateMachine.WhiteMagician.SecondPhaseCheck();      
+            if (_count < _maxcount)
             _count += Time.deltaTime;
         else
         {
