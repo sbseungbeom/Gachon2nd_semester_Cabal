@@ -84,7 +84,7 @@ public class Player : Entity
         _playerHeartbeat.volume = Mathf.Clamp01(_playerHeartbeat.volume + hbDeltaTime);
 
         var col = GameManager.Instance.HeartBeatScreen.color;
-        col.a = 0.6f * Mathf.Clamp01(col.a + hbDeltaTime);
+        col.a = Mathf.Clamp(col.a + hbDeltaTime / 0.2f / 0.6f, 0f, 0.2f);
         GameManager.Instance.HeartBeatScreen.color = col;
     }
 

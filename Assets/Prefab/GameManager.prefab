@@ -475,7 +475,6 @@ GameObject:
   - component: {fileID: 1026342265097366870}
   - component: {fileID: 3499232657483201151}
   - component: {fileID: 1414028914972712822}
-  - component: {fileID: 2736301974992822884}
   m_Layer: 5
   m_Name: HeartBeatScreen
   m_TagString: Untagged
@@ -540,19 +539,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2736301974992822884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6528919300772645555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5908723b0970f46ac3eb7eef9d807a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _screenImage: {fileID: 1414028914972712822}
 --- !u!1 &7703055525573093165
 GameObject:
   m_ObjectHideFlags: 0
