@@ -21,7 +21,7 @@ public class SunlightYellowOverdrive : MonoBehaviour
 
     Transform SavedPlayerPosition;
 
-    GameObject[] Fists = new GameObject[30];
+    GameObject[] Fists = new GameObject[20];
 
 
     // Start is called before the first frame update
@@ -59,9 +59,10 @@ public class SunlightYellowOverdrive : MonoBehaviour
     public void StartFist()
     {
         float a;
-        a = Random.Range(0, 30);
+        a = Random.Range(0, 20);
         int aa = Mathf.FloorToInt(a);
         StartCoroutine(FistMotor(FistsArrIndex, aa));
+        
     }
     IEnumerator FistMotor(int index, int count)
     {
@@ -69,12 +70,13 @@ public class SunlightYellowOverdrive : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(.1f, .7f));
             StartCoroutine(ActivateFist(index + i));
-            
+
         }
     }
     //주먹 발사하는 함수. x,y,z의 offset값을 인자로 받아주어야 함.
     IEnumerator ActivateFist(int Index)
     {
+
         ex = Random.Range(-SpreadX, SpreadX);
         ex2 = Random.Range(-SpreadY, SpreadY);
         ex3 = Random.Range(-SpreadZ, SpreadZ);
@@ -82,14 +84,23 @@ public class SunlightYellowOverdrive : MonoBehaviour
         if (Index >= Fists.Length)
             Index -= Fists.Length;
         GameObject ActivatedFist = Fists[Index];
-
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
+        ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
         FistsArrIndex++;
         if (FistsArrIndex >= Fists.Length)
         {
             FistsArrIndex = 0;
         }
         ActivatedFist.SetActive(true);
+
+
         ActivatedFist.transform.LookAt(GameManager.Instance.Player.transform.position);
+
+
         ActivatedFist.transform.position = new Vector3(this.transform.position.x + ex, this.transform.position.y + ex2, this.transform.position.z + ex3);
 
         yield return new WaitForSeconds(5);
